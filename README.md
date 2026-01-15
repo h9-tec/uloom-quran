@@ -100,7 +100,7 @@ A comprehensive AI-powered platform for Quranic Sciences (علوم القرآن)
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/uloom-quran.git
+git clone https://github.com/h9-tec/uloom-quran.git
 cd uloom-quran
 
 # Create virtual environment
