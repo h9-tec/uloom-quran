@@ -1,0 +1,740 @@
+/**
+ * Qiraat Comparison Component Styles - تنسيقات مكوّن مقارنة القراءات
+ *
+ * This stylesheet is designed to work with RTL Arabic text and integrates
+ * with the main application styles while remaining self-contained.
+ */
+
+/* ==========================================================================
+   CSS Variables - Custom Properties
+   ========================================================================== */
+
+.qc-widget {
+    --qc-primary: #1a5f4a;
+    --qc-primary-dark: #0d3d2e;
+    --qc-primary-light: #2d8f6f;
+    --qc-secondary: #c9a227;
+    --qc-bg: #f5f3ef;
+    --qc-card-bg: #ffffff;
+    --qc-text: #2c3e50;
+    --qc-text-light: #6c757d;
+    --qc-border: #e0ddd5;
+    --qc-quran-text: #1a3a2a;
+    --qc-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --qc-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --qc-highlight-bg: #fff9e6;
+    --qc-highlight-border: #c9a227;
+    --qc-success: #28a745;
+    --qc-error: #dc3545;
+    --qc-font-arabic: 'Amiri Quran', 'Amiri', 'Traditional Arabic', serif;
+    --qc-font-ui: 'Amiri', 'Traditional Arabic', serif;
+    --qc-radius: 12px;
+    --qc-radius-sm: 8px;
+    --qc-transition: 0.3s ease;
+}
+
+/* ==========================================================================
+   Base Widget Styles
+   ========================================================================== */
+
+.qc-widget {
+    font-family: var(--qc-font-ui);
+    background: var(--qc-card-bg);
+    border-radius: var(--qc-radius);
+    box-shadow: var(--qc-shadow);
+    overflow: hidden;
+    direction: rtl;
+    text-align: right;
+    line-height: 1.8;
+}
+
+.qc-widget * {
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Header Section
+   ========================================================================== */
+
+.qc-header {
+    background: linear-gradient(135deg, var(--qc-primary), var(--qc-primary-dark));
+    color: white;
+    padding: 1.5rem;
+}
+
+.qc-verse-display {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--qc-radius-sm);
+    margin-bottom: 1rem;
+}
+
+.qc-verse-text {
+    font-family: var(--qc-font-arabic);
+    font-size: 1.6rem;
+    line-height: 2.5;
+    display: block;
+    text-align: center;
+    color: white;
+}
+
+.qc-verse-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.qc-surah-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.qc-verse-key {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+}
+
+/* ==========================================================================
+   Controls Section
+   ========================================================================== */
+
+.qc-controls {
+    padding: 1rem 1.5rem;
+    background: var(--qc-bg);
+    border-bottom: 1px solid var(--qc-border);
+}
+
+.qc-mode-toggle {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.qc-mode-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border: 2px solid var(--qc-border);
+    background: var(--qc-card-bg);
+    border-radius: var(--qc-radius-sm);
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--qc-text);
+    cursor: pointer;
+    transition: all var(--qc-transition);
+}
+
+.qc-mode-btn:hover {
+    border-color: var(--qc-primary);
+    color: var(--qc-primary);
+}
+
+.qc-mode-btn--active {
+    background: var(--qc-primary);
+    border-color: var(--qc-primary);
+    color: white;
+}
+
+.qc-mode-btn--active:hover {
+    background: var(--qc-primary-dark);
+    border-color: var(--qc-primary-dark);
+    color: white;
+}
+
+.qc-mode-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.qc-mode-label {
+    font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   Content Area
+   ========================================================================== */
+
+.qc-content {
+    padding: 1.5rem;
+}
+
+/* ==========================================================================
+   Variant Cards
+   ========================================================================== */
+
+.qc-variant {
+    background: var(--qc-bg);
+    border-radius: var(--qc-radius-sm);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.qc-variant:last-child {
+    margin-bottom: 0;
+}
+
+.qc-variant-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(26, 95, 74, 0.08);
+    border-bottom: 1px solid var(--qc-border);
+}
+
+.qc-variant-number {
+    width: 30px;
+    height: 30px;
+    background: var(--qc-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.qc-variant-word {
+    font-family: var(--qc-font-arabic);
+    font-size: 1.4rem;
+    color: var(--qc-primary-dark);
+    flex-grow: 1;
+}
+
+.qc-variant-type {
+    font-size: 0.8rem;
+    background: var(--qc-secondary);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+}
+
+/* ==========================================================================
+   Stacked Mode
+   ========================================================================== */
+
+.qc-readings-stacked {
+    padding: 1rem;
+}
+
+.qc-mode-stacked .qc-reading {
+    margin-bottom: 1rem;
+}
+
+.qc-mode-stacked .qc-reading:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Side-by-Side Mode
+   ========================================================================== */
+
+.qc-readings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .qc-readings-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.qc-readings-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* ==========================================================================
+   Reading Cards
+   ========================================================================== */
+
+.qc-reading {
+    background: var(--qc-card-bg);
+    border-radius: var(--qc-radius-sm);
+    padding: 1rem;
+    border-right: 4px solid var(--qc-primary);
+    transition: all var(--qc-transition);
+}
+
+.qc-reading:hover {
+    box-shadow: var(--qc-shadow-hover);
+    transform: translateX(-2px);
+}
+
+.qc-reading--highlight {
+    background: var(--qc-highlight-bg);
+    border-right-color: var(--qc-highlight-border);
+}
+
+.qc-reading-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--qc-border);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.qc-qari-name {
+    font-weight: 700;
+    color: var(--qc-primary);
+    font-size: 1rem;
+}
+
+.qc-rawi-name {
+    font-size: 0.85rem;
+    color: var(--qc-text-light);
+}
+
+.qc-reading-text {
+    font-family: var(--qc-font-arabic);
+    font-size: 1.3rem;
+    line-height: 2;
+    color: var(--qc-quran-text);
+}
+
+.qc-reading-description {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--qc-border);
+    font-size: 0.9rem;
+    color: var(--qc-text-light);
+    line-height: 1.6;
+}
+
+.qc-no-readings {
+    text-align: center;
+    padding: 1rem;
+    color: var(--qc-text-light);
+}
+
+/* ==========================================================================
+   Table Mode
+   ========================================================================== */
+
+.qc-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.qc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.qc-table-header {
+    background: var(--qc-primary);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.qc-table-header--word {
+    background: var(--qc-primary-dark);
+    min-width: 120px;
+}
+
+.qc-table-header--reader {
+    min-width: 100px;
+}
+
+.qc-table-row {
+    border-bottom: 1px solid var(--qc-border);
+}
+
+.qc-table-row:nth-child(even) {
+    background: var(--qc-bg);
+}
+
+.qc-table-row:hover {
+    background: rgba(26, 95, 74, 0.05);
+}
+
+.qc-table-cell {
+    padding: 0.75rem 1rem;
+    text-align: center;
+    vertical-align: middle;
+    font-family: var(--qc-font-arabic);
+    font-size: 1.1rem;
+}
+
+.qc-table-cell--word {
+    font-weight: 700;
+    background: rgba(26, 95, 74, 0.08);
+    color: var(--qc-primary-dark);
+}
+
+.qc-table-cell--highlight {
+    background: var(--qc-highlight-bg);
+    color: var(--qc-primary-dark);
+}
+
+/* ==========================================================================
+   Loading State
+   ========================================================================== */
+
+.qc-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    color: var(--qc-text-light);
+    min-height: 200px;
+}
+
+.qc-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--qc-border);
+    border-top-color: var(--qc-primary);
+    border-radius: 50%;
+    animation: qc-spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes qc-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Error State
+   ========================================================================== */
+
+.qc-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    min-height: 200px;
+}
+
+.qc-error-icon {
+    font-size: 3rem;
+    color: var(--qc-error);
+    margin-bottom: 1rem;
+}
+
+.qc-error-message {
+    font-size: 1.2rem;
+    color: var(--qc-text);
+    margin-bottom: 0.5rem;
+}
+
+.qc-error-details {
+    font-size: 0.9rem;
+    color: var(--qc-text-light);
+    margin-bottom: 1rem;
+    max-width: 300px;
+}
+
+.qc-retry-btn {
+    padding: 0.6rem 1.5rem;
+    background: var(--qc-primary);
+    color: white;
+    border: none;
+    border-radius: var(--qc-radius-sm);
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background var(--qc-transition);
+}
+
+.qc-retry-btn:hover {
+    background: var(--qc-primary-dark);
+}
+
+/* ==========================================================================
+   Empty State
+   ========================================================================== */
+
+.qc-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+    min-height: 200px;
+    color: var(--qc-text-light);
+}
+
+.qc-empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.qc-empty-message {
+    font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   No Differences State
+   ========================================================================== */
+
+.qc-no-differences {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+    background: var(--qc-bg);
+    margin: 1.5rem;
+    border-radius: var(--qc-radius-sm);
+}
+
+.qc-no-diff-icon {
+    font-size: 3rem;
+    color: var(--qc-success);
+    margin-bottom: 1rem;
+}
+
+.qc-no-diff-message {
+    font-size: 1.2rem;
+    color: var(--qc-text);
+    margin-bottom: 0.5rem;
+}
+
+.qc-no-diff-note {
+    font-size: 0.9rem;
+    color: var(--qc-text-light);
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+.qc-reading,
+.qc-variant {
+    animation: qc-fadeIn 0.3s ease-out;
+}
+
+@keyframes qc-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .qc-widget {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+
+    .qc-controls {
+        display: none;
+    }
+
+    .qc-header {
+        background: #1a5f4a !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .qc-reading:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+/* ==========================================================================
+   RTL Support
+   ========================================================================== */
+
+/* The widget is RTL by default, but these ensure proper handling */
+.qc-widget[dir="rtl"] .qc-reading {
+    border-right: 4px solid var(--qc-primary);
+    border-left: none;
+}
+
+.qc-widget[dir="rtl"] .qc-reading--highlight {
+    border-right-color: var(--qc-highlight-border);
+}
+
+.qc-widget[dir="ltr"] .qc-reading {
+    border-left: 4px solid var(--qc-primary);
+    border-right: none;
+}
+
+.qc-widget[dir="ltr"] .qc-reading--highlight {
+    border-left-color: var(--qc-highlight-border);
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 576px) {
+    .qc-header {
+        padding: 1rem;
+    }
+
+    .qc-verse-text {
+        font-size: 1.3rem;
+    }
+
+    .qc-verse-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .qc-controls {
+        padding: 0.75rem 1rem;
+    }
+
+    .qc-mode-label {
+        display: none;
+    }
+
+    .qc-mode-btn {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .qc-content {
+        padding: 1rem;
+    }
+
+    .qc-variant-header {
+        flex-wrap: wrap;
+        padding: 0.75rem 1rem;
+    }
+
+    .qc-variant-word {
+        font-size: 1.2rem;
+    }
+
+    .qc-reading {
+        padding: 0.75rem;
+    }
+
+    .qc-reading-text {
+        font-size: 1.1rem;
+    }
+
+    .qc-qari-name {
+        font-size: 0.9rem;
+    }
+
+    .qc-table-cell,
+    .qc-table-header {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .qc-mode-toggle {
+        flex-direction: column;
+    }
+
+    .qc-mode-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .qc-mode-label {
+        display: inline;
+    }
+}
+
+/* ==========================================================================
+   High Contrast Mode Support
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+    .qc-widget {
+        --qc-border: #000;
+        --qc-shadow: 0 0 0 2px #000;
+    }
+
+    .qc-reading {
+        border-width: 6px;
+    }
+
+    .qc-mode-btn {
+        border-width: 3px;
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion Support
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .qc-spinner {
+        animation: none;
+    }
+
+    .qc-reading,
+    .qc-variant {
+        animation: none;
+    }
+
+    .qc-reading:hover {
+        transform: none;
+    }
+
+    * {
+        transition: none !important;
+    }
+}
+
+/* ==========================================================================
+   Dark Mode Support (Optional)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    .qc-widget.qc-theme-auto {
+        --qc-bg: #1a1a1a;
+        --qc-card-bg: #2d2d2d;
+        --qc-text: #e0e0e0;
+        --qc-text-light: #a0a0a0;
+        --qc-border: #404040;
+        --qc-quran-text: #e8e8e8;
+        --qc-highlight-bg: #3d3520;
+    }
+}
+
+/* Manual dark mode class */
+.qc-widget.qc-theme-dark {
+    --qc-bg: #1a1a1a;
+    --qc-card-bg: #2d2d2d;
+    --qc-text: #e0e0e0;
+    --qc-text-light: #a0a0a0;
+    --qc-border: #404040;
+    --qc-quran-text: #e8e8e8;
+    --qc-highlight-bg: #3d3520;
+}

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}علوم القرآن{% endblock %}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Amiri+Quran&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <span>علوم</span> القرآن
+            </a>
+
+            <!-- Mobile menu toggle -->
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav id="main-nav">
+                <a href="/" {% if request.url.path == '/' %}class="active"{% endif %}>الرئيسية</a>
+                <a href="/quran" {% if '/quran' in request.url.path or '/surah' in request.url.path %}class="active"{% endif %}>القرآن الكريم</a>
+
+                <!-- القراءات dropdown -->
+                <div class="nav-dropdown">
+                    <a href="/qiraat" class="dropdown-toggle {% if '/qiraat' in request.url.path %}active{% endif %}">
+                        القراءات العشر
+                        <svg class="dropdown-arrow" width="10" height="6" viewBox="0 0 10 6" fill="currentColor">
+                            <path d="M5 6L0 0h10L5 6z"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/qiraat" {% if request.url.path == '/qiraat' %}class="active"{% endif %}>القراءات</a>
+                        <a href="/qiraat/surah/1" {% if '/qiraat/surah' in request.url.path %}class="active"{% endif %}>تصفح السور</a>
+                        <a href="/qiraat/verse/1:1" {% if '/qiraat/verse' in request.url.path and '/audio' not in request.url.path %}class="active"{% endif %}>مقارنة الآيات</a>
+                        <a href="/qiraat/audio/compare/1:1" {% if '/qiraat/audio/compare' in request.url.path %}class="active"{% endif %}>مقارنة الصوتيات</a>
+                        <a href="/qiraat/learn" {% if request.url.path == '/qiraat/learn' %}class="active"{% endif %}>تعلم القراءات</a>
+                        <a href="/qiraat/glossary" {% if request.url.path == '/qiraat/glossary' %}class="active"{% endif %}>مصطلحات</a>
+                        <a href="/qiraat/stats" {% if request.url.path == '/qiraat/stats' %}class="active"{% endif %}>إحصائيات</a>
+                    </div>
+                </div>
+
+                <a href="/tafsir" {% if '/tafsir' in request.url.path %}class="active"{% endif %}>التفاسير</a>
+                <a href="/asbab" {% if '/asbab' in request.url.path %}class="active"{% endif %}>أسباب النزول</a>
+                <a href="/mutashabihat" {% if '/mutashabihat' in request.url.path %}class="active"{% endif %}>المتشابهات</a>
+                <a href="/earab" {% if '/earab' in request.url.path %}class="active"{% endif %}>إعراب القرآن</a>
+                <a href="/ai" {% if '/ai' in request.url.path %}class="active"{% endif %} style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 0.5rem 1rem; border-radius: 8px; color: white;">المساعد الذكي</a>
+                <a href="/api/docs" target="_blank">API</a>
+            </nav>
+        </div>
+    </header>
+
+    <style>
+        /* Navigation Dropdown Styles */
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .nav-dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--bg-color, #1a1a2e);
+            border: 1px solid var(--border-color, #333);
+            border-radius: 8px;
+            min-width: 180px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text-color, #e0e0e0);
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--hover-color, rgba(255, 255, 255, 0.1));
+        }
+
+        .dropdown-menu a.active {
+            color: var(--primary-color, #d4af37);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Mobile Navigation Toggle */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 100%;
+            height: 3px;
+            background: var(--text-color, #e0e0e0);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Responsive Navigation */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            #main-nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--bg-color, #1a1a2e);
+                flex-direction: column;
+                padding: 4rem 1.5rem 2rem;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+                overflow-y: auto;
+            }
+
+            #main-nav.open {
+                right: 0;
+            }
+
+            #main-nav a {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid var(--border-color, #333);
+            }
+
+            .nav-dropdown {
+                width: 100%;
+            }
+
+            .dropdown-toggle {
+                width: 100%;
+                justify-content: space-between;
+                padding: 0.75rem 0;
+                border-bottom: 1px solid var(--border-color, #333);
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0;
+                border: none;
+                box-shadow: none;
+                background: transparent;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-dropdown.open .dropdown-menu {
+                max-height: 300px;
+                padding: 0.5rem 0;
+            }
+
+            .dropdown-menu a {
+                padding-right: 1.5rem;
+                border-bottom: none;
+            }
+
+            /* Mobile overlay */
+            .nav-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    </style>
+
+    <div class="nav-overlay" onclick="closeNav()"></div>
+
+    <script>
+        function toggleNav() {
+            const nav = document.getElementById('main-nav');
+            const toggle = document.querySelector('.nav-toggle');
+            const overlay = document.querySelector('.nav-overlay');
+
+            nav.classList.toggle('open');
+            toggle.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+        }
+
+        function closeNav() {
+            const nav = document.getElementById('main-nav');
+            const toggle = document.querySelector('.nav-toggle');
+            const overlay = document.querySelector('.nav-overlay');
+
+            nav.classList.remove('open');
+            toggle.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Handle dropdown on mobile
+        document.querySelectorAll('.nav-dropdown .dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    this.parentElement.classList.toggle('open');
+                }
+            });
+        });
+    </script>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>علوم القرآن - منصة شاملة لعلوم القرآن الكريم</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">
+                <a href="/api/docs">API Documentation</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

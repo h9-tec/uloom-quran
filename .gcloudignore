@@ -1,0 +1,38 @@
+# Cloud Build ignore file - exclude large/unnecessary files
+.git
+.gitignore
+__pycache__
+*.pyc
+*.pyo
+.env
+.env.*
+!.env.example
+
+# Exclude large data directories (not needed in Docker image)
+data/
+scripts/
+*.log
+.venv
+venv/
+
+# Exclude documentation
+*.md
+!README.md
+
+# Exclude IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Exclude test files
+tests/
+*.test.py
+
+# Exclude local k8s and docker files
+k8s/
+docker-compose*.yml
+.claude/
+
+# Exclude backup database
+db/quran.db

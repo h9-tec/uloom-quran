@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}التفسير المقارن - علوم القرآن{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 2rem;">
+    <h1>التفسير المقارن</h1>
+    <p style="color: var(--text-light); margin-bottom: 2rem;">قارن بين تفاسير العلماء جنبًا إلى جنب</p>
+
+    <!-- Selection Form -->
+    <div class="card mb-3">
+        <h3>اختر الآية والتفاسير</h3>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div>
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">السورة</label>
+                <select id="surah-select" onchange="loadAyahOptions()">
+                    <option value="">اختر سورة...</option>
+                    {% for surah in surahs %}
+                    <option value="{{ surah.id }}">{{ surah.id }}. {{ surah.name_arabic }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">الآية</label>
+                <select id="ayah-select" disabled>
+                    <option value="">اختر السورة أولاً...</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">اختر التفاسير للمقارنة</label>
+            <div class="checkbox-group" id="tafsir-checkboxes">
+                {% for book in tafsir_books %}
+                <label class="checkbox-item">
+                    <input type="checkbox" value="{{ book.id }}" checked>
+                    <span>{{ book.short_name or book.name_arabic }}</span>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="loadComparison()">عرض المقارنة</button>
+    </div>
+
+    <!-- Results -->
+    <div id="comparison-results"></div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const surahAyahCounts = {
+    1: 7, 2: 286, 3: 200, 4: 176, 5: 120, 6: 165, 7: 206, 8: 75, 9: 129, 10: 109,
+    11: 123, 12: 111, 13: 43, 14: 52, 15: 99, 16: 128, 17: 111, 18: 110, 19: 98, 20: 135,
+    21: 112, 22: 78, 23: 118, 24: 64, 25: 77, 26: 227, 27: 93, 28: 88, 29: 69, 30: 60,
+    31: 34, 32: 30, 33: 73, 34: 54, 35: 45, 36: 83, 37: 182, 38: 88, 39: 75, 40: 85,
+    41: 54, 42: 53, 43: 89, 44: 59, 45: 37, 46: 35, 47: 38, 48: 29, 49: 18, 50: 45,
+    51: 60, 52: 49, 53: 62, 54: 55, 55: 78, 56: 96, 57: 29, 58: 22, 59: 24, 60: 13,
+    61: 14, 62: 11, 63: 11, 64: 18, 65: 12, 66: 12, 67: 30, 68: 52, 69: 52, 70: 44,
+    71: 28, 72: 28, 73: 20, 74: 56, 75: 40, 76: 31, 77: 50, 78: 40, 79: 46, 80: 42,
+    81: 29, 82: 19, 83: 36, 84: 25, 85: 22, 86: 17, 87: 19, 88: 26, 89: 30, 90: 20,
+    91: 15, 92: 21, 93: 11, 94: 8, 95: 8, 96: 19, 97: 5, 98: 8, 99: 8, 100: 11,
+    101: 11, 102: 8, 103: 3, 104: 9, 105: 5, 106: 4, 107: 7, 108: 3, 109: 6, 110: 3,
+    111: 5, 112: 4, 113: 5, 114: 6
+};
+
+function loadAyahOptions() {
+    const surahId = document.getElementById('surah-select').value;
+    const ayahSelect = document.getElementById('ayah-select');
+
+    if (!surahId) {
+        ayahSelect.innerHTML = '<option value="">اختر السورة أولاً...</option>';
+        ayahSelect.disabled = true;
+        return;
+    }
+
+    const ayahCount = surahAyahCounts[surahId] || 0;
+    let options = '<option value="">اختر آية...</option>';
+    for (let i = 1; i <= ayahCount; i++) {
+        options += `<option value="${surahId}:${i}">الآية ${i}</option>`;
+    }
+
+    ayahSelect.innerHTML = options;
+    ayahSelect.disabled = false;
+}
+
+async function loadComparison() {
+    const verseKey = document.getElementById('ayah-select').value;
+    if (!verseKey) {
+        alert('الرجاء اختيار آية');
+        return;
+    }
+
+    const selectedTafsirs = Array.from(document.querySelectorAll('#tafsir-checkboxes input:checked'))
+        .map(cb => cb.value);
+
+    if (selectedTafsirs.length < 1) {
+        alert('الرجاء اختيار تفسير واحد على الأقل');
+        return;
+    }
+
+    const container = document.getElementById('comparison-results');
+    showLoading(container);
+
+    const data = await compareTafsirs(verseKey, selectedTafsirs);
+    renderTafsirComparison(data, container);
+}
+</script>
+{% endblock %}

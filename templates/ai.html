@@ -1,0 +1,1098 @@
+{% extends "base.html" %}
+
+{% block title %}المساعد الذكي - علوم القرآن{% endblock %}
+
+{% block extra_css %}
+<style>
+    .ai-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .ai-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .ai-header h1 {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .ai-header p {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+    }
+
+    .ai-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    @media (min-width: 1024px) {
+        .ai-container {
+            grid-template-columns: 300px 1fr;
+        }
+    }
+
+    /* Sidebar */
+    .ai-sidebar {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 1.5rem;
+        height: fit-content;
+    }
+
+    .ai-sidebar h3 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .feature-list li {
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        background: var(--bg-secondary);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 2px solid transparent;
+    }
+
+    .feature-list li:hover {
+        border-color: var(--primary-color);
+    }
+
+    .feature-list li.active {
+        background: rgba(212, 175, 55, 0.1);
+        border-color: var(--primary-color);
+    }
+
+    .feature-list li .feature-icon {
+        display: block;
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .feature-list li .feature-title {
+        font-weight: bold;
+        margin-bottom: 0.25rem;
+    }
+
+    .feature-list li .feature-desc {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+
+    /* Main Content */
+    .ai-main {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        min-height: 600px;
+    }
+
+    /* Chat Interface */
+    .chat-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1rem;
+        background: var(--bg-secondary);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        min-height: 400px;
+        max-height: 500px;
+    }
+
+    .message {
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 12px;
+        max-width: 85%;
+        animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message.user {
+        background: var(--primary-color);
+        color: var(--bg-color);
+        margin-right: auto;
+        border-bottom-right-radius: 4px;
+    }
+
+    .message.assistant {
+        background: var(--card-bg);
+        margin-left: auto;
+        border-bottom-left-radius: 4px;
+        border: 1px solid var(--border-color);
+    }
+
+    .message-content {
+        line-height: 1.7;
+    }
+
+    .message-sources {
+        margin-top: 1rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--border-color);
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+
+    .source-tag {
+        display: inline-block;
+        background: var(--bg-secondary);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        margin: 0.25rem;
+        font-size: 0.8rem;
+    }
+
+    /* Input Area */
+    .chat-input-container {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .chat-input {
+        flex: 1;
+        padding: 1rem;
+        border-radius: 12px;
+        border: 2px solid var(--border-color);
+        background: var(--bg-secondary);
+        color: var(--text-color);
+        font-size: 1rem;
+        font-family: inherit;
+        resize: none;
+    }
+
+    .chat-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+
+    .send-btn {
+        padding: 0 1.5rem;
+        background: var(--primary-color);
+        color: var(--bg-color);
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: all 0.2s ease;
+    }
+
+    .send-btn:hover {
+        opacity: 0.9;
+        transform: scale(1.02);
+    }
+
+    .send-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    /* Options */
+    .chat-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .option-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: var(--bg-secondary);
+        border-radius: 20px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .option-toggle:hover {
+        background: var(--card-bg);
+    }
+
+    .option-toggle input {
+        accent-color: var(--primary-color);
+    }
+
+    /* Elegant Loading Animation */
+    .typing-indicator {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: var(--card-bg);
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        margin-left: auto;
+        max-width: 85%;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .typing-dots {
+        display: flex;
+        gap: 4px;
+    }
+
+    .typing-dots span {
+        width: 8px;
+        height: 8px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        animation: typingBounce 1.4s infinite ease-in-out;
+    }
+
+    .typing-dots span:nth-child(1) { animation-delay: 0s; }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typingBounce {
+        0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+        30% { transform: translateY(-8px); opacity: 1; }
+    }
+
+    .typing-text {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    /* Streaming cursor */
+    .streaming-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background: var(--primary-color);
+        animation: blink 1s infinite;
+        margin-right: 2px;
+        vertical-align: text-bottom;
+    }
+
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+
+    /* Search Mode */
+    .search-container {
+        display: none;
+    }
+
+    .search-container.active {
+        display: block;
+    }
+
+    .search-input-group {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 1rem;
+        border-radius: 12px;
+        border: 2px solid var(--border-color);
+        background: var(--bg-secondary);
+        color: var(--text-color);
+        font-size: 1rem;
+        font-family: inherit;
+    }
+
+    .search-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+
+    .search-btn {
+        padding: 0 1.5rem;
+        background: var(--primary-color);
+        color: var(--bg-color);
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .search-results {
+        margin-top: 1rem;
+    }
+
+    .search-result-item {
+        background: var(--bg-secondary);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 0.75rem;
+        border-right: 4px solid var(--primary-color);
+    }
+
+    .search-result-item .verse-key {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .search-result-item .verse-text {
+        font-family: 'Amiri Quran', serif;
+        font-size: 1.3rem;
+        line-height: 2;
+    }
+
+    .search-result-item .score {
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+
+    /* Verse Analysis Mode */
+    .verse-analysis {
+        display: none;
+    }
+
+    .verse-analysis.active {
+        display: block;
+    }
+
+    .verse-selector {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .verse-selector select {
+        padding: 0.75rem;
+        border-radius: 8px;
+        border: 2px solid var(--border-color);
+        background: var(--bg-secondary);
+        color: var(--text-color);
+        font-family: inherit;
+        min-width: 150px;
+    }
+
+    .analyze-btn {
+        padding: 0.75rem 1.5rem;
+        background: var(--primary-color);
+        color: var(--bg-color);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .analysis-tabs {
+        display: flex;
+        border-bottom: 2px solid var(--border-color);
+        margin-bottom: 1rem;
+    }
+
+    .analysis-tab {
+        padding: 0.75rem 1rem;
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        cursor: pointer;
+        position: relative;
+    }
+
+    .analysis-tab.active {
+        color: var(--primary-color);
+    }
+
+    .analysis-tab.active::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--primary-color);
+    }
+
+    .analysis-content {
+        background: var(--bg-secondary);
+        padding: 1.5rem;
+        border-radius: 8px;
+        line-height: 1.8;
+    }
+
+    /* Loading spinner for other areas */
+    .loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid var(--border-color);
+        border-top-color: var(--primary-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Welcome */
+    .welcome-message {
+        text-align: center;
+        padding: 3rem 1rem;
+        color: var(--text-muted);
+    }
+
+    .welcome-message h2 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .example-questions {
+        display: grid;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .example-question {
+        padding: 0.75rem 1rem;
+        background: var(--card-bg);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: right;
+    }
+
+    .example-question:hover {
+        background: var(--bg-secondary);
+        border-color: var(--primary-color);
+    }
+
+    /* Health Status */
+    .health-status {
+        padding: 0.5rem;
+        margin-top: 1rem;
+        border-radius: 8px;
+        font-size: 0.85rem;
+    }
+
+    .health-status.healthy {
+        background: rgba(76, 175, 80, 0.1);
+        color: #4caf50;
+    }
+
+    .health-status.degraded {
+        background: rgba(255, 152, 0, 0.1);
+        color: #ff9800;
+    }
+
+    .health-status.error {
+        background: rgba(244, 67, 54, 0.1);
+        color: #f44336;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="ai-page">
+    <div class="ai-header">
+        <h1>المساعد الذكي</h1>
+        <p>اسأل أي سؤال عن القرآن الكريم وعلومه</p>
+    </div>
+
+    <div class="ai-container">
+        <aside class="ai-sidebar">
+            <h3>الميزات</h3>
+            <ul class="feature-list">
+                <li class="active" data-mode="chat">
+                    <span class="feature-icon">💬</span>
+                    <span class="feature-title">المحادثة الذكية</span>
+                    <span class="feature-desc">اسأل أي سؤال عن القرآن</span>
+                </li>
+                <li data-mode="search">
+                    <span class="feature-icon">🔍</span>
+                    <span class="feature-title">البحث الدلالي</span>
+                    <span class="feature-desc">ابحث بالمعنى لا بالكلمات</span>
+                </li>
+                <li data-mode="verse">
+                    <span class="feature-icon">📖</span>
+                    <span class="feature-title">تحليل الآيات</span>
+                    <span class="feature-desc">تفسير وقراءات ومقارنة</span>
+                </li>
+            </ul>
+
+            <div class="health-status" id="health-status">
+                جاري الاتصال...
+            </div>
+        </aside>
+
+        <main class="ai-main">
+            <!-- Chat Mode -->
+            <div class="chat-container" id="chat-mode">
+                <div class="chat-options">
+                    <label class="option-toggle">
+                        <input type="checkbox" id="include-verses" checked>
+                        <span>تضمين الآيات</span>
+                    </label>
+                    <label class="option-toggle">
+                        <input type="checkbox" id="include-tafsir" checked>
+                        <span>تضمين التفاسير</span>
+                    </label>
+                    <label class="option-toggle">
+                        <input type="checkbox" id="include-qiraat">
+                        <span>تضمين القراءات</span>
+                    </label>
+                </div>
+
+                <div class="chat-messages" id="chat-messages">
+                    <div class="welcome-message">
+                        <h2>مرحباً بك في المساعد الذكي</h2>
+                        <p>يمكنك طرح أي سؤال عن القرآن الكريم، التفاسير، القراءات، وأسباب النزول</p>
+                        <div class="example-questions">
+                            <div class="example-question" onclick="askExample('ما هي أسباب نزول سورة الكوثر؟')">
+                                ما هي أسباب نزول سورة الكوثر؟
+                            </div>
+                            <div class="example-question" onclick="askExample('اشرح لي معنى البسملة')">
+                                اشرح لي معنى البسملة
+                            </div>
+                            <div class="example-question" onclick="askExample('ما هي الآيات التي تتحدث عن الصبر؟')">
+                                ما هي الآيات التي تتحدث عن الصبر؟
+                            </div>
+                            <div class="example-question" onclick="askExample('ما الفرق بين قراءة حفص وورش؟')">
+                                ما الفرق بين قراءة حفص وورش؟
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <textarea class="chat-input" id="chat-input" placeholder="اكتب سؤالك هنا..." rows="2"></textarea>
+                    <button class="send-btn" id="send-btn" onclick="sendMessage()">
+                        إرسال
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search Mode -->
+            <div class="search-container" id="search-mode">
+                <div class="search-input-group">
+                    <input type="text" class="search-input" id="search-input" placeholder="ابحث عن معنى أو موضوع...">
+                    <select id="search-type">
+                        <option value="all">الكل</option>
+                        <option value="verses">الآيات</option>
+                        <option value="tafsir">التفاسير</option>
+                        <option value="qiraat">القراءات</option>
+                    </select>
+                    <button class="search-btn" onclick="performSearch()">بحث</button>
+                </div>
+                <div class="search-results" id="search-results">
+                    <div class="welcome-message">
+                        <h2>البحث الدلالي</h2>
+                        <p>ابحث بالمعنى وليس بالكلمات المحددة</p>
+                        <p>مثال: "آيات عن الرحمة" ستجد كل الآيات المتعلقة بالرحمة</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Verse Analysis Mode -->
+            <div class="verse-analysis" id="verse-mode">
+                <div class="verse-selector">
+                    <select id="surah-select">
+                        <option value="">اختر السورة</option>
+                        {% for surah in surahs %}
+                        <option value="{{ surah.id }}">{{ surah.id }}. {{ surah.name_arabic }}</option>
+                        {% endfor %}
+                    </select>
+                    <select id="ayah-select" disabled>
+                        <option value="">اختر الآية</option>
+                    </select>
+                    <button class="analyze-btn" onclick="analyzeVerse()">تحليل</button>
+                </div>
+
+                <div class="analysis-tabs" id="analysis-tabs" style="display: none;">
+                    <button class="analysis-tab active" data-tab="explain">التفسير</button>
+                    <button class="analysis-tab" data-tab="qiraat">القراءات</button>
+                    <button class="analysis-tab" data-tab="compare">مقارنة التفاسير</button>
+                </div>
+
+                <div class="analysis-content" id="analysis-content" style="display: none;">
+                    <!-- Analysis results will appear here -->
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Chat history for multi-turn conversations
+    let chatHistory = [];
+    let currentMode = 'chat';
+    let currentStreamingMessage = null;
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        checkHealth();
+
+        // Handle Enter key in chat input
+        document.getElementById('chat-input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Handle Enter key in search input
+        document.getElementById('search-input').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Feature list click handlers
+        document.querySelectorAll('.feature-list li').forEach(item => {
+            item.addEventListener('click', () => switchMode(item.dataset.mode));
+        });
+
+        // Surah select change handler
+        document.getElementById('surah-select').addEventListener('change', loadAyahs);
+
+        // Analysis tabs
+        document.querySelectorAll('.analysis-tab').forEach(tab => {
+            tab.addEventListener('click', () => switchAnalysisTab(tab.dataset.tab));
+        });
+    });
+
+    function switchMode(mode) {
+        currentMode = mode;
+
+        // Update sidebar
+        document.querySelectorAll('.feature-list li').forEach(li => {
+            li.classList.toggle('active', li.dataset.mode === mode);
+        });
+
+        // Show/hide modes
+        document.getElementById('chat-mode').style.display = mode === 'chat' ? 'flex' : 'none';
+        document.getElementById('search-mode').classList.toggle('active', mode === 'search');
+        document.getElementById('verse-mode').classList.toggle('active', mode === 'verse');
+    }
+
+    async function checkHealth() {
+        const statusEl = document.getElementById('health-status');
+        try {
+            const response = await fetch('/api/ai/health');
+            const data = await response.json();
+
+            if (data.status === 'healthy') {
+                statusEl.textContent = 'الخدمات متاحة';
+                statusEl.className = 'health-status healthy';
+            } else {
+                statusEl.textContent = 'بعض الخدمات غير متاحة';
+                statusEl.className = 'health-status degraded';
+            }
+        } catch (error) {
+            statusEl.textContent = 'خطأ في الاتصال';
+            statusEl.className = 'health-status error';
+        }
+    }
+
+    function askExample(question) {
+        document.getElementById('chat-input').value = question;
+        sendMessage();
+    }
+
+    async function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const messagesEl = document.getElementById('chat-messages');
+        const sendBtn = document.getElementById('send-btn');
+
+        const question = input.value.trim();
+        if (!question) return;
+
+        // Clear welcome message if first message
+        if (chatHistory.length === 0) {
+            messagesEl.innerHTML = '';
+        }
+
+        // Add user message
+        addMessage('user', question);
+        chatHistory.push({ role: 'user', content: question });
+
+        // Clear input and disable button
+        input.value = '';
+        sendBtn.disabled = true;
+
+        // Show elegant typing indicator
+        showTypingIndicator();
+
+        try {
+            // Use streaming endpoint
+            const response = await fetch('/api/ai/ask/stream', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    question: question,
+                    include_verses: document.getElementById('include-verses').checked,
+                    include_tafsir: document.getElementById('include-tafsir').checked,
+                    include_qiraat: document.getElementById('include-qiraat').checked
+                })
+            });
+
+            // Remove typing indicator
+            removeTypingIndicator();
+
+            // Create streaming message element
+            const messageEl = createStreamingMessage();
+            let fullContent = '';
+            let sources = [];
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value);
+                const lines = chunk.split('\n');
+
+                for (const line of lines) {
+                    if (line.startsWith('data: ')) {
+                        try {
+                            const data = JSON.parse(line.slice(6));
+
+                            if (data.type === 'sources') {
+                                sources = data.sources;
+                            } else if (data.type === 'content') {
+                                fullContent += data.content;
+                                updateStreamingMessage(messageEl, fullContent);
+                            } else if (data.type === 'done') {
+                                finalizeStreamingMessage(messageEl, fullContent, sources);
+                                chatHistory.push({ role: 'assistant', content: fullContent });
+                            } else if (data.type === 'error') {
+                                finalizeStreamingMessage(messageEl, 'عذراً، حدث خطأ: ' + data.error, []);
+                            }
+                        } catch (e) {
+                            // Ignore parse errors for incomplete chunks
+                        }
+                    }
+                }
+            }
+        } catch (error) {
+            removeTypingIndicator();
+            addMessage('assistant', 'عذراً، لا يمكن الاتصال بالخدمة حالياً.');
+        }
+
+        sendBtn.disabled = false;
+    }
+
+    function showTypingIndicator() {
+        const messagesEl = document.getElementById('chat-messages');
+        const indicator = document.createElement('div');
+        indicator.id = 'typing-indicator';
+        indicator.className = 'typing-indicator';
+        indicator.innerHTML = `
+            <div class="typing-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span class="typing-text">جاري التفكير...</span>
+        `;
+        messagesEl.appendChild(indicator);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) indicator.remove();
+    }
+
+    function createStreamingMessage() {
+        const messagesEl = document.getElementById('chat-messages');
+        const messageEl = document.createElement('div');
+        messageEl.className = 'message assistant';
+        messageEl.innerHTML = `<div class="message-content"><span class="streaming-cursor"></span></div>`;
+        messagesEl.appendChild(messageEl);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        return messageEl;
+    }
+
+    function updateStreamingMessage(messageEl, content) {
+        const contentEl = messageEl.querySelector('.message-content');
+        contentEl.innerHTML = formatContent(content) + '<span class="streaming-cursor"></span>';
+        const messagesEl = document.getElementById('chat-messages');
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function finalizeStreamingMessage(messageEl, content, sources) {
+        const contentEl = messageEl.querySelector('.message-content');
+        contentEl.innerHTML = formatContent(content);
+
+        if (sources && sources.length > 0) {
+            let sourcesHtml = `<div class="message-sources">المصادر: `;
+            sources.forEach(source => {
+                if (source.type === 'verse') {
+                    sourcesHtml += `<span class="source-tag">الآية ${source.reference}</span>`;
+                } else if (source.type === 'tafsir') {
+                    sourcesHtml += `<span class="source-tag">${source.reference}</span>`;
+                }
+            });
+            sourcesHtml += `</div>`;
+            messageEl.innerHTML += sourcesHtml;
+        }
+    }
+
+    function addMessage(role, content, sources = null) {
+        const messagesEl = document.getElementById('chat-messages');
+        const messageEl = document.createElement('div');
+        messageEl.className = `message ${role}`;
+
+        let html = `<div class="message-content">${formatContent(content)}</div>`;
+
+        if (sources && sources.length > 0) {
+            html += `<div class="message-sources">المصادر: `;
+            sources.forEach(source => {
+                if (source.type === 'verse') {
+                    html += `<span class="source-tag">الآية ${source.reference}</span>`;
+                } else if (source.type === 'tafsir') {
+                    html += `<span class="source-tag">${source.reference}</span>`;
+                }
+            });
+            html += `</div>`;
+        }
+
+        messageEl.innerHTML = html;
+        messagesEl.appendChild(messageEl);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function formatContent(content) {
+        // Convert markdown-like formatting to HTML
+        return content
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+    }
+
+    async function performSearch() {
+        const input = document.getElementById('search-input');
+        const resultsEl = document.getElementById('search-results');
+        const searchType = document.getElementById('search-type').value;
+
+        const query = input.value.trim();
+        if (!query) return;
+
+        resultsEl.innerHTML = '<div class="loading"><div class="loading-spinner"></div></div>';
+
+        try {
+            const response = await fetch('/api/ai/search', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    query: query,
+                    search_type: searchType,
+                    limit: 10
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                displaySearchResults(data.data);
+            } else {
+                resultsEl.innerHTML = '<p>حدث خطأ في البحث</p>';
+            }
+        } catch (error) {
+            resultsEl.innerHTML = '<p>لا يمكن الاتصال بالخدمة</p>';
+        }
+    }
+
+    function displaySearchResults(data) {
+        const resultsEl = document.getElementById('search-results');
+        let html = '';
+
+        if (data.results.verses && data.results.verses.length > 0) {
+            html += '<h3>الآيات</h3>';
+            data.results.verses.forEach(verse => {
+                html += `
+                    <div class="search-result-item">
+                        <div class="verse-key">${verse.payload.surah_name_ar} - ${verse.payload.verse_key}</div>
+                        <div class="verse-text">${verse.payload.text_ar}</div>
+                        <div class="score">التطابق: ${(verse.score * 100).toFixed(1)}%</div>
+                    </div>
+                `;
+            });
+        }
+
+        if (data.results.tafsir && data.results.tafsir.length > 0) {
+            html += '<h3>التفاسير</h3>';
+            data.results.tafsir.forEach(tafsir => {
+                html += `
+                    <div class="search-result-item">
+                        <div class="verse-key">${tafsir.payload.tafsir_name} - ${tafsir.payload.verse_key}</div>
+                        <div class="message-content">${tafsir.payload.text.substring(0, 300)}...</div>
+                        <div class="score">التطابق: ${(tafsir.score * 100).toFixed(1)}%</div>
+                    </div>
+                `;
+            });
+        }
+
+        if (data.results.qiraat && data.results.qiraat.length > 0) {
+            html += '<h3>القراءات</h3>';
+            data.results.qiraat.forEach(qiraa => {
+                html += `
+                    <div class="search-result-item">
+                        <div class="verse-key">${qiraa.payload.reader_name} - ${qiraa.payload.verse_key}</div>
+                        <div class="message-content">${qiraa.payload.hafs_word} ← ${qiraa.payload.variant_word}</div>
+                        <div class="score">التطابق: ${(qiraa.score * 100).toFixed(1)}%</div>
+                    </div>
+                `;
+            });
+        }
+
+        if (!html) {
+            html = '<p>لم يتم العثور على نتائج</p>';
+        }
+
+        resultsEl.innerHTML = html;
+    }
+
+    async function loadAyahs() {
+        const surahSelect = document.getElementById('surah-select');
+        const ayahSelect = document.getElementById('ayah-select');
+        const surahId = surahSelect.value;
+
+        if (!surahId) {
+            ayahSelect.disabled = true;
+            ayahSelect.innerHTML = '<option value="">اختر الآية</option>';
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/quran/surah/${surahId}`);
+            const data = await response.json();
+
+            ayahSelect.innerHTML = '<option value="">اختر الآية</option>';
+            data.verses.forEach(verse => {
+                ayahSelect.innerHTML += `<option value="${verse.ayah_number}">${verse.ayah_number}</option>`;
+            });
+            ayahSelect.disabled = false;
+        } catch (error) {
+            console.error('Error loading ayahs:', error);
+        }
+    }
+
+    let currentAnalysisTab = 'explain';
+    let analysisData = {};
+
+    async function analyzeVerse() {
+        const surahId = document.getElementById('surah-select').value;
+        const ayahId = document.getElementById('ayah-select').value;
+
+        if (!surahId || !ayahId) {
+            alert('الرجاء اختيار السورة والآية');
+            return;
+        }
+
+        document.getElementById('analysis-tabs').style.display = 'flex';
+        document.getElementById('analysis-content').style.display = 'block';
+        document.getElementById('analysis-content').innerHTML = '<div class="loading"><div class="loading-spinner"></div></div>';
+
+        await loadAnalysis('explain', surahId, ayahId);
+    }
+
+    async function loadAnalysis(tab, surahId, ayahId) {
+        if (!surahId) surahId = document.getElementById('surah-select').value;
+        if (!ayahId) ayahId = document.getElementById('ayah-select').value;
+
+        const contentEl = document.getElementById('analysis-content');
+        contentEl.innerHTML = '<div class="loading"><div class="loading-spinner"></div></div>';
+
+        let endpoint = '';
+        if (tab === 'explain') endpoint = '/api/ai/explain-verse';
+        else if (tab === 'qiraat') endpoint = '/api/ai/analyze-qiraat';
+        else if (tab === 'compare') endpoint = '/api/ai/compare-tafsir';
+
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    surah_id: parseInt(surahId),
+                    ayah_id: parseInt(ayahId)
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                analysisData[tab] = data.data;
+                displayAnalysis(tab, data.data);
+            } else {
+                contentEl.innerHTML = '<p>حدث خطأ في التحليل</p>';
+            }
+        } catch (error) {
+            contentEl.innerHTML = '<p>لا يمكن الاتصال بالخدمة</p>';
+        }
+    }
+
+    function displayAnalysis(tab, data) {
+        const contentEl = document.getElementById('analysis-content');
+        let html = '';
+
+        if (tab === 'explain') {
+            html = formatContent(data.explanation || 'لا يوجد تفسير متاح');
+        } else if (tab === 'qiraat') {
+            html = formatContent(data.analysis || 'لا توجد معلومات عن القراءات');
+        } else if (tab === 'compare') {
+            html = formatContent(data.comparison || 'لا توجد مقارنة متاحة');
+        }
+
+        contentEl.innerHTML = html;
+    }
+
+    function switchAnalysisTab(tab) {
+        currentAnalysisTab = tab;
+
+        document.querySelectorAll('.analysis-tab').forEach(t => {
+            t.classList.toggle('active', t.dataset.tab === tab);
+        });
+
+        if (analysisData[tab]) {
+            displayAnalysis(tab, analysisData[tab]);
+        } else {
+            loadAnalysis(tab);
+        }
+    }
+</script>
+{% endblock %}

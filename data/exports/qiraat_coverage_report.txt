@@ -1,0 +1,1859 @@
+================================================================================
+QIRAAT DATA COVERAGE VALIDATION REPORT
+Generated: 2026-01-12 16:17:40
+Database: /home/hesham-haroun/Quran/db/uloom_quran.db
+================================================================================
+
+--------------------------------------------------------------------------------
+SECTION 1: SUMMARY STATISTICS
+--------------------------------------------------------------------------------
+Total Surahs in Database: 114
+Total Expected Verses (per riwaya): 6236
+Standard Quran Verse Count: 6236
+Total Riwayat Defined: 29
+Riwayat with Qiraat Data: 24
+Orphan Riwaya IDs (data without definition): 8
+  Orphan IDs: [1, 2, 3, 4, 5, 6, 7, 8]
+Expected Riwayat (20 canonical): 20
+
+--------------------------------------------------------------------------------
+SECTION 2: RIWAYAT IN DATABASE
+--------------------------------------------------------------------------------
+ID     Code                 Arabic Name                         English Name                             Mapped To           
+-------------------------------------------------------------------------------------------------------------------------
+9      hafs-smart           حفص عن عاصم (للأجهزة الذكية)        Hafs from Asim (Smart)                   Hafs                
+10     hafs                 حفص عن عاصم                         Hafs from Asim                           Hafs                
+11     warsh                ورش عن نافع                         Warsh from Nafi                          Warsh               
+12     qaloon               قالون عن نافع                       Qaloon from Nafi                         Qaloon              
+13     shouba               شعبة عن عاصم                        Shuba from Asim                          Shuba               
+14     doori                الدوري عن أبي عمرو                  Al-Douri from Abu Amr                    Doori               
+15     soosi                السوسي عن أبي عمرو                  Al-Soosi from Abu Amr                    Soosi               
+16     bazzi                البزي عن ابن كثير                   Al-Bazzi from Ibn Kathir                 Bazzi               
+17     qumbul               قنبل عن ابن كثير                    Qunbul from Ibn Kathir                   Qunbul              
+18     hafs_v2              حفص عن عاصم (v2.0)                  Hafs from Asim (v2.0)                    Hafs                
+19     hafs_smart           حفص (Smart v8)                      Hafs Smart (v8)                          Hafs                
+20     warsh_v2             ورش عن نافع (v2.1)                  Warsh from Nafi (v2.1)                   Warsh               
+21     qaloon_v2            قالون عن نافع (v2.1)                Qaloon from Nafi (v2.1)                  Qaloon              
+22     doori_v2             الدوري عن أبي عمرو (v2.0)           Al-Douri from Abu Amr (v2.0)             Doori               
+23     soosi_v2             السوسي عن أبي عمرو (v2.0)           Al-Soosi from Abu Amr (v2.0)             Soosi               
+24     shuba_v2             شعبة عن عاصم (v2.0)                 Shuba from Asim (v2.0)                   Shuba               
+25     ibn_dhakwan          ابن ذكوان عن ابن عامر               Ibn Dhakwan from Ibn Amir                Ibn Dhakwan         
+26     doori_kisai          الدوري عن الكسائي                   Al-Douri from Al-Kisai                   Doori Al-Kisai      
+27     khalaf               خلف عن حمزة                         Khalaf from Hamza                        Khalaf              
+28     ruways               رويس عن يعقوب                       Ruways from Yaqub                        Ruways              
+29     rawh                 روح عن يعقوب                        Rawh from Yaqub                          Rawh                
+41     hisham               هشام عن ابن عامر                    Hisham from Ibn Amir                     Hisham              
+45     khalaf_hamza         خلف عن حمزة                         Khalaf from Hamza                        Khalaf              
+46     khallad              خلاد عن حمزة                        Khallad from Hamza                       Khallad             
+48     abu_harith           أبو الحارث عن الكسائي               Abu Al-Harith from Al-Kisai              Abu Al-Harith       
+49     ibn_wardan           ابن وردان عن أبي جعفر               Ibn Wardan from Abu Jafar                Ibn Wardan          
+50     ibn_jamaz            ابن جماز عن أبي جعفر                Ibn Jamaz from Abu Jafar                 Ibn Jamaz           
+53     ishaq                إسحاق عن خلف العاشر                 Ishaq from Khalaf Al-Ashir               Khalaf              
+54     idris                إدريس عن خلف العاشر                 Idris from Khalaf Al-Ashir               Khalaf              
+
+--------------------------------------------------------------------------------
+SECTION 3: COVERAGE ANALYSIS BY RIWAYA
+--------------------------------------------------------------------------------
+ID     Riwaya Name                              Verses     Coverage     Missing    Incomplete   Status              
+--------------------------------------------------------------------------------------------------------------
+1      Orphan Riwaya (ID: 1)                    6236       100.00%      0          0            ORPHAN              
+2      Orphan Riwaya (ID: 2)                    6214       99.65%      0          32           ORPHAN - INCOMPLETE 
+3      Orphan Riwaya (ID: 3)                    6214       99.65%      0          32           ORPHAN - INCOMPLETE 
+4      Orphan Riwaya (ID: 4)                    6236       100.00%      0          0            ORPHAN              
+5      Orphan Riwaya (ID: 5)                    6217       99.70%      0          28           ORPHAN - INCOMPLETE 
+6      Orphan Riwaya (ID: 6)                    6217       99.70%      0          28           ORPHAN - INCOMPLETE 
+7      Orphan Riwaya (ID: 7)                    6220       99.74%      0          31           ORPHAN - INCOMPLETE 
+8      Orphan Riwaya (ID: 8)                    6220       99.74%      0          31           ORPHAN - INCOMPLETE 
+9      Hafs from Asim (Smart)                   6236       100.00%      0          0            OK                  
+10     Hafs from Asim                           6236       100.00%      0          0            OK                  
+11     Warsh from Nafi                          6214       99.65%      0          32           INCOMPLETE          
+12     Qaloon from Nafi                         6214       99.65%      0          32           INCOMPLETE          
+13     Shuba from Asim                          6236       100.00%      0          0            OK                  
+14     Al-Douri from Abu Amr                    6217       99.70%      0          28           INCOMPLETE          
+15     Al-Soosi from Abu Amr                    6217       99.70%      0          28           INCOMPLETE          
+16     Al-Bazzi from Ibn Kathir                 6220       99.74%      0          31           INCOMPLETE          
+17     Qunbul from Ibn Kathir                   6220       99.74%      0          31           INCOMPLETE          
+18     Hafs from Asim (v2.0)                    6236       100.00%      0          0            OK                  
+19     Hafs Smart (v8)                          6236       100.00%      0          0            OK                  
+20     Warsh from Nafi (v2.1)                   6214       99.65%      0          32           INCOMPLETE          
+21     Qaloon from Nafi (v2.1)                  6214       99.65%      0          32           INCOMPLETE          
+22     Al-Douri from Abu Amr (v2.0)             6217       99.70%      0          28           INCOMPLETE          
+23     Al-Soosi from Abu Amr (v2.0)             6217       99.70%      0          28           INCOMPLETE          
+24     Shuba from Asim (v2.0)                   6236       100.00%      0          0            OK                  
+
+--------------------------------------------------------------------------------
+SECTION 4: MISSING SURAHS DETAIL
+--------------------------------------------------------------------------------
+No completely missing surahs found in any riwaya.
+
+--------------------------------------------------------------------------------
+SECTION 5: INCOMPLETE SURAHS DETAIL
+--------------------------------------------------------------------------------
+
+Riwaya: Orphan Riwaya (ID: 2) (ID: 2)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 121/123 verses
+    Missing verses: 122-123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 76/78 verses
+    Missing verses: 77-78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 26: الشعراء (The Poets)
+    Found: 226/227 verses
+    Missing verses: 227
+  - Surah 30: الروم (The Romans)
+    Found: 59/60 verses
+    Missing verses: 60
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 58: المجادلة (The Pleading Woman)
+    Found: 21/22 verses
+    Missing verses: 22
+  - Surah 73: المزمل (The Enshrouded One)
+    Found: 18/20 verses
+    Missing verses: 19-20
+  - Surah 74: المدثر (The Cloaked One)
+    Found: 55/56 verses
+    Missing verses: 56
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Orphan Riwaya (ID: 3) (ID: 3)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 121/123 verses
+    Missing verses: 122-123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 76/78 verses
+    Missing verses: 77-78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 26: الشعراء (The Poets)
+    Found: 226/227 verses
+    Missing verses: 227
+  - Surah 30: الروم (The Romans)
+    Found: 59/60 verses
+    Missing verses: 60
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 58: المجادلة (The Pleading Woman)
+    Found: 21/22 verses
+    Missing verses: 22
+  - Surah 73: المزمل (The Enshrouded One)
+    Found: 18/20 verses
+    Missing verses: 19-20
+  - Surah 74: المدثر (The Cloaked One)
+    Found: 55/56 verses
+    Missing verses: 56
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Orphan Riwaya (ID: 5) (ID: 5)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 122/123 verses
+    Missing verses: 123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 76/78 verses
+    Missing verses: 77-78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 86: الطارق (The Morning Star)
+    Found: 16/17 verses
+    Missing verses: 17
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Orphan Riwaya (ID: 6) (ID: 6)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 122/123 verses
+    Missing verses: 123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 76/78 verses
+    Missing verses: 77-78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 86: الطارق (The Morning Star)
+    Found: 16/17 verses
+    Missing verses: 17
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Orphan Riwaya (ID: 7) (ID: 7)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 121/123 verses
+    Missing verses: 122-123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 26: الشعراء (The Poets)
+    Found: 226/227 verses
+    Missing verses: 227
+  - Surah 30: الروم (The Romans)
+    Found: 59/60 verses
+    Missing verses: 60
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 58: المجادلة (The Pleading Woman)
+    Found: 21/22 verses
+    Missing verses: 22
+  - Surah 74: المدثر (The Cloaked One)
+    Found: 55/56 verses
+    Missing verses: 56
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Orphan Riwaya (ID: 8) (ID: 8)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 121/123 verses
+    Missing verses: 122-123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 26: الشعراء (The Poets)
+    Found: 226/227 verses
+    Missing verses: 227
+  - Surah 30: الروم (The Romans)
+    Found: 59/60 verses
+    Missing verses: 60
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 58: المجادلة (The Pleading Woman)
+    Found: 21/22 verses
+    Missing verses: 22
+  - Surah 74: المدثر (The Cloaked One)
+    Found: 55/56 verses
+    Missing verses: 56
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Warsh from Nafi (ID: 11)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 121/123 verses
+    Missing verses: 122-123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 76/78 verses
+    Missing verses: 77-78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 26: الشعراء (The Poets)
+    Found: 226/227 verses
+    Missing verses: 227
+  - Surah 30: الروم (The Romans)
+    Found: 59/60 verses
+    Missing verses: 60
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 58: المجادلة (The Pleading Woman)
+    Found: 21/22 verses
+    Missing verses: 22
+  - Surah 73: المزمل (The Enshrouded One)
+    Found: 18/20 verses
+    Missing verses: 19-20
+  - Surah 74: المدثر (The Cloaked One)
+    Found: 55/56 verses
+    Missing verses: 56
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Qaloon from Nafi (ID: 12)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 121/123 verses
+    Missing verses: 122-123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 76/78 verses
+    Missing verses: 77-78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 26: الشعراء (The Poets)
+    Found: 226/227 verses
+    Missing verses: 227
+  - Surah 30: الروم (The Romans)
+    Found: 59/60 verses
+    Missing verses: 60
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 58: المجادلة (The Pleading Woman)
+    Found: 21/22 verses
+    Missing verses: 22
+  - Surah 73: المزمل (The Enshrouded One)
+    Found: 18/20 verses
+    Missing verses: 19-20
+  - Surah 74: المدثر (The Cloaked One)
+    Found: 55/56 verses
+    Missing verses: 56
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Al-Douri from Abu Amr (ID: 14)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 122/123 verses
+    Missing verses: 123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 76/78 verses
+    Missing verses: 77-78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 86: الطارق (The Morning Star)
+    Found: 16/17 verses
+    Missing verses: 17
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Al-Soosi from Abu Amr (ID: 15)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 122/123 verses
+    Missing verses: 123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 76/78 verses
+    Missing verses: 77-78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 86: الطارق (The Morning Star)
+    Found: 16/17 verses
+    Missing verses: 17
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Al-Bazzi from Ibn Kathir (ID: 16)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 121/123 verses
+    Missing verses: 122-123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 26: الشعراء (The Poets)
+    Found: 226/227 verses
+    Missing verses: 227
+  - Surah 30: الروم (The Romans)
+    Found: 59/60 verses
+    Missing verses: 60
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 58: المجادلة (The Pleading Woman)
+    Found: 21/22 verses
+    Missing verses: 22
+  - Surah 74: المدثر (The Cloaked One)
+    Found: 55/56 verses
+    Missing verses: 56
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Qunbul from Ibn Kathir (ID: 17)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 121/123 verses
+    Missing verses: 122-123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 26: الشعراء (The Poets)
+    Found: 226/227 verses
+    Missing verses: 227
+  - Surah 30: الروم (The Romans)
+    Found: 59/60 verses
+    Missing verses: 60
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 58: المجادلة (The Pleading Woman)
+    Found: 21/22 verses
+    Missing verses: 22
+  - Surah 74: المدثر (The Cloaked One)
+    Found: 55/56 verses
+    Missing verses: 56
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Warsh from Nafi (v2.1) (ID: 20)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 121/123 verses
+    Missing verses: 122-123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 76/78 verses
+    Missing verses: 77-78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 26: الشعراء (The Poets)
+    Found: 226/227 verses
+    Missing verses: 227
+  - Surah 30: الروم (The Romans)
+    Found: 59/60 verses
+    Missing verses: 60
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 58: المجادلة (The Pleading Woman)
+    Found: 21/22 verses
+    Missing verses: 22
+  - Surah 73: المزمل (The Enshrouded One)
+    Found: 18/20 verses
+    Missing verses: 19-20
+  - Surah 74: المدثر (The Cloaked One)
+    Found: 55/56 verses
+    Missing verses: 56
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Qaloon from Nafi (v2.1) (ID: 21)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 121/123 verses
+    Missing verses: 122-123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 76/78 verses
+    Missing verses: 77-78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 26: الشعراء (The Poets)
+    Found: 226/227 verses
+    Missing verses: 227
+  - Surah 30: الروم (The Romans)
+    Found: 59/60 verses
+    Missing verses: 60
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 58: المجادلة (The Pleading Woman)
+    Found: 21/22 verses
+    Missing verses: 22
+  - Surah 73: المزمل (The Enshrouded One)
+    Found: 18/20 verses
+    Missing verses: 19-20
+  - Surah 74: المدثر (The Cloaked One)
+    Found: 55/56 verses
+    Missing verses: 56
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Al-Douri from Abu Amr (v2.0) (ID: 22)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 122/123 verses
+    Missing verses: 123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 76/78 verses
+    Missing verses: 77-78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 86: الطارق (The Morning Star)
+    Found: 16/17 verses
+    Missing verses: 17
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+Riwaya: Al-Soosi from Abu Amr (v2.0) (ID: 23)
+Incomplete Surahs:
+  - Surah 2: البقرة (The Cow)
+    Found: 285/286 verses
+    Missing verses: 286
+  - Surah 4: النساء (The Women)
+    Found: 175/176 verses
+    Missing verses: 176
+  - Surah 11: هود (Hud)
+    Found: 122/123 verses
+    Missing verses: 123
+  - Surah 17: الإسراء (The Night Journey)
+    Found: 110/111 verses
+    Missing verses: 111
+  - Surah 18: الكهف (The Cave)
+    Found: 105/110 verses
+    Missing verses: 106-110
+  - Surah 20: طه (Taahaa)
+    Found: 134/135 verses
+    Missing verses: 135
+  - Surah 21: الأنبياء (The Prophets)
+    Found: 111/112 verses
+    Missing verses: 112
+  - Surah 22: الحج (The Pilgrimage)
+    Found: 76/78 verses
+    Missing verses: 77-78
+  - Surah 24: النور (The Light)
+    Found: 62/64 verses
+    Missing verses: 63-64
+  - Surah 31: لقمان (Luqman)
+    Found: 33/34 verses
+    Missing verses: 34
+  - Surah 36: يس (Yaseen)
+    Found: 82/83 verses
+    Missing verses: 83
+  - Surah 38: ص (The letter Saad)
+    Found: 86/88 verses
+    Missing verses: 87-88
+  - Surah 39: الزمر (The Groups)
+    Found: 72/75 verses
+    Missing verses: 73-75
+  - Surah 40: غافر (The Forgiver)
+    Found: 84/85 verses
+    Missing verses: 85
+  - Surah 41: فصلت (Explained in detail)
+    Found: 53/54 verses
+    Missing verses: 54
+  - Surah 42: الشورى (Consultation)
+    Found: 50/53 verses
+    Missing verses: 51-53
+  - Surah 44: الدخان (The Smoke)
+    Found: 56/59 verses
+    Missing verses: 57-59
+  - Surah 45: الجاثية (Crouching)
+    Found: 36/37 verses
+    Missing verses: 37
+  - Surah 46: الأحقاف (The Dunes)
+    Found: 34/35 verses
+    Missing verses: 35
+  - Surah 52: الطور (The Mount)
+    Found: 47/49 verses
+    Missing verses: 48-49
+  - Surah 53: النجم (The Star)
+    Found: 61/62 verses
+    Missing verses: 62
+  - Surah 55: الرحمن (The Beneficent)
+    Found: 77/78 verses
+    Missing verses: 78
+  - Surah 57: الحديد (The Iron)
+    Found: 28/29 verses
+    Missing verses: 29
+  - Surah 75: القيامة (The Resurrection)
+    Found: 39/40 verses
+    Missing verses: 40
+  - Surah 79: النازعات (Those who drag forth)
+    Found: 45/46 verses
+    Missing verses: 46
+  - Surah 86: الطارق (The Morning Star)
+    Found: 16/17 verses
+    Missing verses: 17
+  - Surah 101: القارعة (The Calamity)
+    Found: 10/11 verses
+    Missing verses: 11
+  - Surah 107: الماعون (Almsgiving)
+    Found: 6/7 verses
+    Missing verses: 7
+
+--------------------------------------------------------------------------------
+SECTION 6: COVERAGE GAPS
+--------------------------------------------------------------------------------
+
+Riwaya: Orphan Riwaya (ID: 2) (ID: 2)
+  Surah 11 (Hud): gaps at verses 122-123
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 22 (The Pilgrimage): gaps at verses 77-78
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+  Surah 73 (The Enshrouded One): gaps at verses 19-20
+
+Riwaya: Orphan Riwaya (ID: 3) (ID: 3)
+  Surah 11 (Hud): gaps at verses 122-123
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 22 (The Pilgrimage): gaps at verses 77-78
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+  Surah 73 (The Enshrouded One): gaps at verses 19-20
+
+Riwaya: Orphan Riwaya (ID: 5) (ID: 5)
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 22 (The Pilgrimage): gaps at verses 77-78
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+
+Riwaya: Orphan Riwaya (ID: 6) (ID: 6)
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 22 (The Pilgrimage): gaps at verses 77-78
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+
+Riwaya: Orphan Riwaya (ID: 7) (ID: 7)
+  Surah 11 (Hud): gaps at verses 122-123
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+
+Riwaya: Orphan Riwaya (ID: 8) (ID: 8)
+  Surah 11 (Hud): gaps at verses 122-123
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+
+Riwaya: Warsh from Nafi (ID: 11)
+  Surah 11 (Hud): gaps at verses 122-123
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 22 (The Pilgrimage): gaps at verses 77-78
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+  Surah 73 (The Enshrouded One): gaps at verses 19-20
+
+Riwaya: Qaloon from Nafi (ID: 12)
+  Surah 11 (Hud): gaps at verses 122-123
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 22 (The Pilgrimage): gaps at verses 77-78
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+  Surah 73 (The Enshrouded One): gaps at verses 19-20
+
+Riwaya: Al-Douri from Abu Amr (ID: 14)
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 22 (The Pilgrimage): gaps at verses 77-78
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+
+Riwaya: Al-Soosi from Abu Amr (ID: 15)
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 22 (The Pilgrimage): gaps at verses 77-78
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+
+Riwaya: Al-Bazzi from Ibn Kathir (ID: 16)
+  Surah 11 (Hud): gaps at verses 122-123
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+
+Riwaya: Qunbul from Ibn Kathir (ID: 17)
+  Surah 11 (Hud): gaps at verses 122-123
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+
+Riwaya: Warsh from Nafi (v2.1) (ID: 20)
+  Surah 11 (Hud): gaps at verses 122-123
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 22 (The Pilgrimage): gaps at verses 77-78
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+  Surah 73 (The Enshrouded One): gaps at verses 19-20
+
+Riwaya: Qaloon from Nafi (v2.1) (ID: 21)
+  Surah 11 (Hud): gaps at verses 122-123
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 22 (The Pilgrimage): gaps at verses 77-78
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+  Surah 73 (The Enshrouded One): gaps at verses 19-20
+
+Riwaya: Al-Douri from Abu Amr (v2.0) (ID: 22)
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 22 (The Pilgrimage): gaps at verses 77-78
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+
+Riwaya: Al-Soosi from Abu Amr (v2.0) (ID: 23)
+  Surah 18 (The Cave): gaps at verses 106-110
+  Surah 22 (The Pilgrimage): gaps at verses 77-78
+  Surah 24 (The Light): gaps at verses 63-64
+  Surah 38 (The letter Saad): gaps at verses 87-88
+  Surah 39 (The Groups): gaps at verses 73-75
+  Surah 42 (Consultation): gaps at verses 51-53
+  Surah 44 (The Smoke): gaps at verses 57-59
+  Surah 52 (The Mount): gaps at verses 48-49
+
+--------------------------------------------------------------------------------
+SECTION 7: VERSE COUNT COMPARISON
+--------------------------------------------------------------------------------
+Expected verse count: ~6236 (with minor variations)
+Acceptable range: 6200 - 6250
+
+Riwaya                                        Verses     Deviation       Status         
+-------------------------------------------------------------------------------------
+Orphan Riwaya (ID: 1)                         6236       0               NORMAL         
+Orphan Riwaya (ID: 2)                         6214       -22             NORMAL         
+Orphan Riwaya (ID: 3)                         6214       -22             NORMAL         
+Orphan Riwaya (ID: 4)                         6236       0               NORMAL         
+Orphan Riwaya (ID: 5)                         6217       -19             NORMAL         
+Orphan Riwaya (ID: 6)                         6217       -19             NORMAL         
+Orphan Riwaya (ID: 7)                         6220       -16             NORMAL         
+Orphan Riwaya (ID: 8)                         6220       -16             NORMAL         
+Hafs from Asim (Smart)                        6236       0               NORMAL         
+Hafs from Asim                                6236       0               NORMAL         
+Warsh from Nafi                               6214       -22             NORMAL         
+Qaloon from Nafi                              6214       -22             NORMAL         
+Shuba from Asim                               6236       0               NORMAL         
+Al-Douri from Abu Amr                         6217       -19             NORMAL         
+Al-Soosi from Abu Amr                         6217       -19             NORMAL         
+Al-Bazzi from Ibn Kathir                      6220       -16             NORMAL         
+Qunbul from Ibn Kathir                        6220       -16             NORMAL         
+Hafs from Asim (v2.0)                         6236       0               NORMAL         
+Hafs Smart (v8)                               6236       0               NORMAL         
+Warsh from Nafi (v2.1)                        6214       -22             NORMAL         
+Qaloon from Nafi (v2.1)                       6214       -22             NORMAL         
+Al-Douri from Abu Amr (v2.0)                  6217       -19             NORMAL         
+Al-Soosi from Abu Amr (v2.0)                  6217       -19             NORMAL         
+Shuba from Asim (v2.0)                        6236       0               NORMAL         
+
+--------------------------------------------------------------------------------
+SECTION 8: EXPECTED VS FOUND RIWAYAT (20 Canonical)
+--------------------------------------------------------------------------------
+Expected Riwaya           Qari                 Status         
+------------------------------------------------------------
+Hafs                      Asim                 FOUND          
+Shuba                     Asim                 FOUND          
+Warsh                     Nafi                 FOUND          
+Qaloon                    Nafi                 FOUND          
+Doori                     Abu Amr              FOUND          
+Soosi                     Abu Amr              FOUND          
+Bazzi                     Ibn Kathir           FOUND          
+Qunbul                    Ibn Kathir           FOUND          
+Hisham                    Ibn Amir             MISSING        
+Ibn Dhakwan               Ibn Amir             MISSING        
+Khalaf                    Hamza                MISSING        
+Khallad                   Hamza                MISSING        
+Doori Al-Kisai            Al-Kisai             MISSING        
+Abu Al-Harith             Al-Kisai             MISSING        
+Ibn Wardan                Abu Jafar            MISSING        
+Ibn Jamaz                 Abu Jafar            MISSING        
+Ruways                    Yaqub                MISSING        
+Rawh                      Yaqub                MISSING        
+Ishaq                     Khalaf Al-Ashir      MISSING        
+Idris                     Khalaf Al-Ashir      MISSING        
+
+Total Expected: 20
+Total Found: 8
+Missing: 12
+
+Missing Riwayat: Abu Al-Harith, Doori Al-Kisai, Hisham, Ibn Dhakwan, Ibn Jamaz, Ibn Wardan, Idris, Ishaq, Khalaf, Khallad, Rawh, Ruways
+
+--------------------------------------------------------------------------------
+SECTION 9: DATA INTEGRITY ISSUES
+--------------------------------------------------------------------------------
+ORPHAN RIWAYA IDs (data exists without riwayat table entry):
+  - ID 1: 6236 verses, coverage: 100.00%
+  - ID 2: 6214 verses, coverage: 99.65%
+  - ID 3: 6214 verses, coverage: 99.65%
+  - ID 4: 6236 verses, coverage: 100.00%
+  - ID 5: 6217 verses, coverage: 99.70%
+  - ID 6: 6217 verses, coverage: 99.70%
+  - ID 7: 6220 verses, coverage: 99.74%
+  - ID 8: 6220 verses, coverage: 99.74%
+
+  Recommendation: Add entries to riwayat table for these IDs
+  or migrate data to existing valid riwaya IDs.
+
+--------------------------------------------------------------------------------
+SECTION 10: RECOMMENDATIONS
+--------------------------------------------------------------------------------
+- Add data for missing riwayat: Abu Al-Harith, Doori Al-Kisai, Hisham, Ibn Dhakwan, Ibn Jamaz, Ibn Wardan, Idris, Ishaq, Khalaf, Khallad, Rawh, Ruways
+- Fix orphan riwaya IDs: 1, 2, 3, 4, 5, 6, 7, 8
+- Complete missing verses in: Warsh from Nafi, Qaloon from Nafi, Al-Douri from Abu Amr, Al-Soosi from Abu Amr, Al-Bazzi from Ibn Kathir, Qunbul from Ibn Kathir, Warsh from Nafi (v2.1), Qaloon from Nafi (v2.1), Al-Douri from Abu Amr (v2.0), Al-Soosi from Abu Amr (v2.0)
+
+================================================================================
+END OF REPORT
+================================================================================

@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}علوم القرآن - الرئيسية{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1>علوم القرآن</h1>
+        <p>منصة شاملة للتفسير المقارن والقراءات العشر وأسباب النزول</p>
+    </div>
+</section>
+
+<div class="container">
+    <!-- Stats -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="number">{{ "{:,}".format(stats.verses) }}</div>
+            <div class="label">آية كريمة</div>
+        </div>
+        <div class="stat-card">
+            <div class="number">{{ "{:,}".format(stats.tafsirs) }}</div>
+            <div class="label">تفسير</div>
+        </div>
+        <div class="stat-card">
+            <div class="number">{{ "{:,}".format(stats.qiraat) }}</div>
+            <div class="label">فرق في القراءات</div>
+        </div>
+        <div class="stat-card">
+            <div class="number">{{ "{:,}".format(stats.asbab) }}</div>
+            <div class="label">سبب نزول</div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="features-grid">
+        <a href="/quran" class="feature-card">
+            <div class="icon">📖</div>
+            <h3>القرآن الكريم</h3>
+            <p>تصفح القرآن الكريم بالرسم العثماني مع إمكانية البحث</p>
+        </a>
+
+        <a href="/tafsir" class="feature-card">
+            <div class="icon">📚</div>
+            <h3>التفسير المقارن</h3>
+            <p>قارن بين تفاسير العلماء من الطبري إلى ابن عاشور</p>
+        </a>
+
+        <a href="/qiraat" class="feature-card">
+            <div class="icon">🎙️</div>
+            <h3>القراءات العشر</h3>
+            <p>اكتشف الفروق بين القراءات العشر المتواترة</p>
+        </a>
+
+        <a href="/asbab" class="feature-card">
+            <div class="icon">📜</div>
+            <h3>أسباب النزول</h3>
+            <p>تعرف على أسباب نزول الآيات وسياقها التاريخي</p>
+        </a>
+
+        <a href="/mutashabihat" class="feature-card">
+            <div class="icon">🔗</div>
+            <h3>المتشابهات</h3>
+            <p>اكتشف الآيات المتشابهة في القرآن مع تحليل الفروق</p>
+        </a>
+
+        <a href="/ai" class="feature-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="icon">🤖</div>
+            <h3 style="color: white;">المساعد الذكي</h3>
+            <p style="color: rgba(255,255,255,0.9);">اسأل أي سؤال عن القرآن واحصل على إجابة ذكية</p>
+        </a>
+    </div>
+
+    <!-- Quick Search -->
+    <div class="card mt-3">
+        <h3>البحث السريع</h3>
+        <div class="search-box">
+            <input type="text" id="quick-search" placeholder="ابحث في القرآن الكريم...">
+            <button onclick="performQuickSearch()">بحث</button>
+        </div>
+        <div id="search-results"></div>
+    </div>
+
+    <!-- Available Tafsirs -->
+    <div class="card mt-3">
+        <h3>التفاسير المتوفرة</h3>
+        <div class="tafsir-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+            <div class="tafsir-card" style="padding: 1rem; background: #f8f7f5; border-radius: 8px;">
+                <strong>جامع البيان</strong>
+                <p style="color: var(--text-light); margin-top: 0.3rem;">الإمام الطبري (ت 310هـ)</p>
+            </div>
+            <div class="tafsir-card" style="padding: 1rem; background: #f8f7f5; border-radius: 8px;">
+                <strong>تفسير ابن كثير</strong>
+                <p style="color: var(--text-light); margin-top: 0.3rem;">ابن كثير (ت 774هـ)</p>
+            </div>
+            <div class="tafsir-card" style="padding: 1rem; background: #f8f7f5; border-radius: 8px;">
+                <strong>معالم التنزيل</strong>
+                <p style="color: var(--text-light); margin-top: 0.3rem;">البغوي (ت 516هـ)</p>
+            </div>
+            <div class="tafsir-card" style="padding: 1rem; background: #f8f7f5; border-radius: 8px;">
+                <strong>الجامع لأحكام القرآن</strong>
+                <p style="color: var(--text-light); margin-top: 0.3rem;">القرطبي (ت 671هـ)</p>
+            </div>
+            <div class="tafsir-card" style="padding: 1rem; background: #f8f7f5; border-radius: 8px;">
+                <strong>تيسير الكريم الرحمن</strong>
+                <p style="color: var(--text-light); margin-top: 0.3rem;">السعدي (ت 1376هـ)</p>
+            </div>
+            <div class="tafsir-card" style="padding: 1rem; background: #f8f7f5; border-radius: 8px;">
+                <strong>التحرير والتنوير</strong>
+                <p style="color: var(--text-light); margin-top: 0.3rem;">ابن عاشور (ت 1393هـ)</p>
+            </div>
+            <div class="tafsir-card" style="padding: 1rem; background: #f8f7f5; border-radius: 8px;">
+                <strong>الوسيط</strong>
+                <p style="color: var(--text-light); margin-top: 0.3rem;">محمد سيد طنطاوي (ت 1431هـ)</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+async function performQuickSearch() {
+    const query = document.getElementById('quick-search').value.trim();
+    if (query.length < 2) {
+        alert('الرجاء إدخال كلمتين على الأقل للبحث');
+        return;
+    }
+
+    const resultsContainer = document.getElementById('search-results');
+    showLoading(resultsContainer);
+
+    const results = await searchQuran(query);
+
+    if (!results || results.length === 0) {
+        resultsContainer.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--text-light);">لا توجد نتائج</p>';
+        return;
+    }
+
+    let html = '<div style="margin-top: 1rem;">';
+    results.slice(0, 10).forEach(result => {
+        html += `
+            <div class="verse-item" onclick="showVerseDetails('${result.verse_key}')" style="cursor: pointer;">
+                <p style="color: var(--text-light); margin-bottom: 0.5rem;">${result.surah_name} - ${result.verse_key}</p>
+                <p class="verse-text" style="font-size: 1.2rem;">${result.text_uthmani}</p>
+            </div>
+        `;
+    });
+    html += '</div>';
+
+    if (results.length > 10) {
+        html += `<p style="text-align: center; color: var(--text-light);">وأكثر من ${results.length - 10} نتيجة أخرى...</p>`;
+    }
+
+    resultsContainer.innerHTML = html;
+}
+
+// Search on Enter key
+document.getElementById('quick-search').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') performQuickSearch();
+});
+</script>
+{% endblock %}

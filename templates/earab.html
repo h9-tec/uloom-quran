@@ -1,0 +1,408 @@
+{% extends "base.html" %}
+
+{% block title %}إعراب القرآن - علوم القرآن{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>إعراب القرآن</h1>
+    <p>التحليل النحوي للآيات القرآنية - إعراب القرآن للدعاس</p>
+</div>
+
+<div class="earab-container">
+    <!-- Surah Selector -->
+    <div class="selector-section">
+        <label for="surah-select">اختر السورة:</label>
+        <select id="surah-select" class="surah-select">
+            {% for surah in surahs %}
+            <option value="{{ surah.id }}" data-earab-count="{{ surah.earab_count }}" data-ayah-count="{{ surah.ayah_count }}">
+                {{ surah.id }}. {{ surah.name_arabic }}
+                {% if surah.earab_count > 0 %}({{ surah.earab_count }}/{{ surah.ayah_count }} آية){% endif %}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Verse Selector -->
+    <div class="selector-section">
+        <label for="verse-select">اختر الآية:</label>
+        <select id="verse-select" class="verse-select">
+            <option value="">-- اختر آية --</option>
+        </select>
+    </div>
+
+    <!-- Loading indicator -->
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <span>جاري التحميل...</span>
+    </div>
+
+    <!-- Earab Display -->
+    <div id="earab-display" class="earab-display hidden">
+        <div class="verse-info">
+            <h2 id="verse-key"></h2>
+            <div id="verse-text" class="verse-text"></div>
+        </div>
+
+        <div class="earab-content">
+            <h3>الإعراب</h3>
+            <div id="earab-text" class="earab-text"></div>
+            <div id="earab-source" class="earab-source"></div>
+        </div>
+    </div>
+
+    <!-- All Surah Earab -->
+    <div id="surah-earab" class="surah-earab hidden">
+        <h2>إعراب سورة <span id="surah-name"></span></h2>
+        <div id="surah-earab-list" class="surah-earab-list"></div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <h3>إحصائيات الإعراب</h3>
+        <div id="stats-content" class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="total-earab">-</div>
+                <div class="stat-label">إجمالي الإعراب</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="coverage">-</div>
+                <div class="stat-label">نسبة التغطية</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.earab-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.selector-section {
+    margin-bottom: 20px;
+}
+
+.selector-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.surah-select, .verse-select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    background: white;
+    cursor: pointer;
+}
+
+.earab-display {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.verse-info {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.verse-info h2 {
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+.verse-text {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 24px;
+    line-height: 2;
+    color: var(--text-color);
+    background: #f8f9fa;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.earab-content h3 {
+    color: var(--secondary-color);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.earab-text {
+    font-size: 18px;
+    line-height: 2;
+    white-space: pre-wrap;
+    background: #fafbfc;
+    padding: 20px;
+    border-radius: 8px;
+    border-right: 4px solid var(--primary-color);
+}
+
+.earab-source {
+    margin-top: 16px;
+    padding: 12px;
+    background: #e8f5e9;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #2e7d32;
+}
+
+.surah-earab {
+    margin-top: 30px;
+}
+
+.surah-earab h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.surah-earab-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.verse-earab-item {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    border-right: 4px solid var(--primary-color);
+}
+
+.verse-earab-item .verse-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.verse-earab-item .verse-number {
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.verse-earab-item .verse-text {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.verse-earab-item .earab-text {
+    font-size: 16px;
+}
+
+.stats-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid var(--border-color);
+}
+
+.stats-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 16px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    color: #666;
+    margin-top: 8px;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 40px;
+    color: var(--primary-color);
+}
+
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.no-earab {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-style: italic;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const surahSelect = document.getElementById('surah-select');
+    const verseSelect = document.getElementById('verse-select');
+    const loading = document.getElementById('loading');
+    const earabDisplay = document.getElementById('earab-display');
+    const surahEarab = document.getElementById('surah-earab');
+
+    // Load stats
+    loadStats();
+
+    // Handle surah selection
+    surahSelect.addEventListener('change', function() {
+        const surahId = this.value;
+        if (surahId) {
+            loadSurahVerses(surahId);
+        }
+    });
+
+    // Handle verse selection
+    verseSelect.addEventListener('change', function() {
+        const verseKey = this.value;
+        if (verseKey) {
+            loadVerseEarab(verseKey);
+        } else {
+            earabDisplay.classList.add('hidden');
+        }
+    });
+
+    // Load initial surah
+    if (surahSelect.value) {
+        loadSurahVerses(surahSelect.value);
+    }
+
+    function loadSurahVerses(surahId) {
+        loading.classList.remove('hidden');
+        earabDisplay.classList.add('hidden');
+        surahEarab.classList.add('hidden');
+
+        fetch(`/api/earab/surah/${surahId}`)
+            .then(r => r.json())
+            .then(data => {
+                loading.classList.add('hidden');
+
+                // Populate verse select
+                verseSelect.innerHTML = '<option value="">-- اختر آية --</option>';
+                verseSelect.innerHTML += '<option value="all">عرض كل السورة</option>';
+
+                data.verses.forEach(v => {
+                    const hasEarab = v.earab ? '✓' : '';
+                    const option = document.createElement('option');
+                    option.value = v.verse_key;
+                    option.textContent = `${v.ayah_number}. ${v.text_uthmani.substring(0, 50)}... ${hasEarab}`;
+                    verseSelect.appendChild(option);
+                });
+
+                // Show surah earab
+                document.getElementById('surah-name').textContent = data.surah.name_arabic;
+                const list = document.getElementById('surah-earab-list');
+                list.innerHTML = '';
+
+                data.verses.forEach(v => {
+                    if (v.earab) {
+                        const item = document.createElement('div');
+                        item.className = 'verse-earab-item';
+                        item.innerHTML = `
+                            <div class="verse-header">
+                                <span class="verse-number">${v.verse_key}</span>
+                            </div>
+                            <div class="verse-text">${v.text_uthmani}</div>
+                            <div class="earab-text">${v.earab.text}</div>
+                        `;
+                        list.appendChild(item);
+                    }
+                });
+
+                if (list.children.length === 0) {
+                    list.innerHTML = '<div class="no-earab">لا يوجد إعراب متاح لهذه السورة حالياً</div>';
+                }
+
+                surahEarab.classList.remove('hidden');
+            })
+            .catch(err => {
+                loading.classList.add('hidden');
+                console.error(err);
+            });
+    }
+
+    function loadVerseEarab(verseKey) {
+        if (verseKey === 'all') {
+            earabDisplay.classList.add('hidden');
+            surahEarab.classList.remove('hidden');
+            return;
+        }
+
+        loading.classList.remove('hidden');
+        earabDisplay.classList.add('hidden');
+        surahEarab.classList.add('hidden');
+
+        fetch(`/api/earab/verse/${verseKey}`)
+            .then(r => r.json())
+            .then(data => {
+                loading.classList.add('hidden');
+
+                document.getElementById('verse-key').textContent = data.verse.verse_key + ' - ' + data.verse.surah_name;
+                document.getElementById('verse-text').textContent = data.verse.text_uthmani;
+
+                if (data.earab) {
+                    document.getElementById('earab-text').textContent = data.earab.earab_text;
+                    document.getElementById('earab-source').textContent = `المصدر: ${data.earab.book_name}`;
+                } else {
+                    document.getElementById('earab-text').textContent = 'لا يوجد إعراب متاح لهذه الآية حالياً';
+                    document.getElementById('earab-source').textContent = '';
+                }
+
+                earabDisplay.classList.remove('hidden');
+            })
+            .catch(err => {
+                loading.classList.add('hidden');
+                console.error(err);
+            });
+    }
+
+    function loadStats() {
+        fetch('/api/earab/stats')
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('total-earab').textContent = data.total_entries.toLocaleString('ar-EG');
+                document.getElementById('coverage').textContent = data.coverage_percent + '%';
+            })
+            .catch(err => console.error(err));
+    }
+});
+</script>
+{% endblock %}

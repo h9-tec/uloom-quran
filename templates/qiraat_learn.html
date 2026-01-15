@@ -1,0 +1,550 @@
+{% extends "base.html" %}
+
+{% block title %}تعلم القراءات - علوم القرآن{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>تعلم القراءات</h1>
+    <p>تعرف على القراء العشرة ورواتهم ومصادر تعلم القراءات القرآنية</p>
+</div>
+
+<div class="learn-container">
+    <!-- Navigation Tabs -->
+    <div class="learn-tabs">
+        <button class="learn-tab active" data-tab="qurra">القراء العشرة</button>
+        <button class="learn-tab" data-tab="riwayat">الروايات</button>
+        <button class="learn-tab" data-tab="resources">مصادر التعلم</button>
+    </div>
+
+    <!-- Qurra Section -->
+    <div id="qurra-section" class="learn-section active">
+        <div class="section-intro">
+            <h2>القراء العشرة</h2>
+            <p>هم الأئمة العشرة الذين اشتهرت قراءاتهم وتواترت عنهم، وهم مرتبون حسب المشهور:</p>
+        </div>
+
+        <div class="qurra-grid">
+            {% for qari in qurra %}
+            <div class="qari-card">
+                <div class="qari-header">
+                    <div class="qari-number">{{ qari.rank_order }}</div>
+                    <div class="qari-info">
+                        <h3>{{ qari.name_arabic }}</h3>
+                        <span class="qari-english">{{ qari.name_english or '' }}</span>
+                    </div>
+                </div>
+                <div class="qari-details">
+                    <div class="detail-row">
+                        <span class="detail-label">المدينة:</span>
+                        <span class="detail-value">{{ qari.city or 'غير محدد' }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">الإقليم:</span>
+                        <span class="detail-value">{{ qari.region or 'غير محدد' }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">سنة الوفاة:</span>
+                        <span class="detail-value">{{ qari.death_year_hijri or 'غير محدد' }} هـ</span>
+                    </div>
+                </div>
+                {% if qari.ruwat %}
+                <div class="qari-ruwat">
+                    <h4>الرواة:</h4>
+                    <div class="ruwat-list">
+                        {% for rawi in qari.ruwat %}
+                        <div class="rawi-badge">
+                            <span class="rawi-name">{{ rawi.name_arabic }}</span>
+                            {% if rawi.death_year_hijri %}
+                            <span class="rawi-death">({{ rawi.death_year_hijri }} هـ)</span>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Riwayat Section -->
+    <div id="riwayat-section" class="learn-section">
+        <div class="section-intro">
+            <h2>الروايات الثمانية المشهورة</h2>
+            <p>الروايات المتواترة المشهورة التي يقرأ بها المسلمون اليوم:</p>
+        </div>
+
+        <div class="riwayat-list-detail">
+            {% for riwaya in riwayat %}
+            <div class="riwaya-detail-card">
+                <div class="riwaya-number">{{ loop.index }}</div>
+                <div class="riwaya-content">
+                    <h3>{{ riwaya.name_arabic }}</h3>
+                    <span class="riwaya-english">{{ riwaya.name_english or '' }}</span>
+                    <span class="riwaya-code">{{ riwaya.code }}</span>
+                    {% if riwaya.description %}
+                    <p class="riwaya-description">{{ riwaya.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div id="resources-section" class="learn-section">
+        <div class="section-intro">
+            <h2>مصادر التعلم</h2>
+            <p>مراجع ومصادر مهمة لتعلم القراءات القرآنية:</p>
+        </div>
+
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="resource-icon">1</div>
+                <h3>الشاطبية</h3>
+                <p class="resource-author">للإمام الشاطبي (ت 590 هـ)</p>
+                <p class="resource-desc">منظومة حرز الأماني ووجه التهاني في القراءات السبع</p>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-icon">2</div>
+                <h3>الدرة المضية</h3>
+                <p class="resource-author">للإمام ابن الجزري (ت 833 هـ)</p>
+                <p class="resource-desc">منظومة في القراءات الثلاث المتممة للعشر</p>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-icon">3</div>
+                <h3>النشر في القراءات العشر</h3>
+                <p class="resource-author">للإمام ابن الجزري (ت 833 هـ)</p>
+                <p class="resource-desc">أوسع كتاب في القراءات العشر الكبرى</p>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-icon">4</div>
+                <h3>إتحاف فضلاء البشر</h3>
+                <p class="resource-author">للبنا الدمياطي (ت 1117 هـ)</p>
+                <p class="resource-desc">شرح موسع على القراءات الأربعة عشر</p>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-icon">5</div>
+                <h3>التيسير في القراءات السبع</h3>
+                <p class="resource-author">للإمام أبي عمرو الداني (ت 444 هـ)</p>
+                <p class="resource-desc">كتاب مختصر في القراءات السبع</p>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-icon">6</div>
+                <h3>طيبة النشر</h3>
+                <p class="resource-author">للإمام ابن الجزري (ت 833 هـ)</p>
+                <p class="resource-desc">منظومة في القراءات العشر الكبرى</p>
+            </div>
+        </div>
+
+        <div class="learning-tips">
+            <h3>نصائح لتعلم القراءات</h3>
+            <ul>
+                <li>ابدأ بإتقان رواية حفص عن عاصم أولا</li>
+                <li>تعلم أصول القراءات قبل الفرش</li>
+                <li>احفظ متن الشاطبية للقراءات السبع</li>
+                <li>تلقى القراءات على يد شيخ متقن مجاز</li>
+                <li>تدرب على الجمع بين الروايات تدريجيا</li>
+                <li>راجع القراءات باستمرار حتى ترسخ</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+.learn-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color), #2d7a5e);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    opacity: 0.9;
+    font-size: 1.2rem;
+}
+
+/* Tabs */
+.learn-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.learn-tab {
+    padding: 14px 28px;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+}
+
+.learn-tab:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.learn-tab.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* Sections */
+.learn-section {
+    display: none;
+}
+
+.learn-section.active {
+    display: block;
+}
+
+.section-intro {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-intro h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.section-intro p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+/* Qurra Grid */
+.qurra-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.qari-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.qari-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.qari-header {
+    background: linear-gradient(135deg, var(--primary-color), #2d8f6f);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: white;
+}
+
+.qari-number {
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.qari-info h3 {
+    color: white;
+    margin: 0 0 4px 0;
+    font-size: 1.3rem;
+}
+
+.qari-english {
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+.qari-details {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: var(--text-light);
+}
+
+.detail-value {
+    font-weight: bold;
+    color: var(--primary-dark);
+}
+
+.qari-ruwat {
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+.qari-ruwat h4 {
+    color: var(--primary-color);
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+}
+
+.ruwat-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.rawi-badge {
+    background: white;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.rawi-name {
+    font-weight: bold;
+    color: var(--primary-dark);
+}
+
+.rawi-death {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin-right: 6px;
+}
+
+/* Riwayat Detail */
+.riwayat-list-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.riwaya-detail-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+}
+
+.riwaya-detail-card:hover {
+    transform: translateX(-4px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.riwaya-number {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary-color), #2d8f6f);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.riwaya-content h3 {
+    margin: 0 0 6px 0;
+    color: var(--primary-dark);
+}
+
+.riwaya-english {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.riwaya-code {
+    background: var(--primary-color);
+    color: white;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-right: 10px;
+}
+
+.riwaya-description {
+    margin-top: 10px;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Resources */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.resource-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+    border-right: 4px solid var(--primary-color);
+}
+
+.resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.resource-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.resource-card h3 {
+    color: var(--primary-dark);
+    margin: 0 0 8px 0;
+}
+
+.resource-author {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin: 0 0 8px 0;
+}
+
+.resource-desc {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Learning Tips */
+.learning-tips {
+    background: linear-gradient(135deg, #f8f9fa, #fff);
+    border-radius: 16px;
+    padding: 30px;
+    border: 2px solid var(--border-color);
+}
+
+.learning-tips h3 {
+    color: var(--primary-color);
+    margin: 0 0 20px 0;
+    font-size: 1.3rem;
+}
+
+.learning-tips ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.learning-tips li {
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--border-color);
+    position: relative;
+    padding-right: 30px;
+}
+
+.learning-tips li:last-child {
+    border-bottom: none;
+}
+
+.learning-tips li::before {
+    content: '\2713';
+    position: absolute;
+    right: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .learn-tabs {
+        flex-direction: column;
+    }
+
+    .learn-tab {
+        width: 100%;
+        text-align: center;
+    }
+
+    .qari-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.learn-tab');
+    const sections = document.querySelectorAll('.learn-section');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const targetId = this.dataset.tab + '-section';
+
+            // Update tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+
+            // Update sections
+            sections.forEach(s => s.classList.remove('active'));
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+});
+</script>
+{% endblock %}

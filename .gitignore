@@ -1,0 +1,71 @@
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials.json
+service-account*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv/
+.eggs/
+*.egg-info/
+*.egg
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large/temporary files
+*.tar.gz
+*.zip
+*.wav
+*.mp3
+google-cloud-cli*.tar.gz
+first_audio.wav
+Pasted*.png
+
+# Logs
+*.log
+logs/
+
+# Database files (too large for GitHub, keep schema only)
+db/*.db
+
+# Data directories
+data/raw/
+data/processed/
+
+# Kubernetes secrets
+k8s/*-secret*.yaml
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+tmp/

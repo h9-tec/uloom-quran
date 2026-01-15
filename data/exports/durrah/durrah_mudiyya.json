@@ -1,0 +1,1807 @@
+{
+  "title_arabic": "الدرة المضية في القراءات الثلاث المتممة للعشر",
+  "title_english": "Al-Durrah Al-Mudiyya on the Three Complementary Qiraat",
+  "author": "الإمام محمد بن الجزري",
+  "author_english": "Imam Ibn Al-Jazari",
+  "death_year": "833 هـ",
+  "total_verses": 211,
+  "qiraat_covered": [
+    {
+      "name": "أبو جعفر",
+      "name_en": "Abu Ja'far",
+      "id": 8
+    },
+    {
+      "name": "يعقوب",
+      "name_en": "Ya'qub",
+      "id": 9
+    },
+    {
+      "name": "خلف العاشر",
+      "name_en": "Khalaf al-'Ashir",
+      "id": 10
+    }
+  ],
+  "sections": [
+    {
+      "name": "المقدمة",
+      "start": 1,
+      "end": 10,
+      "name_en": "Introduction"
+    },
+    {
+      "name": "باب البسملة وأم القرآن",
+      "start": 11,
+      "end": 20,
+      "name_en": "Chapter on Basmalah and Al-Fatihah"
+    },
+    {
+      "name": "باب الإدغام الكبير",
+      "start": 21,
+      "end": 30,
+      "name_en": "Chapter on Major Assimilation"
+    },
+    {
+      "name": "باب هاء الكناية",
+      "start": 31,
+      "end": 40,
+      "name_en": "Chapter on Pronoun Ha"
+    },
+    {
+      "name": "باب المد والقصر",
+      "start": 41,
+      "end": 50,
+      "name_en": "Chapter on Lengthening and Shortening"
+    },
+    {
+      "name": "باب الهمزتين من كلمة",
+      "start": 51,
+      "end": 60,
+      "name_en": "Chapter on Two Hamzas in One Word"
+    },
+    {
+      "name": "باب الهمزتين من كلمتين",
+      "start": 61,
+      "end": 70,
+      "name_en": "Chapter on Two Hamzas from Two Words"
+    },
+    {
+      "name": "باب الإمالة",
+      "start": 71,
+      "end": 80,
+      "name_en": "Chapter on Imala"
+    },
+    {
+      "name": "باب ياءات الإضافة",
+      "start": 81,
+      "end": 90,
+      "name_en": "Chapter on Possessive Ya"
+    },
+    {
+      "name": "باب الوقف على مرسوم الخط",
+      "start": 91,
+      "end": 100,
+      "name_en": "Chapter on Stopping at Script Marks"
+    },
+    {
+      "name": "باب مذاهبهم في ياءات الزوائد",
+      "start": 101,
+      "end": 110,
+      "name_en": "Chapter on Extra Ya Letters"
+    },
+    {
+      "name": "فرش حروف سورة البقرة",
+      "start": 111,
+      "end": 120,
+      "name_en": "Surah Al-Baqarah Variants"
+    },
+    {
+      "name": "فرش سور آل عمران والنساء",
+      "start": 121,
+      "end": 130,
+      "name_en": "Surah Al-Imran and An-Nisa Variants"
+    },
+    {
+      "name": "فرش السور التالية",
+      "start": 131,
+      "end": 180,
+      "name_en": "Following Surahs Variants"
+    },
+    {
+      "name": "تتمة الفرش والخاتمة",
+      "start": 181,
+      "end": 241,
+      "name_en": "Completion and Conclusion"
+    }
+  ],
+  "verses": [
+    {
+      "number": 1,
+      "first_hemistich": "يَقُولُ رَاجِي عَفْوِ رَبٍّ سَامِعِ",
+      "second_hemistich": "مُحَمَّدُ بْنُ الْجَزَرِي الشَّافِعِي",
+      "full_verse": "يَقُولُ رَاجِي عَفْوِ رَبٍّ سَامِعِ * مُحَمَّدُ بْنُ الْجَزَرِي الشَّافِعِي",
+      "section": "المقدمة",
+      "section_en": "Introduction"
+    },
+    {
+      "number": 2,
+      "first_hemistich": "الْحَمْدُ لِلَّهِ وَصَلَّى اللهُ",
+      "second_hemistich": "عَلَى نَبِيِّهِ وَمُصْطَفَاهُ",
+      "full_verse": "الْحَمْدُ لِلَّهِ وَصَلَّى اللهُ * عَلَى نَبِيِّهِ وَمُصْطَفَاهُ",
+      "section": "المقدمة",
+      "section_en": "Introduction"
+    },
+    {
+      "number": 3,
+      "first_hemistich": "مُحَمَّدٍ وَآلِهِ وَصَحْبِهِ",
+      "second_hemistich": "وَتَابِعِي سُنَّتِهِ وَحِزْبِهِ",
+      "full_verse": "مُحَمَّدٍ وَآلِهِ وَصَحْبِهِ * وَتَابِعِي سُنَّتِهِ وَحِزْبِهِ",
+      "section": "المقدمة",
+      "section_en": "Introduction"
+    },
+    {
+      "number": 4,
+      "first_hemistich": "وَبَعْدُ إِنَّ هَذِهِ مُقَدِّمَهْ",
+      "second_hemistich": "فِيمَا حَوَتْهُ الدُّرَّةُ الْمُنَظَّمَهْ",
+      "full_verse": "وَبَعْدُ إِنَّ هَذِهِ مُقَدِّمَهْ * فِيمَا حَوَتْهُ الدُّرَّةُ الْمُنَظَّمَهْ",
+      "section": "المقدمة",
+      "section_en": "Introduction"
+    },
+    {
+      "number": 5,
+      "first_hemistich": "فِي الثَّلَاثِ الزَّائِدَهْ عَلَى الْعَشَرْ",
+      "second_hemistich": "تَتِمَّةً لِمَا رَوَاهُ ابْنُ شُجَاعٍ قَدْ نَشَرْ",
+      "full_verse": "فِي الثَّلَاثِ الزَّائِدَهْ عَلَى الْعَشَرْ * تَتِمَّةً لِمَا رَوَاهُ ابْنُ شُجَاعٍ قَدْ نَشَرْ",
+      "section": "المقدمة",
+      "section_en": "Introduction"
+    },
+    {
+      "number": 6,
+      "first_hemistich": "أَبُو جَعْفَرٍ وَيَعْقُوبُ الأَمَامْ",
+      "second_hemistich": "خَلَفٌ هُمُ الثَّلَاثُ مِنْ بَعْدِ التَّمَامْ",
+      "full_verse": "أَبُو جَعْفَرٍ وَيَعْقُوبُ الأَمَامْ * خَلَفٌ هُمُ الثَّلَاثُ مِنْ بَعْدِ التَّمَامْ",
+      "section": "المقدمة",
+      "section_en": "Introduction"
+    },
+    {
+      "number": 7,
+      "first_hemistich": "أَخْذَيْ لَهُمْ مِنْ طُرُقِي عَلَى السَّنَدْ",
+      "second_hemistich": "فَيَكْفِي أَصْلُ تَحْبِيرِي لِمَا اعْتَمَدْ",
+      "full_verse": "أَخْذَيْ لَهُمْ مِنْ طُرُقِي عَلَى السَّنَدْ * فَيَكْفِي أَصْلُ تَحْبِيرِي لِمَا اعْتَمَدْ",
+      "section": "المقدمة",
+      "section_en": "Introduction"
+    },
+    {
+      "number": 8,
+      "first_hemistich": "وَحَيْثُ أُطْلِقَ الْخُلْفُ فَهْوَ فِي الطُّرُقْ",
+      "second_hemistich": "كَذَاكَ فِيمَا قُلْتُ فِيهِ ذُو تَعَلُّقْ",
+      "full_verse": "وَحَيْثُ أُطْلِقَ الْخُلْفُ فَهْوَ فِي الطُّرُقْ * كَذَاكَ فِيمَا قُلْتُ فِيهِ ذُو تَعَلُّقْ",
+      "section": "المقدمة",
+      "section_en": "Introduction"
+    },
+    {
+      "number": 9,
+      "first_hemistich": "وَالرَّمْزُ فِي نَظْمِي كَرَمْزِ الشَّاطِبِي",
+      "second_hemistich": "وَكُلُّ حُكْمٍ بَيِّنٌ لِلْطَّالِبِ",
+      "full_verse": "وَالرَّمْزُ فِي نَظْمِي كَرَمْزِ الشَّاطِبِي * وَكُلُّ حُكْمٍ بَيِّنٌ لِلْطَّالِبِ",
+      "section": "المقدمة",
+      "section_en": "Introduction"
+    },
+    {
+      "number": 10,
+      "first_hemistich": "وَيَنْبَغِي لِلطَّالِبِ الْمُحَقِّقِ",
+      "second_hemistich": "أَنْ يُفْرِدَ الدُّرَّهْ بِهَذَا الْمَنْطِقِ",
+      "full_verse": "وَيَنْبَغِي لِلطَّالِبِ الْمُحَقِّقِ * أَنْ يُفْرِدَ الدُّرَّهْ بِهَذَا الْمَنْطِقِ",
+      "section": "المقدمة",
+      "section_en": "Introduction"
+    },
+    {
+      "number": 11,
+      "first_hemistich": "وَبَسْمَلَ بَيْنَ السُّورَتَيْنِ أَئِمَّهْ",
+      "second_hemistich": "لَا بُدَّ مِنْهَا وَلَهُمْ وَصْلٌ كَمَا",
+      "full_verse": "وَبَسْمَلَ بَيْنَ السُّورَتَيْنِ أَئِمَّهْ * لَا بُدَّ مِنْهَا وَلَهُمْ وَصْلٌ كَمَا",
+      "section": "باب البسملة وأم القرآن",
+      "section_en": "Chapter on Basmalah and Al-Fatihah"
+    },
+    {
+      "number": 12,
+      "first_hemistich": "كَالشَّاطِبِي وَمَالِكٍ حُزْ فُزْ وَلَا",
+      "second_hemistich": "تَفْصِيلَ لَهُمْ وَلَدَى الزُّهْرِ خَلَا",
+      "full_verse": "كَالشَّاطِبِي وَمَالِكٍ حُزْ فُزْ وَلَا * تَفْصِيلَ لَهُمْ وَلَدَى الزُّهْرِ خَلَا",
+      "section": "باب البسملة وأم القرآن",
+      "section_en": "Chapter on Basmalah and Al-Fatihah"
+    },
+    {
+      "number": 13,
+      "first_hemistich": "مَالِكِ حُزْ مُدْغَمُهُ مِثْلُ خَفِي",
+      "second_hemistich": "وَبَسْمَلَهْ خَلَفٌ صِلْ وَفِي",
+      "full_verse": "مَالِكِ حُزْ مُدْغَمُهُ مِثْلُ خَفِي * وَبَسْمَلَهْ خَلَفٌ صِلْ وَفِي",
+      "section": "باب البسملة وأم القرآن",
+      "section_en": "Chapter on Basmalah and Al-Fatihah"
+    },
+    {
+      "number": 14,
+      "first_hemistich": "سَكْتٍ عَلَى مَرْوِيِّهِ كَخَلَفِ",
+      "second_hemistich": "وَقِفْ عَلَى السَّكْتِ بِغَيْرِ أَلِفِ",
+      "full_verse": "سَكْتٍ عَلَى مَرْوِيِّهِ كَخَلَفِ * وَقِفْ عَلَى السَّكْتِ بِغَيْرِ أَلِفِ",
+      "section": "باب البسملة وأم القرآن",
+      "section_en": "Chapter on Basmalah and Al-Fatihah"
+    },
+    {
+      "number": 15,
+      "first_hemistich": "وَالصِّرَاطَ وَالسِّرَاطَ بِالسِّينِ",
+      "second_hemistich": "وَصَوْتُهُ كَمُدْغَمٍ مُبَيَّنِ",
+      "full_verse": "وَالصِّرَاطَ وَالسِّرَاطَ بِالسِّينِ * وَصَوْتُهُ كَمُدْغَمٍ مُبَيَّنِ",
+      "section": "باب البسملة وأم القرآن",
+      "section_en": "Chapter on Basmalah and Al-Fatihah"
+    },
+    {
+      "number": 16,
+      "first_hemistich": "وَعَلَيْهِمْ إِدْغَامُ ذَالِ إِذْ أَتَتْ",
+      "second_hemistich": "قَبْلَ ضَمِيرٍ مُسْنَدٍ وَسَكَتَتْ",
+      "full_verse": "وَعَلَيْهِمْ إِدْغَامُ ذَالِ إِذْ أَتَتْ * قَبْلَ ضَمِيرٍ مُسْنَدٍ وَسَكَتَتْ",
+      "section": "باب البسملة وأم القرآن",
+      "section_en": "Chapter on Basmalah and Al-Fatihah"
+    },
+    {
+      "number": 17,
+      "first_hemistich": "صِلْ لِلرُّوَاةِ بِخُلْفٍ وَاقِفِ",
+      "second_hemistich": "عَنْهُمْ لَدَى الْمَوْقُوفِ ذِي التَّعَرُّفِ",
+      "full_verse": "صِلْ لِلرُّوَاةِ بِخُلْفٍ وَاقِفِ * عَنْهُمْ لَدَى الْمَوْقُوفِ ذِي التَّعَرُّفِ",
+      "section": "باب البسملة وأم القرآن",
+      "section_en": "Chapter on Basmalah and Al-Fatihah"
+    },
+    {
+      "number": 18,
+      "first_hemistich": "وَاخْتُلِفَ فِي كَافِرِينَ الصَّادِ أَنْ",
+      "second_hemistich": "تُخَلِّصَ الْخِلَافَ أَوْ تَقِفَ إِذَنْ",
+      "full_verse": "وَاخْتُلِفَ فِي كَافِرِينَ الصَّادِ أَنْ * تُخَلِّصَ الْخِلَافَ أَوْ تَقِفَ إِذَنْ",
+      "section": "باب البسملة وأم القرآن",
+      "section_en": "Chapter on Basmalah and Al-Fatihah"
+    },
+    {
+      "number": 19,
+      "first_hemistich": "وَلَا تَنَفَ بِكُلِّ وَجْهٍ يُحْتَمَلْ",
+      "second_hemistich": "ضِقْتَ لِتَنْفِ ثُمَّ وَجْهًا قَدْ نُقِلْ",
+      "full_verse": "وَلَا تَنَفَ بِكُلِّ وَجْهٍ يُحْتَمَلْ * ضِقْتَ لِتَنْفِ ثُمَّ وَجْهًا قَدْ نُقِلْ",
+      "section": "باب البسملة وأم القرآن",
+      "section_en": "Chapter on Basmalah and Al-Fatihah"
+    },
+    {
+      "number": 20,
+      "first_hemistich": "فَذَاكَ يُنْفَى الأَدَا مَا لَمْ يُنَصْ",
+      "second_hemistich": "عَلَيْهِ مِنْ طُرُقِي فَإِنِّي قَدْ خَلَصْ",
+      "full_verse": "فَذَاكَ يُنْفَى الأَدَا مَا لَمْ يُنَصْ * عَلَيْهِ مِنْ طُرُقِي فَإِنِّي قَدْ خَلَصْ",
+      "section": "باب البسملة وأم القرآن",
+      "section_en": "Chapter on Basmalah and Al-Fatihah"
+    },
+    {
+      "number": 21,
+      "first_hemistich": "وَحُزْ مَعَ السُّوسِي خَفَا فِي الْكُبَرَا",
+      "second_hemistich": "وَحَيْثُ أُطْلِقَ الأَدَاءُ فَانْظُرَا",
+      "full_verse": "وَحُزْ مَعَ السُّوسِي خَفَا فِي الْكُبَرَا * وَحَيْثُ أُطْلِقَ الأَدَاءُ فَانْظُرَا",
+      "section": "باب الإدغام الكبير",
+      "section_en": "Chapter on Major Assimilation"
+    },
+    {
+      "number": 22,
+      "first_hemistich": "لِلشَّاطِبِي بِمِثْلِهَا تَرَى هُنَا",
+      "second_hemistich": "وَمَا سِوَى ذَاكَ فَفِيهِ بَيَّنَا",
+      "full_verse": "لِلشَّاطِبِي بِمِثْلِهَا تَرَى هُنَا * وَمَا سِوَى ذَاكَ فَفِيهِ بَيَّنَا",
+      "section": "باب الإدغام الكبير",
+      "section_en": "Chapter on Major Assimilation"
+    },
+    {
+      "number": 23,
+      "first_hemistich": "وَمَا لِيَعْقُوبَ سِوَى مَا قُيِّدَا",
+      "second_hemistich": "بِقَوْلِهِ يَنْبُوعُ مَاءٍ مُرْشِدَا",
+      "full_verse": "وَمَا لِيَعْقُوبَ سِوَى مَا قُيِّدَا * بِقَوْلِهِ يَنْبُوعُ مَاءٍ مُرْشِدَا",
+      "section": "باب الإدغام الكبير",
+      "section_en": "Chapter on Major Assimilation"
+    },
+    {
+      "number": 24,
+      "first_hemistich": "فِي الْجِيمِ قَبْلَ التَّا لِأَخْرَجْتُ مَعَا",
+      "second_hemistich": "وَالْجِيمِ مَعْ شِينٍ بِكُلِّ مَا وَقَعَ",
+      "full_verse": "فِي الْجِيمِ قَبْلَ التَّا لِأَخْرَجْتُ مَعَا * وَالْجِيمِ مَعْ شِينٍ بِكُلِّ مَا وَقَعَ",
+      "section": "باب الإدغام الكبير",
+      "section_en": "Chapter on Major Assimilation"
+    },
+    {
+      "number": 25,
+      "first_hemistich": "وَيَعْقُوبُ فِي حُجَّتُنَا بِالسَّكْتِ",
+      "second_hemistich": "وَأَدْغَمُوا فِي ذَالِ إِذْ تَحْتِ",
+      "full_verse": "وَيَعْقُوبُ فِي حُجَّتُنَا بِالسَّكْتِ * وَأَدْغَمُوا فِي ذَالِ إِذْ تَحْتِ",
+      "section": "باب الإدغام الكبير",
+      "section_en": "Chapter on Major Assimilation"
+    },
+    {
+      "number": 26,
+      "first_hemistich": "وَكَالْكَسَائِي أَظْهَرُوا أَوْ أَدْغَمُوا",
+      "second_hemistich": "قَدْ جَاءَكُمْ رَسُولٌ فِي مَا عَلِمُوا",
+      "full_verse": "وَكَالْكَسَائِي أَظْهَرُوا أَوْ أَدْغَمُوا * قَدْ جَاءَكُمْ رَسُولٌ فِي مَا عَلِمُوا",
+      "section": "باب الإدغام الكبير",
+      "section_en": "Chapter on Major Assimilation"
+    },
+    {
+      "number": 27,
+      "first_hemistich": "وَرُوَاةُ يَعْقُوبَ فِي إِدْغَامِ مَا",
+      "second_hemistich": "عَدَا الْمُثَنَّى مَا لَهُمْ تَقَدَّمَا",
+      "full_verse": "وَرُوَاةُ يَعْقُوبَ فِي إِدْغَامِ مَا * عَدَا الْمُثَنَّى مَا لَهُمْ تَقَدَّمَا",
+      "section": "باب الإدغام الكبير",
+      "section_en": "Chapter on Major Assimilation"
+    },
+    {
+      "number": 28,
+      "first_hemistich": "كَقَالَ رَبِّي وَكَقَالَ رَجُلٌ",
+      "second_hemistich": "وَجَاءَتِ الأَخْرَى بِإِظْهَارٍ يُجَلْ",
+      "full_verse": "كَقَالَ رَبِّي وَكَقَالَ رَجُلٌ * وَجَاءَتِ الأَخْرَى بِإِظْهَارٍ يُجَلْ",
+      "section": "باب الإدغام الكبير",
+      "section_en": "Chapter on Major Assimilation"
+    },
+    {
+      "number": 29,
+      "first_hemistich": "وَزَادَ إِدْغَامَ الْقَرِيبِ السَّاكِنَ",
+      "second_hemistich": "وَصْلًا وَفِي الْوَقْفِ عَلَى التَّبَيُّنِ",
+      "full_verse": "وَزَادَ إِدْغَامَ الْقَرِيبِ السَّاكِنَ * وَصْلًا وَفِي الْوَقْفِ عَلَى التَّبَيُّنِ",
+      "section": "باب الإدغام الكبير",
+      "section_en": "Chapter on Major Assimilation"
+    },
+    {
+      "number": 30,
+      "first_hemistich": "فَإِدْغَامُ يَعْقُوبَ لِكُلٍّ مَنْ حَفِظْ",
+      "second_hemistich": "فِي الْوَصْلِ حَتْمٌ وَاسْتَوَى الْوَقْفُ عَلَظْ",
+      "full_verse": "فَإِدْغَامُ يَعْقُوبَ لِكُلٍّ مَنْ حَفِظْ * فِي الْوَصْلِ حَتْمٌ وَاسْتَوَى الْوَقْفُ عَلَظْ",
+      "section": "باب الإدغام الكبير",
+      "section_en": "Chapter on Major Assimilation"
+    },
+    {
+      "number": 31,
+      "first_hemistich": "وَحُزْ وَصِلْ هَاءَ لَهُ وَفِيهِ",
+      "second_hemistich": "وَالْهَا يُضَمُّ إِنْ تَسُمْ عَلَيْهِ",
+      "full_verse": "وَحُزْ وَصِلْ هَاءَ لَهُ وَفِيهِ * وَالْهَا يُضَمُّ إِنْ تَسُمْ عَلَيْهِ",
+      "section": "باب هاء الكناية",
+      "section_en": "Chapter on Pronoun Ha"
+    },
+    {
+      "number": 32,
+      "first_hemistich": "وَصِلْةُ الْهَا لِفِي مَا قَدْ نُسِبْ",
+      "second_hemistich": "لِلشَّاطِبِي فِيمَا سِوَاهُ قَدْ وَجَبْ",
+      "full_verse": "وَصِلْةُ الْهَا لِفِي مَا قَدْ نُسِبْ * لِلشَّاطِبِي فِيمَا سِوَاهُ قَدْ وَجَبْ",
+      "section": "باب هاء الكناية",
+      "section_en": "Chapter on Pronoun Ha"
+    },
+    {
+      "number": 33,
+      "first_hemistich": "وَأَرْجِهْ بِهَمْزٍ وَصْلٍ إِنْ تَضُمْ",
+      "second_hemistich": "أَوْ تَكْسِرُ الْهَاءَ فَعِنْدِي يَنْتَظِمْ",
+      "full_verse": "وَأَرْجِهْ بِهَمْزٍ وَصْلٍ إِنْ تَضُمْ * أَوْ تَكْسِرُ الْهَاءَ فَعِنْدِي يَنْتَظِمْ",
+      "section": "باب هاء الكناية",
+      "section_en": "Chapter on Pronoun Ha"
+    },
+    {
+      "number": 34,
+      "first_hemistich": "وَقَبْلَ سَاكِنٍ قِفِ الْهَاءَ بِلَا",
+      "second_hemistich": "صِلَهْ وَوَصْلُهَا بِوَجْهَيْنِ حَلَا",
+      "full_verse": "وَقَبْلَ سَاكِنٍ قِفِ الْهَاءَ بِلَا * صِلَهْ وَوَصْلُهَا بِوَجْهَيْنِ حَلَا",
+      "section": "باب هاء الكناية",
+      "section_en": "Chapter on Pronoun Ha"
+    },
+    {
+      "number": 35,
+      "first_hemistich": "يُؤَدِّهِ يُوَلِّهِ نُوَلِّهِ",
+      "second_hemistich": "وَنُصْلِهِ وَنُؤْتِهِ وَآتِهِ",
+      "full_verse": "يُؤَدِّهِ يُوَلِّهِ نُوَلِّهِ * وَنُصْلِهِ وَنُؤْتِهِ وَآتِهِ",
+      "section": "باب هاء الكناية",
+      "section_en": "Chapter on Pronoun Ha"
+    },
+    {
+      "number": 36,
+      "first_hemistich": "وَكُلُّهُمْ يَرْوُونَهُ بِالإِسْكَانْ",
+      "second_hemistich": "فِي الْوَصْلِ وَالْوَقْفِ فَفِي ذَا اسْتِحْسَانْ",
+      "full_verse": "وَكُلُّهُمْ يَرْوُونَهُ بِالإِسْكَانْ * فِي الْوَصْلِ وَالْوَقْفِ فَفِي ذَا اسْتِحْسَانْ",
+      "section": "باب هاء الكناية",
+      "section_en": "Chapter on Pronoun Ha"
+    },
+    {
+      "number": 37,
+      "first_hemistich": "وَيَعْقُوبَ لَهُ فِي يَأْتِهِ",
+      "second_hemistich": "كَمَنْ يَأْتِيهِ مِنْ فُنُونِ لُغَتِهِ",
+      "full_verse": "وَيَعْقُوبَ لَهُ فِي يَأْتِهِ * كَمَنْ يَأْتِيهِ مِنْ فُنُونِ لُغَتِهِ",
+      "section": "باب هاء الكناية",
+      "section_en": "Chapter on Pronoun Ha"
+    },
+    {
+      "number": 38,
+      "first_hemistich": "وَأَنْسَنِيهُ حُزْ وَفِيهِ مُهَانًا",
+      "second_hemistich": "وَصِلْ وَيَتَّقِهِ بِضَمٍّ بَانَا",
+      "full_verse": "وَأَنْسَنِيهُ حُزْ وَفِيهِ مُهَانًا * وَصِلْ وَيَتَّقِهِ بِضَمٍّ بَانَا",
+      "section": "باب هاء الكناية",
+      "section_en": "Chapter on Pronoun Ha"
+    },
+    {
+      "number": 39,
+      "first_hemistich": "وَاخْتُلِفَ فِي عُقَاهُ رُوِّينَا",
+      "second_hemistich": "وَالنُّونُ فِي يُكْرِهْهُنَّ سُكِّنَا",
+      "full_verse": "وَاخْتُلِفَ فِي عُقَاهُ رُوِّينَا * وَالنُّونُ فِي يُكْرِهْهُنَّ سُكِّنَا",
+      "section": "باب هاء الكناية",
+      "section_en": "Chapter on Pronoun Ha"
+    },
+    {
+      "number": 40,
+      "first_hemistich": "وَمِنْ دُونِهِ فِي النَّمْلِ ضَمُّوا الْهَا وَلَمْ",
+      "second_hemistich": "يُصِلُّوهَا وَأَيْدِيهِمْ بِضَمٍّ عُلِمْ",
+      "full_verse": "وَمِنْ دُونِهِ فِي النَّمْلِ ضَمُّوا الْهَا وَلَمْ * يُصِلُّوهَا وَأَيْدِيهِمْ بِضَمٍّ عُلِمْ",
+      "section": "باب هاء الكناية",
+      "section_en": "Chapter on Pronoun Ha"
+    },
+    {
+      "number": 41,
+      "first_hemistich": "وَإِنْ تَسَلْ عَنِ الْمُنْفَصِلْ وَالْمُتَّصِلْ",
+      "second_hemistich": "فَمَا لَهُمْ خُلْفٌ بِمَا قَدِ اتَّصَلْ",
+      "full_verse": "وَإِنْ تَسَلْ عَنِ الْمُنْفَصِلْ وَالْمُتَّصِلْ * فَمَا لَهُمْ خُلْفٌ بِمَا قَدِ اتَّصَلْ",
+      "section": "باب المد والقصر",
+      "section_en": "Chapter on Lengthening and Shortening"
+    },
+    {
+      "number": 42,
+      "first_hemistich": "وَأَقْصَرَ الْمُنْفَصِلَ الثَّلَاثَهْ",
+      "second_hemistich": "وَبَعْضُهُمْ فِي ذَا أَشَارَ بِغَايَهْ",
+      "full_verse": "وَأَقْصَرَ الْمُنْفَصِلَ الثَّلَاثَهْ * وَبَعْضُهُمْ فِي ذَا أَشَارَ بِغَايَهْ",
+      "section": "باب المد والقصر",
+      "section_en": "Chapter on Lengthening and Shortening"
+    },
+    {
+      "number": 43,
+      "first_hemistich": "فَحُزْ وَصِلْ ذَا وَكَذَا فِي نَحْوِ",
+      "second_hemistich": "آمَنَ وَفِي الْيَاءِ وَفِي مُعَمِّي",
+      "full_verse": "فَحُزْ وَصِلْ ذَا وَكَذَا فِي نَحْوِ * آمَنَ وَفِي الْيَاءِ وَفِي مُعَمِّي",
+      "section": "باب المد والقصر",
+      "section_en": "Chapter on Lengthening and Shortening"
+    },
+    {
+      "number": 44,
+      "first_hemistich": "وَمَدِّ تَعْظِيمٍ بِلَا إِلَهَ أَشْ",
+      "second_hemistich": "مِرْ لِلثَّلَاثَةِ وَحُزْ وَالنَّصُّ فَشْ",
+      "full_verse": "وَمَدِّ تَعْظِيمٍ بِلَا إِلَهَ أَشْ * مِرْ لِلثَّلَاثَةِ وَحُزْ وَالنَّصُّ فَشْ",
+      "section": "باب المد والقصر",
+      "section_en": "Chapter on Lengthening and Shortening"
+    },
+    {
+      "number": 45,
+      "first_hemistich": "وَقَدْ فَشَا مَعَ التَّوَسُّطِ الْقَصْرْ",
+      "second_hemistich": "لِنَافِعٍ وَأَمَّ يَعْقُوبَ وَجَرْ",
+      "full_verse": "وَقَدْ فَشَا مَعَ التَّوَسُّطِ الْقَصْرْ * لِنَافِعٍ وَأَمَّ يَعْقُوبَ وَجَرْ",
+      "section": "باب المد والقصر",
+      "section_en": "Chapter on Lengthening and Shortening"
+    },
+    {
+      "number": 46,
+      "first_hemistich": "وَمَدَّ مَيِّتٍ وَلَيِّ حُزْ وَمِيتَهْ",
+      "second_hemistich": "وَمَيْتًا الْمُخَفَّفَيْنِ ثَمَّ صِيتَهْ",
+      "full_verse": "وَمَدَّ مَيِّتٍ وَلَيِّ حُزْ وَمِيتَهْ * وَمَيْتًا الْمُخَفَّفَيْنِ ثَمَّ صِيتَهْ",
+      "section": "باب المد والقصر",
+      "section_en": "Chapter on Lengthening and Shortening"
+    },
+    {
+      "number": 47,
+      "first_hemistich": "وَالنُّونُ فِي يُؤْمِنُونَ اسْتُعْمِلَتْ",
+      "second_hemistich": "فِي أَوَّلِ الْبَقَرَةِ إِذْ تَثَبَّتَتْ",
+      "full_verse": "وَالنُّونُ فِي يُؤْمِنُونَ اسْتُعْمِلَتْ * فِي أَوَّلِ الْبَقَرَةِ إِذْ تَثَبَّتَتْ",
+      "section": "باب المد والقصر",
+      "section_en": "Chapter on Lengthening and Shortening"
+    },
+    {
+      "number": 48,
+      "first_hemistich": "وَمِيتَةً مَيْتًا وَآلُ مَيِّتٍ",
+      "second_hemistich": "سَأُرِيكُمْ دَارَ الْأَنَامِ لِيَّتِ",
+      "full_verse": "وَمِيتَةً مَيْتًا وَآلُ مَيِّتٍ * سَأُرِيكُمْ دَارَ الْأَنَامِ لِيَّتِ",
+      "section": "باب المد والقصر",
+      "section_en": "Chapter on Lengthening and Shortening"
+    },
+    {
+      "number": 49,
+      "first_hemistich": "وَصِلَةُ الْمِيمِ مَعَ الْجَمْعِ صِلْ",
+      "second_hemistich": "وَمِيمُ الْجَمْعِ قَبْلَ مُتَحَرِّكٍ صِلْ",
+      "full_verse": "وَصِلَةُ الْمِيمِ مَعَ الْجَمْعِ صِلْ * وَمِيمُ الْجَمْعِ قَبْلَ مُتَحَرِّكٍ صِلْ",
+      "section": "باب المد والقصر",
+      "section_en": "Chapter on Lengthening and Shortening"
+    },
+    {
+      "number": 50,
+      "first_hemistich": "حَرَّكَهَا لِنَافِعٍ وَصِلْ هُنَا",
+      "second_hemistich": "وَقَالُونٌ قَدْ أَسْكَنَ الْمِيمَ لَنَا",
+      "full_verse": "حَرَّكَهَا لِنَافِعٍ وَصِلْ هُنَا * وَقَالُونٌ قَدْ أَسْكَنَ الْمِيمَ لَنَا",
+      "section": "باب المد والقصر",
+      "section_en": "Chapter on Lengthening and Shortening"
+    },
+    {
+      "number": 51,
+      "first_hemistich": "وَآمَنُوا وَآوَوْا فِيهِمَا أُبْدِلَا",
+      "second_hemistich": "لِحُزْ وَفِي سَأَلَهُمُ فِي ذَا خَلَا",
+      "full_verse": "وَآمَنُوا وَآوَوْا فِيهِمَا أُبْدِلَا * لِحُزْ وَفِي سَأَلَهُمُ فِي ذَا خَلَا",
+      "section": "باب الهمزتين من كلمة",
+      "section_en": "Chapter on Two Hamzas in One Word"
+    },
+    {
+      "number": 52,
+      "first_hemistich": "كَمَا وَفِي سَأَلْتُمُوهُ وَامْتَنَعْ",
+      "second_hemistich": "إِبْدَالُهُمْ لِهَمْزَتَيْ وَصْلٍ قَطَعْ",
+      "full_verse": "كَمَا وَفِي سَأَلْتُمُوهُ وَامْتَنَعْ * إِبْدَالُهُمْ لِهَمْزَتَيْ وَصْلٍ قَطَعْ",
+      "section": "باب الهمزتين من كلمة",
+      "section_en": "Chapter on Two Hamzas in One Word"
+    },
+    {
+      "number": 53,
+      "first_hemistich": "وَفِي أَئِمَّةً لَهُمْ تَسْهِيلُ",
+      "second_hemistich": "وَفِي أَئِذَا لَهُمْ دَلِيلُ",
+      "full_verse": "وَفِي أَئِمَّةً لَهُمْ تَسْهِيلُ * وَفِي أَئِذَا لَهُمْ دَلِيلُ",
+      "section": "باب الهمزتين من كلمة",
+      "section_en": "Chapter on Two Hamzas in One Word"
+    },
+    {
+      "number": 54,
+      "first_hemistich": "وَقِيلَ فِي الثَّانِي أَبُدِلَتْ وَمَا",
+      "second_hemistich": "فِي غَيْرِهَا فَنَصُّهَا تَقَدَّمَا",
+      "full_verse": "وَقِيلَ فِي الثَّانِي أَبُدِلَتْ وَمَا * فِي غَيْرِهَا فَنَصُّهَا تَقَدَّمَا",
+      "section": "باب الهمزتين من كلمة",
+      "section_en": "Chapter on Two Hamzas in One Word"
+    },
+    {
+      "number": 55,
+      "first_hemistich": "وَأَوَّلَ الْهَمْزَيْنِ سَهِّلْ مِنْ سَبَا",
+      "second_hemistich": "لِيَعْقُوبَ إِنْ سُكُونُ الثَّانِي ثَبَتَا",
+      "full_verse": "وَأَوَّلَ الْهَمْزَيْنِ سَهِّلْ مِنْ سَبَا * لِيَعْقُوبَ إِنْ سُكُونُ الثَّانِي ثَبَتَا",
+      "section": "باب الهمزتين من كلمة",
+      "section_en": "Chapter on Two Hamzas in One Word"
+    },
+    {
+      "number": 56,
+      "first_hemistich": "وَفِي أَؤُنَبِّئُكُمْ تَسْهِيلُ",
+      "second_hemistich": "هَمْزَتِهِ الْمَضْمُومَةِ الدَّلِيلُ",
+      "full_verse": "وَفِي أَؤُنَبِّئُكُمْ تَسْهِيلُ * هَمْزَتِهِ الْمَضْمُومَةِ الدَّلِيلُ",
+      "section": "باب الهمزتين من كلمة",
+      "section_en": "Chapter on Two Hamzas in One Word"
+    },
+    {
+      "number": 57,
+      "first_hemistich": "وَثَانِيَ الْهَمْزَتَيْنِ سَهَّلُوهُ لَا",
+      "second_hemistich": "كُتْ يَعْقُوبَ بِخُلْفٍ حَيْثُ حَلَّا",
+      "full_verse": "وَثَانِيَ الْهَمْزَتَيْنِ سَهَّلُوهُ لَا * كُتْ يَعْقُوبَ بِخُلْفٍ حَيْثُ حَلَّا",
+      "section": "باب الهمزتين من كلمة",
+      "section_en": "Chapter on Two Hamzas in One Word"
+    },
+    {
+      "number": 58,
+      "first_hemistich": "وَحَقَّقُوا لِيَعْقُوبَ فِي الأُولَى وَكَا",
+      "second_hemistich": "فَتْحٍ مَعَ الْكَسْرِ بَدَا مُبَارَكَا",
+      "full_verse": "وَحَقَّقُوا لِيَعْقُوبَ فِي الأُولَى وَكَا * فَتْحٍ مَعَ الْكَسْرِ بَدَا مُبَارَكَا",
+      "section": "باب الهمزتين من كلمة",
+      "section_en": "Chapter on Two Hamzas in One Word"
+    },
+    {
+      "number": 59,
+      "first_hemistich": "ءَآلِهَتُنَا وَءَآلِهَةٌ مَعَا",
+      "second_hemistich": "سَهَّلْتَ ثَانِي الْهَمْزِ ثُمَّ قَدْ سَعَى",
+      "full_verse": "ءَآلِهَتُنَا وَءَآلِهَةٌ مَعَا * سَهَّلْتَ ثَانِي الْهَمْزِ ثُمَّ قَدْ سَعَى",
+      "section": "باب الهمزتين من كلمة",
+      "section_en": "Chapter on Two Hamzas in One Word"
+    },
+    {
+      "number": 60,
+      "first_hemistich": "فِي إِبْدَالِ ثَانِيهِ وَفِي ءَأَنْتَ تَرَى",
+      "second_hemistich": "تَسْهِيلُهُ حُزْ فِي خِلَافٍ مَا جَرَى",
+      "full_verse": "فِي إِبْدَالِ ثَانِيهِ وَفِي ءَأَنْتَ تَرَى * تَسْهِيلُهُ حُزْ فِي خِلَافٍ مَا جَرَى",
+      "section": "باب الهمزتين من كلمة",
+      "section_en": "Chapter on Two Hamzas in One Word"
+    },
+    {
+      "number": 61,
+      "first_hemistich": "وَلِلثَّلَاثَةِ إِذَا اخْتَلَفَتَا",
+      "second_hemistich": "فَسَهِّلَنْ أُولَاهُمَا إِذَا أَتَتْ",
+      "full_verse": "وَلِلثَّلَاثَةِ إِذَا اخْتَلَفَتَا * فَسَهِّلَنْ أُولَاهُمَا إِذَا أَتَتْ",
+      "section": "باب الهمزتين من كلمتين",
+      "section_en": "Chapter on Two Hamzas from Two Words"
+    },
+    {
+      "number": 62,
+      "first_hemistich": "مَضْمُومَةً وَقَبْلَهَا فَتْحٌ وَمِنْ",
+      "second_hemistich": "بَعْدِ كَسْرٍ وَهِيَ مَفْتُوحَهْ فَمَنْ",
+      "full_verse": "مَضْمُومَةً وَقَبْلَهَا فَتْحٌ وَمِنْ * بَعْدِ كَسْرٍ وَهِيَ مَفْتُوحَهْ فَمَنْ",
+      "section": "باب الهمزتين من كلمتين",
+      "section_en": "Chapter on Two Hamzas from Two Words"
+    },
+    {
+      "number": 63,
+      "first_hemistich": "إِسْقَاطُهَا وَقَدْ رَوَاهُ الثِّقَاتْ",
+      "second_hemistich": "كَذَاكَ مِنْ بَعْدِ الضَّمِيرِ ثَابِتَاتْ",
+      "full_verse": "إِسْقَاطُهَا وَقَدْ رَوَاهُ الثِّقَاتْ * كَذَاكَ مِنْ بَعْدِ الضَّمِيرِ ثَابِتَاتْ",
+      "section": "باب الهمزتين من كلمتين",
+      "section_en": "Chapter on Two Hamzas from Two Words"
+    },
+    {
+      "number": 64,
+      "first_hemistich": "وَجَاءَ أُمَّةً لَهُمْ فِي النَّحْلِ",
+      "second_hemistich": "تَسْهِيلُ أُولَاهَا كَذَا النَّمْلِ",
+      "full_verse": "وَجَاءَ أُمَّةً لَهُمْ فِي النَّحْلِ * تَسْهِيلُ أُولَاهَا كَذَا النَّمْلِ",
+      "section": "باب الهمزتين من كلمتين",
+      "section_en": "Chapter on Two Hamzas from Two Words"
+    },
+    {
+      "number": 65,
+      "first_hemistich": "وَمَنْ يَشَأْ فِي وَصْلِهِ يُبَدِّلُ",
+      "second_hemistich": "وَسَهَّلُوا أَوْ أَمِنْتُمْ تَأَمَّلُوا",
+      "full_verse": "وَمَنْ يَشَأْ فِي وَصْلِهِ يُبَدِّلُ * وَسَهَّلُوا أَوْ أَمِنْتُمْ تَأَمَّلُوا",
+      "section": "باب الهمزتين من كلمتين",
+      "section_en": "Chapter on Two Hamzas from Two Words"
+    },
+    {
+      "number": 66,
+      "first_hemistich": "يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا",
+      "second_hemistich": "تُنَادُوا وَلِتَسْهِيلِ أُخْرَاهَا خُذَا",
+      "full_verse": "يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا * تُنَادُوا وَلِتَسْهِيلِ أُخْرَاهَا خُذَا",
+      "section": "باب الهمزتين من كلمتين",
+      "section_en": "Chapter on Two Hamzas from Two Words"
+    },
+    {
+      "number": 67,
+      "first_hemistich": "وَقَالُوا الثَّانِيَةَ تُسَهَّلُ",
+      "second_hemistich": "وَالأَوَّلُ تَحْذِفُهَا بَعْدُ تُجَلِّ",
+      "full_verse": "وَقَالُوا الثَّانِيَةَ تُسَهَّلُ * وَالأَوَّلُ تَحْذِفُهَا بَعْدُ تُجَلِّ",
+      "section": "باب الهمزتين من كلمتين",
+      "section_en": "Chapter on Two Hamzas from Two Words"
+    },
+    {
+      "number": 68,
+      "first_hemistich": "وَبِاخْتِلَافِهِمَا الثَّلَاثَهْ",
+      "second_hemistich": "وَلَهُمَا قَوْلَانِ فِيهِ غَايَهْ",
+      "full_verse": "وَبِاخْتِلَافِهِمَا الثَّلَاثَهْ * وَلَهُمَا قَوْلَانِ فِيهِ غَايَهْ",
+      "section": "باب الهمزتين من كلمتين",
+      "section_en": "Chapter on Two Hamzas from Two Words"
+    },
+    {
+      "number": 69,
+      "first_hemistich": "وَالْمُتَّفِقَيْنِ مِنْهُمَا سَهِّلْ لَهُمْ",
+      "second_hemistich": "أَوِ الثَّانِيَ بِالْمَدِّ فَالْخُلْفُ عُلِمْ",
+      "full_verse": "وَالْمُتَّفِقَيْنِ مِنْهُمَا سَهِّلْ لَهُمْ * أَوِ الثَّانِيَ بِالْمَدِّ فَالْخُلْفُ عُلِمْ",
+      "section": "باب الهمزتين من كلمتين",
+      "section_en": "Chapter on Two Hamzas from Two Words"
+    },
+    {
+      "number": 70,
+      "first_hemistich": "وَأَسْقَطُوا لِلسَّاكِنَيْنِ أُولَا",
+      "second_hemistich": "ذَاتَ الْفَتْحِ مِنْ هَؤُلَاءِ إِنْ تَلَا",
+      "full_verse": "وَأَسْقَطُوا لِلسَّاكِنَيْنِ أُولَا * ذَاتَ الْفَتْحِ مِنْ هَؤُلَاءِ إِنْ تَلَا",
+      "section": "باب الهمزتين من كلمتين",
+      "section_en": "Chapter on Two Hamzas from Two Words"
+    },
+    {
+      "number": 71,
+      "first_hemistich": "وَحُزْ أَمِلْ ذَوَاتِ يَاءِ الْفَرْشِ",
+      "second_hemistich": "فِي الْكَافِرِينَ الصَّادِ لَا بِوَهْشِ",
+      "full_verse": "وَحُزْ أَمِلْ ذَوَاتِ يَاءِ الْفَرْشِ * فِي الْكَافِرِينَ الصَّادِ لَا بِوَهْشِ",
+      "section": "باب الإمالة",
+      "section_en": "Chapter on Imala"
+    },
+    {
+      "number": 72,
+      "first_hemistich": "وَأَنَّى لَهُمْ أَوْ مَعَ رُوسِ الآيِ",
+      "second_hemistich": "وَهَا التَّأْنِيثِ قِفْ بِالإِمَالَاتِ",
+      "full_verse": "وَأَنَّى لَهُمْ أَوْ مَعَ رُوسِ الآيِ * وَهَا التَّأْنِيثِ قِفْ بِالإِمَالَاتِ",
+      "section": "باب الإمالة",
+      "section_en": "Chapter on Imala"
+    },
+    {
+      "number": 73,
+      "first_hemistich": "وَيَعْقُوبَ يُمِيلُ هَا ضَمِيرِ",
+      "second_hemistich": "بَلَى عَلَيْهِ ثَمَّ هَادِي كُلِّ سِيرِ",
+      "full_verse": "وَيَعْقُوبَ يُمِيلُ هَا ضَمِيرِ * بَلَى عَلَيْهِ ثَمَّ هَادِي كُلِّ سِيرِ",
+      "section": "باب الإمالة",
+      "section_en": "Chapter on Imala"
+    },
+    {
+      "number": 74,
+      "first_hemistich": "وَزَادَ فِي ذَوَاتِ وَاوٍ فَتْحَا",
+      "second_hemistich": "وَحَاشَا النَّقْلَ يَعْقُوبَ كَشَحَا",
+      "full_verse": "وَزَادَ فِي ذَوَاتِ وَاوٍ فَتْحَا * وَحَاشَا النَّقْلَ يَعْقُوبَ كَشَحَا",
+      "section": "باب الإمالة",
+      "section_en": "Chapter on Imala"
+    },
+    {
+      "number": 75,
+      "first_hemistich": "وَفَتَّحُوا ذَوَاتِ رَاءٍ طَرَفَا",
+      "second_hemistich": "وَأَمَّلُوا كُبْرَى أُولَاتِ الأَلِفَا",
+      "full_verse": "وَفَتَّحُوا ذَوَاتِ رَاءٍ طَرَفَا * وَأَمَّلُوا كُبْرَى أُولَاتِ الأَلِفَا",
+      "section": "باب الإمالة",
+      "section_en": "Chapter on Imala"
+    },
+    {
+      "number": 76,
+      "first_hemistich": "سِوَى لَدَى يَعْقُوبَ وَالثَّلَاثَهْ",
+      "second_hemistich": "فَإِنَّهُمْ قَدْ فَتَحُوا غَايَاتَهْ",
+      "full_verse": "سِوَى لَدَى يَعْقُوبَ وَالثَّلَاثَهْ * فَإِنَّهُمْ قَدْ فَتَحُوا غَايَاتَهْ",
+      "section": "باب الإمالة",
+      "section_en": "Chapter on Imala"
+    },
+    {
+      "number": 77,
+      "first_hemistich": "مَعَ حَمَّادٍ فَتَحُوا الْكَافَ",
+      "second_hemistich": "وَمَا سِوَاهُ أُمِلَتْ بِالْخِلَافِ",
+      "full_verse": "مَعَ حَمَّادٍ فَتَحُوا الْكَافَ * وَمَا سِوَاهُ أُمِلَتْ بِالْخِلَافِ",
+      "section": "باب الإمالة",
+      "section_en": "Chapter on Imala"
+    },
+    {
+      "number": 78,
+      "first_hemistich": "وَافْتَحْ لَهُمْ رَآهُ وَحَتَّى أَتَانَا",
+      "second_hemistich": "وَأَمِلُوهُ فِي الْحِجْرِ بِهِ تَبَانَى",
+      "full_verse": "وَافْتَحْ لَهُمْ رَآهُ وَحَتَّى أَتَانَا * وَأَمِلُوهُ فِي الْحِجْرِ بِهِ تَبَانَى",
+      "section": "باب الإمالة",
+      "section_en": "Chapter on Imala"
+    },
+    {
+      "number": 79,
+      "first_hemistich": "وَأَلِفَاتُ التَّثْنِيَةِ افْتَحُوهَا",
+      "second_hemistich": "وَالْيَا كَمَا تَرَاهَا فَتَلُوهَا",
+      "full_verse": "وَأَلِفَاتُ التَّثْنِيَةِ افْتَحُوهَا * وَالْيَا كَمَا تَرَاهَا فَتَلُوهَا",
+      "section": "باب الإمالة",
+      "section_en": "Chapter on Imala"
+    },
+    {
+      "number": 80,
+      "first_hemistich": "وَرَاؤُهُمْ فِي طَرَفِي نَجْعَلُ",
+      "second_hemistich": "تَمِيلُ حَيْثُمَا أَتَتْ فِي فَاتِلُ",
+      "full_verse": "وَرَاؤُهُمْ فِي طَرَفِي نَجْعَلُ * تَمِيلُ حَيْثُمَا أَتَتْ فِي فَاتِلُ",
+      "section": "باب الإمالة",
+      "section_en": "Chapter on Imala"
+    },
+    {
+      "number": 81,
+      "first_hemistich": "يَا رَبِّ إِنَّنِي نَذَرْتُ وَكَذَا",
+      "second_hemistich": "مِنْ بَعْدِ مَوْتِي وَأَمَاتَنِي كَذَا",
+      "full_verse": "يَا رَبِّ إِنَّنِي نَذَرْتُ وَكَذَا * مِنْ بَعْدِ مَوْتِي وَأَمَاتَنِي كَذَا",
+      "section": "باب ياءات الإضافة",
+      "section_en": "Chapter on Possessive Ya"
+    },
+    {
+      "number": 82,
+      "first_hemistich": "وَافْتَحْ هُدَايَ لِيَ وَأَنَّ لِي جَلَا",
+      "second_hemistich": "وَأَنَّ لِي وَإِنِّي لِأَهَبَ وَإِلَى",
+      "full_verse": "وَافْتَحْ هُدَايَ لِيَ وَأَنَّ لِي جَلَا * وَأَنَّ لِي وَإِنِّي لِأَهَبَ وَإِلَى",
+      "section": "باب ياءات الإضافة",
+      "section_en": "Chapter on Possessive Ya"
+    },
+    {
+      "number": 83,
+      "first_hemistich": "لَدَيَّ ثُمَّ تَحْتِيَ الأَنْهَارُ مَعْ",
+      "second_hemistich": "مِنْ وَرَائِي يَاءِ نَارِي حَيْثُ وَقَعْ",
+      "full_verse": "لَدَيَّ ثُمَّ تَحْتِيَ الأَنْهَارُ مَعْ * مِنْ وَرَائِي يَاءِ نَارِي حَيْثُ وَقَعْ",
+      "section": "باب ياءات الإضافة",
+      "section_en": "Chapter on Possessive Ya"
+    },
+    {
+      "number": 84,
+      "first_hemistich": "يَا قَوْمِي لَا حُزْ وَأُمِّي وَصِيَهْ",
+      "second_hemistich": "وَرَبِّي الَّذِي وَعِنْدِي فِي قَضِيَّهْ",
+      "full_verse": "يَا قَوْمِي لَا حُزْ وَأُمِّي وَصِيَهْ * وَرَبِّي الَّذِي وَعِنْدِي فِي قَضِيَّهْ",
+      "section": "باب ياءات الإضافة",
+      "section_en": "Chapter on Possessive Ya"
+    },
+    {
+      "number": 85,
+      "first_hemistich": "بِي الأَعْدَاءَ فَتْحُ يَائِهَا وَفِي",
+      "second_hemistich": "أَحَدٍ عَنْهُ لَا تَسْتَعْجِلِي لُفِي",
+      "full_verse": "بِي الأَعْدَاءَ فَتْحُ يَائِهَا وَفِي * أَحَدٍ عَنْهُ لَا تَسْتَعْجِلِي لُفِي",
+      "section": "باب ياءات الإضافة",
+      "section_en": "Chapter on Possessive Ya"
+    },
+    {
+      "number": 86,
+      "first_hemistich": "يَدِي إِلَيْكَ قَوْمِي اتَّخَذُوا",
+      "second_hemistich": "وَجْهِي وَفِي الرَّعْدِ مَعِيَ كُلُّ نَفَذُوا",
+      "full_verse": "يَدِي إِلَيْكَ قَوْمِي اتَّخَذُوا * وَجْهِي وَفِي الرَّعْدِ مَعِيَ كُلُّ نَفَذُوا",
+      "section": "باب ياءات الإضافة",
+      "section_en": "Chapter on Possessive Ya"
+    },
+    {
+      "number": 87,
+      "first_hemistich": "لِي آيَةً مَعِي ثُمَّ عَلَيَّ أَشْ",
+      "second_hemistich": "أَجْرِيَ وَفِي إِنِّي أَنَا اللهُ وَعَشْ",
+      "full_verse": "لِي آيَةً مَعِي ثُمَّ عَلَيَّ أَشْ * أَجْرِيَ وَفِي إِنِّي أَنَا اللهُ وَعَشْ",
+      "section": "باب ياءات الإضافة",
+      "section_en": "Chapter on Possessive Ya"
+    },
+    {
+      "number": 88,
+      "first_hemistich": "ثُمَّ لِي دِينِي لَنَا وَقَوْمِ",
+      "second_hemistich": "ثُمَّ شُرَكَائِيَ بِفَتْحٍ مَعْلُومِ",
+      "full_verse": "ثُمَّ لِي دِينِي لَنَا وَقَوْمِ * ثُمَّ شُرَكَائِيَ بِفَتْحٍ مَعْلُومِ",
+      "section": "باب ياءات الإضافة",
+      "section_en": "Chapter on Possessive Ya"
+    },
+    {
+      "number": 89,
+      "first_hemistich": "حَسْبِي اللهُ لِي الْمُلْكُ لَهُ",
+      "second_hemistich": "فَافْتَحْ وَبَعْدَ هَمْزَةٍ صِلْ وَلَهُ",
+      "full_verse": "حَسْبِي اللهُ لِي الْمُلْكُ لَهُ * فَافْتَحْ وَبَعْدَ هَمْزَةٍ صِلْ وَلَهُ",
+      "section": "باب ياءات الإضافة",
+      "section_en": "Chapter on Possessive Ya"
+    },
+    {
+      "number": 90,
+      "first_hemistich": "إِسْرَائِيلَ وَعَبَادِي الشَّاكِرِينْ",
+      "second_hemistich": "وَبَيْنَنَا وَبَيْنَكُمْ فَالْيَا تَلِينْ",
+      "full_verse": "إِسْرَائِيلَ وَعَبَادِي الشَّاكِرِينْ * وَبَيْنَنَا وَبَيْنَكُمْ فَالْيَا تَلِينْ",
+      "section": "باب ياءات الإضافة",
+      "section_en": "Chapter on Possessive Ya"
+    },
+    {
+      "number": 91,
+      "first_hemistich": "أَيَا وَكَهَيَعَصَ وَطَه ثُمَّ يَسْ",
+      "second_hemistich": "وَصِفْ ذُو غَرِيبٍ فِي الْوُقُوفِ إِذْ رُسِمْ",
+      "full_verse": "أَيَا وَكَهَيَعَصَ وَطَه ثُمَّ يَسْ * وَصِفْ ذُو غَرِيبٍ فِي الْوُقُوفِ إِذْ رُسِمْ",
+      "section": "باب الوقف على مرسوم الخط",
+      "section_en": "Chapter on Stopping at Script Marks"
+    },
+    {
+      "number": 92,
+      "first_hemistich": "وَأَيْمَا وَرِيحِينِ وَرَحْمَتُ",
+      "second_hemistich": "وَجَنَّتُ وَكَلِمَتُ وَأَوْتُ",
+      "full_verse": "وَأَيْمَا وَرِيحِينِ وَرَحْمَتُ * وَجَنَّتُ وَكَلِمَتُ وَأَوْتُ",
+      "section": "باب الوقف على مرسوم الخط",
+      "section_en": "Chapter on Stopping at Script Marks"
+    },
+    {
+      "number": 93,
+      "first_hemistich": "يَجْعَلْ صَدْرَهُ ضَيِّقًا خَفِي",
+      "second_hemistich": "إِمَّا تَرِنَّ ثُمَّ فِيمَ وَفِي",
+      "full_verse": "يَجْعَلْ صَدْرَهُ ضَيِّقًا خَفِي * إِمَّا تَرِنَّ ثُمَّ فِيمَ وَفِي",
+      "section": "باب الوقف على مرسوم الخط",
+      "section_en": "Chapter on Stopping at Script Marks"
+    },
+    {
+      "number": 94,
+      "first_hemistich": "فِيمَا مَعًا وَأَينَمَا وَأَيْنَ مَعْ",
+      "second_hemistich": "حَيْثُمَا كَيْفَمَا جَمِيعًا كَوَقَعْ",
+      "full_verse": "فِيمَا مَعًا وَأَينَمَا وَأَيْنَ مَعْ * حَيْثُمَا كَيْفَمَا جَمِيعًا كَوَقَعْ",
+      "section": "باب الوقف على مرسوم الخط",
+      "section_en": "Chapter on Stopping at Script Marks"
+    },
+    {
+      "number": 95,
+      "first_hemistich": "وَقِفْ عَلَى كُلِّ كَمَا رُسِمَا",
+      "second_hemistich": "هِجَاؤُهُ بِهَا فَكُنْ مُعْتَصِمَا",
+      "full_verse": "وَقِفْ عَلَى كُلِّ كَمَا رُسِمَا * هِجَاؤُهُ بِهَا فَكُنْ مُعْتَصِمَا",
+      "section": "باب الوقف على مرسوم الخط",
+      "section_en": "Chapter on Stopping at Script Marks"
+    },
+    {
+      "number": 96,
+      "first_hemistich": "وَوَصْلُ مَا فِي النَّفْيِ بِئْسَمَا مَعَا",
+      "second_hemistich": "وَمِمَّا كَأَنَّمَا رُبَّمَا وَقَعَا",
+      "full_verse": "وَوَصْلُ مَا فِي النَّفْيِ بِئْسَمَا مَعَا * وَمِمَّا كَأَنَّمَا رُبَّمَا وَقَعَا",
+      "section": "باب الوقف على مرسوم الخط",
+      "section_en": "Chapter on Stopping at Script Marks"
+    },
+    {
+      "number": 97,
+      "first_hemistich": "وَمِثْلُهُ حَيْثُمَا فِيمَا أُلِفَ",
+      "second_hemistich": "وَيَوْمَ وَبِيَوْمِهِمْ قِفِ السَّلَفْ",
+      "full_verse": "وَمِثْلُهُ حَيْثُمَا فِيمَا أُلِفَ * وَيَوْمَ وَبِيَوْمِهِمْ قِفِ السَّلَفْ",
+      "section": "باب الوقف على مرسوم الخط",
+      "section_en": "Chapter on Stopping at Script Marks"
+    },
+    {
+      "number": 98,
+      "first_hemistich": "وَكَالِمَا فِي الذِّكْرِ أَعْلَمَا وَفِي",
+      "second_hemistich": "سِوَاهُ وَصْلُهَا بِلَا اخْتِلَافِ",
+      "full_verse": "وَكَالِمَا فِي الذِّكْرِ أَعْلَمَا وَفِي * سِوَاهُ وَصْلُهَا بِلَا اخْتِلَافِ",
+      "section": "باب الوقف على مرسوم الخط",
+      "section_en": "Chapter on Stopping at Script Marks"
+    },
+    {
+      "number": 99,
+      "first_hemistich": "وَكَيْلَا فِي يَصِلُوا لِلتَّعْلِيلِ",
+      "second_hemistich": "وَفِي سِوَاهُ عَنْهُمُ بِالتَّفْصِيلِ",
+      "full_verse": "وَكَيْلَا فِي يَصِلُوا لِلتَّعْلِيلِ * وَفِي سِوَاهُ عَنْهُمُ بِالتَّفْصِيلِ",
+      "section": "باب الوقف على مرسوم الخط",
+      "section_en": "Chapter on Stopping at Script Marks"
+    },
+    {
+      "number": 100,
+      "first_hemistich": "بِئْسَ اسْمُ الْفُسُوقِ وَقِفْ مِنْ",
+      "second_hemistich": "ثُمَّ عَنْ حُكْمِي بِسُكُونٍ ثَمَّنْ",
+      "full_verse": "بِئْسَ اسْمُ الْفُسُوقِ وَقِفْ مِنْ * ثُمَّ عَنْ حُكْمِي بِسُكُونٍ ثَمَّنْ",
+      "section": "باب الوقف على مرسوم الخط",
+      "section_en": "Chapter on Stopping at Script Marks"
+    },
+    {
+      "number": 101,
+      "first_hemistich": "وَمَا أَتَى مِنْ زَائِدٍ فِي الرَّسْمِ",
+      "second_hemistich": "أَثْبَتَهُ الْقُرَّاءُ فِي الْحُكْمِ",
+      "full_verse": "وَمَا أَتَى مِنْ زَائِدٍ فِي الرَّسْمِ * أَثْبَتَهُ الْقُرَّاءُ فِي الْحُكْمِ",
+      "section": "باب مذاهبهم في ياءات الزوائد",
+      "section_en": "Chapter on Extra Ya Letters"
+    },
+    {
+      "number": 102,
+      "first_hemistich": "فِي الْوَصْلِ لِيَعْقُوبَ فَإِنْ وَقَفْ فَا",
+      "second_hemistich": "أَيْضًا لَهُ وَحُزْ وَقَفْ بِالأَلِفَا",
+      "full_verse": "فِي الْوَصْلِ لِيَعْقُوبَ فَإِنْ وَقَفْ فَا * أَيْضًا لَهُ وَحُزْ وَقَفْ بِالأَلِفَا",
+      "section": "باب مذاهبهم في ياءات الزوائد",
+      "section_en": "Chapter on Extra Ya Letters"
+    },
+    {
+      "number": 103,
+      "first_hemistich": "وَيَا مُنَادِي فِي النِّدَا حُزْ أَثْبِتَا",
+      "second_hemistich": "وَفِي الْكُلِّ وَصْلُهُ فَقَدْ ثَبَتَا",
+      "full_verse": "وَيَا مُنَادِي فِي النِّدَا حُزْ أَثْبِتَا * وَفِي الْكُلِّ وَصْلُهُ فَقَدْ ثَبَتَا",
+      "section": "باب مذاهبهم في ياءات الزوائد",
+      "section_en": "Chapter on Extra Ya Letters"
+    },
+    {
+      "number": 104,
+      "first_hemistich": "وَيَا زَوَائِدَ أَضِفْ تَقُولُوا لِي",
+      "second_hemistich": "وَتَمَنَّنِي وَتُنْظِرُونِ كَمَلِي",
+      "full_verse": "وَيَا زَوَائِدَ أَضِفْ تَقُولُوا لِي * وَتَمَنَّنِي وَتُنْظِرُونِ كَمَلِي",
+      "section": "باب مذاهبهم في ياءات الزوائد",
+      "section_en": "Chapter on Extra Ya Letters"
+    },
+    {
+      "number": 105,
+      "first_hemistich": "سَيَهْدِينِي رَبِّي تَأْمُرُونِّي",
+      "second_hemistich": "وَأَشْرِكْتُمُونِ ثُمَّ تُنْظِرُونِّي",
+      "full_verse": "سَيَهْدِينِي رَبِّي تَأْمُرُونِّي * وَأَشْرِكْتُمُونِ ثُمَّ تُنْظِرُونِّي",
+      "section": "باب مذاهبهم في ياءات الزوائد",
+      "section_en": "Chapter on Extra Ya Letters"
+    },
+    {
+      "number": 106,
+      "first_hemistich": "أَتُحَاجُّونِّي فِي اللهِ أَجِيبُوا",
+      "second_hemistich": "دَاعِ ثُمَّ تُطِيعُونِ صَوَابُوا",
+      "full_verse": "أَتُحَاجُّونِّي فِي اللهِ أَجِيبُوا * دَاعِ ثُمَّ تُطِيعُونِ صَوَابُوا",
+      "section": "باب مذاهبهم في ياءات الزوائد",
+      "section_en": "Chapter on Extra Ya Letters"
+    },
+    {
+      "number": 107,
+      "first_hemistich": "وَقَدْ فَتَرْتَ وَافْتِرَوْنِ هَاتِ",
+      "second_hemistich": "يُكَذِّبُونِ تَفْتِنُونِ آتِ",
+      "full_verse": "وَقَدْ فَتَرْتَ وَافْتِرَوْنِ هَاتِ * يُكَذِّبُونِ تَفْتِنُونِ آتِ",
+      "section": "باب مذاهبهم في ياءات الزوائد",
+      "section_en": "Chapter on Extra Ya Letters"
+    },
+    {
+      "number": 108,
+      "first_hemistich": "وَوَعِيدِ إِنْ خَافَ كَذَا خَلَا أَتِ",
+      "second_hemistich": "تَمَسُّونِ وَتُشْرِكُونِ وَدُعَاتِ",
+      "full_verse": "وَوَعِيدِ إِنْ خَافَ كَذَا خَلَا أَتِ * تَمَسُّونِ وَتُشْرِكُونِ وَدُعَاتِ",
+      "section": "باب مذاهبهم في ياءات الزوائد",
+      "section_en": "Chapter on Extra Ya Letters"
+    },
+    {
+      "number": 109,
+      "first_hemistich": "يَسْرِ كَذَا وَوَالِ فِي تَنْفُعُ",
+      "second_hemistich": "إِنِّي أَخَافُ دُونِ يَا قَدْ سَطَعُوا",
+      "full_verse": "يَسْرِ كَذَا وَوَالِ فِي تَنْفُعُ * إِنِّي أَخَافُ دُونِ يَا قَدْ سَطَعُوا",
+      "section": "باب مذاهبهم في ياءات الزوائد",
+      "section_en": "Chapter on Extra Ya Letters"
+    },
+    {
+      "number": 110,
+      "first_hemistich": "تُجِيبُونِ يَنْصُرُونِ يَعْصِمُ",
+      "second_hemistich": "لِيَهْدِيَنِي أَنْ يَهْدِيَنِ كَعُلِمْ",
+      "full_verse": "تُجِيبُونِ يَنْصُرُونِ يَعْصِمُ * لِيَهْدِيَنِي أَنْ يَهْدِيَنِ كَعُلِمْ",
+      "section": "باب مذاهبهم في ياءات الزوائد",
+      "section_en": "Chapter on Extra Ya Letters"
+    },
+    {
+      "number": 111,
+      "first_hemistich": "سُورَةُ الْبَقَرَةِ حُزْ يُخَادِعُونَ",
+      "second_hemistich": "يُكَذِّبُونَ كَيْدُهُمْ يَرْجِعُونَ",
+      "full_verse": "سُورَةُ الْبَقَرَةِ حُزْ يُخَادِعُونَ * يُكَذِّبُونَ كَيْدُهُمْ يَرْجِعُونَ",
+      "section": "فرش حروف سورة البقرة",
+      "section_en": "Surah Al-Baqarah Variants"
+    },
+    {
+      "number": 112,
+      "first_hemistich": "وَيَعْكِفُونَ مِثْلَ مَا قَدْ عَلِمُوا",
+      "second_hemistich": "وَرَفْعُ نُنْشِزُهَا مِنْهُمْ فَهِمُوا",
+      "full_verse": "وَيَعْكِفُونَ مِثْلَ مَا قَدْ عَلِمُوا * وَرَفْعُ نُنْشِزُهَا مِنْهُمْ فَهِمُوا",
+      "section": "فرش حروف سورة البقرة",
+      "section_en": "Surah Al-Baqarah Variants"
+    },
+    {
+      "number": 113,
+      "first_hemistich": "وَفِي الصِّرَاطَ بِالسِّينِ لِيَعْقُوبْ",
+      "second_hemistich": "وَفَتْحُ يَاءِ بِيَ وَيُمْسَككَ مَرْقُوبْ",
+      "full_verse": "وَفِي الصِّرَاطَ بِالسِّينِ لِيَعْقُوبْ * وَفَتْحُ يَاءِ بِيَ وَيُمْسَككَ مَرْقُوبْ",
+      "section": "فرش حروف سورة البقرة",
+      "section_en": "Surah Al-Baqarah Variants"
+    },
+    {
+      "number": 114,
+      "first_hemistich": "وَيُقْبَلُ يُضَاعَفُ كَذَا مُنَزَّلْ",
+      "second_hemistich": "وَيُعَذِّبُ يُغْفَرُ كِلَاهُمَا سُهِّلْ",
+      "full_verse": "وَيُقْبَلُ يُضَاعَفُ كَذَا مُنَزَّلْ * وَيُعَذِّبُ يُغْفَرُ كِلَاهُمَا سُهِّلْ",
+      "section": "فرش حروف سورة البقرة",
+      "section_en": "Surah Al-Baqarah Variants"
+    },
+    {
+      "number": 115,
+      "first_hemistich": "وَسَكِّنِ الضَّادَ لَهُمْ وَعَضُّدْ",
+      "second_hemistich": "وَقَرْيَةً بِالنُّونِ حُزْ فِي الْمَنْدُودْ",
+      "full_verse": "وَسَكِّنِ الضَّادَ لَهُمْ وَعَضُّدْ * وَقَرْيَةً بِالنُّونِ حُزْ فِي الْمَنْدُودْ",
+      "section": "فرش حروف سورة البقرة",
+      "section_en": "Surah Al-Baqarah Variants"
+    },
+    {
+      "number": 116,
+      "first_hemistich": "فِي الصَّفَا ضَمُّ الْهَا حُزْ عِيسَى وَمَنْ",
+      "second_hemistich": "يَرْتَدَّ يَأْتُونَ يُضَاهُونَ فَطَنْ",
+      "full_verse": "فِي الصَّفَا ضَمُّ الْهَا حُزْ عِيسَى وَمَنْ * يَرْتَدَّ يَأْتُونَ يُضَاهُونَ فَطَنْ",
+      "section": "فرش حروف سورة البقرة",
+      "section_en": "Surah Al-Baqarah Variants"
+    },
+    {
+      "number": 117,
+      "first_hemistich": "وَيُرَدُّ وَيُسْقَطُ وَسُكِّنَا",
+      "second_hemistich": "فِي يَغْشَى أَوَّلُ الثَّلَاثِ بَيَّنَا",
+      "full_verse": "وَيُرَدُّ وَيُسْقَطُ وَسُكِّنَا * فِي يَغْشَى أَوَّلُ الثَّلَاثِ بَيَّنَا",
+      "section": "فرش حروف سورة البقرة",
+      "section_en": "Surah Al-Baqarah Variants"
+    },
+    {
+      "number": 118,
+      "first_hemistich": "وَسَارِعُوا أَدْغِمْ ثَلَاثٌ أَوَّلُ",
+      "second_hemistich": "قِيَامًا حَرْفَ يَعْلَمُونَ أُوِّلُوا",
+      "full_verse": "وَسَارِعُوا أَدْغِمْ ثَلَاثٌ أَوَّلُ * قِيَامًا حَرْفَ يَعْلَمُونَ أُوِّلُوا",
+      "section": "فرش حروف سورة البقرة",
+      "section_en": "Surah Al-Baqarah Variants"
+    },
+    {
+      "number": 119,
+      "first_hemistich": "وَيُظْهِرُونَ رَفْعُهُ لِيَعْقُوبْ",
+      "second_hemistich": "وَمَنْ يُعَظِّمْ مُسْتَفِيدُ مَرْغُوبْ",
+      "full_verse": "وَيُظْهِرُونَ رَفْعُهُ لِيَعْقُوبْ * وَمَنْ يُعَظِّمْ مُسْتَفِيدُ مَرْغُوبْ",
+      "section": "فرش حروف سورة البقرة",
+      "section_en": "Surah Al-Baqarah Variants"
+    },
+    {
+      "number": 120,
+      "first_hemistich": "خُطُوَاتِ ضَمُّ طَائِهِ حُزَاكُمُ",
+      "second_hemistich": "وَأَرِنَا فَسَكِّنِ الرَّا كُلُّهُمْ",
+      "full_verse": "خُطُوَاتِ ضَمُّ طَائِهِ حُزَاكُمُ * وَأَرِنَا فَسَكِّنِ الرَّا كُلُّهُمْ",
+      "section": "فرش حروف سورة البقرة",
+      "section_en": "Surah Al-Baqarah Variants"
+    },
+    {
+      "number": 121,
+      "first_hemistich": "آلُ عِمْرَانَ وَيُبَشِّرُكَ حُزْ",
+      "second_hemistich": "خَفِّفْهُ وَافْتَحْ أَلِفًا فِيهِ حُرِزْ",
+      "full_verse": "آلُ عِمْرَانَ وَيُبَشِّرُكَ حُزْ * خَفِّفْهُ وَافْتَحْ أَلِفًا فِيهِ حُرِزْ",
+      "section": "فرش سور آل عمران والنساء",
+      "section_en": "Surah Al-Imran and An-Nisa Variants"
+    },
+    {
+      "number": 122,
+      "first_hemistich": "وَضَمُّ هَاءِ لِتُحِبُّونَهُ",
+      "second_hemistich": "وَيَطَّهَّرْنَ وَيُمَسِّكُونَهُ",
+      "full_verse": "وَضَمُّ هَاءِ لِتُحِبُّونَهُ * وَيَطَّهَّرْنَ وَيُمَسِّكُونَهُ",
+      "section": "فرش سور آل عمران والنساء",
+      "section_en": "Surah Al-Imran and An-Nisa Variants"
+    },
+    {
+      "number": 123,
+      "first_hemistich": "وَلِيَقُولَنَّ وَلَنُسْأَلَنَّ",
+      "second_hemistich": "كِلَاهُمَا بِالتَّا وَضَمٍّ عَنَّ",
+      "full_verse": "وَلِيَقُولَنَّ وَلَنُسْأَلَنَّ * كِلَاهُمَا بِالتَّا وَضَمٍّ عَنَّ",
+      "section": "فرش سور آل عمران والنساء",
+      "section_en": "Surah Al-Imran and An-Nisa Variants"
+    },
+    {
+      "number": 124,
+      "first_hemistich": "سِرَاعًا فِيهِ وَلِيَعْقُوبَ عُلِمْ",
+      "second_hemistich": "تُسَارِعُونَ ثُمَّ تَفْرَحُونَ عُمْ",
+      "full_verse": "سِرَاعًا فِيهِ وَلِيَعْقُوبَ عُلِمْ * تُسَارِعُونَ ثُمَّ تَفْرَحُونَ عُمْ",
+      "section": "فرش سور آل عمران والنساء",
+      "section_en": "Surah Al-Imran and An-Nisa Variants"
+    },
+    {
+      "number": 125,
+      "first_hemistich": "وَنِسَاءِ النُّونُ نُصِبَ أَوَّلُ",
+      "second_hemistich": "وَالْهَمْزُ فِي وَصِيَّةٍ مُرَتَّلُ",
+      "full_verse": "وَنِسَاءِ النُّونُ نُصِبَ أَوَّلُ * وَالْهَمْزُ فِي وَصِيَّةٍ مُرَتَّلُ",
+      "section": "فرش سور آل عمران والنساء",
+      "section_en": "Surah Al-Imran and An-Nisa Variants"
+    },
+    {
+      "number": 126,
+      "first_hemistich": "أَنْ يُؤْتَى تَثْلِيثُ هَمْزِهِ عَلَا",
+      "second_hemistich": "وَالْخُلْفُ فِي ثَانِيهِ عَنْهُ نُقِلَا",
+      "full_verse": "أَنْ يُؤْتَى تَثْلِيثُ هَمْزِهِ عَلَا * وَالْخُلْفُ فِي ثَانِيهِ عَنْهُ نُقِلَا",
+      "section": "فرش سور آل عمران والنساء",
+      "section_en": "Surah Al-Imran and An-Nisa Variants"
+    },
+    {
+      "number": 127,
+      "first_hemistich": "وَالسُّحْتَ وَالصُّحُفَ ضَمُّ الْحَا وَفِي",
+      "second_hemistich": "كِلَيْهِمَا سُكُونُهُ قَدِ اكْتُفِي",
+      "full_verse": "وَالسُّحْتَ وَالصُّحُفَ ضَمُّ الْحَا وَفِي * كِلَيْهِمَا سُكُونُهُ قَدِ اكْتُفِي",
+      "section": "فرش سور آل عمران والنساء",
+      "section_en": "Surah Al-Imran and An-Nisa Variants"
+    },
+    {
+      "number": 128,
+      "first_hemistich": "قَلِيلًا مِنْ لَيْلٍ وَفِي تَحِيَّةٍ",
+      "second_hemistich": "فَتْحُ الْيَا ثُمَّ هَاءِ السَّرِيَّهْ",
+      "full_verse": "قَلِيلًا مِنْ لَيْلٍ وَفِي تَحِيَّةٍ * فَتْحُ الْيَا ثُمَّ هَاءِ السَّرِيَّهْ",
+      "section": "فرش سور آل عمران والنساء",
+      "section_en": "Surah Al-Imran and An-Nisa Variants"
+    },
+    {
+      "number": 129,
+      "first_hemistich": "وَنِعِمَّا كَسْرُ عَيْنِهِ فَقَطْ",
+      "second_hemistich": "وَإِنْ تُظْهِرُوا تُخْفُوهُ فَانْقُطْ",
+      "full_verse": "وَنِعِمَّا كَسْرُ عَيْنِهِ فَقَطْ * وَإِنْ تُظْهِرُوا تُخْفُوهُ فَانْقُطْ",
+      "section": "فرش سور آل عمران والنساء",
+      "section_en": "Surah Al-Imran and An-Nisa Variants"
+    },
+    {
+      "number": 130,
+      "first_hemistich": "يُدْخِلُهُمْ ضَمُّ الْهَا يُكَفِّرَنَّ",
+      "second_hemistich": "كِلَاهُمَا ثُمَّ يُعَذِّبَنَّ",
+      "full_verse": "يُدْخِلُهُمْ ضَمُّ الْهَا يُكَفِّرَنَّ * كِلَاهُمَا ثُمَّ يُعَذِّبَنَّ",
+      "section": "فرش سور آل عمران والنساء",
+      "section_en": "Surah Al-Imran and An-Nisa Variants"
+    },
+    {
+      "number": 131,
+      "first_hemistich": "وَالْمَائِدَهْ شِرْعَةً وَمِنْهَاجًا",
+      "second_hemistich": "يُسَارِعُونَ وَرَسُولُهُ نَجَاحَا",
+      "full_verse": "وَالْمَائِدَهْ شِرْعَةً وَمِنْهَاجًا * يُسَارِعُونَ وَرَسُولُهُ نَجَاحَا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 132,
+      "first_hemistich": "يُحِبُّهُمْ وَيُحِبُّونَهُ كَذَا",
+      "second_hemistich": "وَلِيَحْكُمَ كُلُّهَا لِيَعْقُوبَ فَذَا",
+      "full_verse": "يُحِبُّهُمْ وَيُحِبُّونَهُ كَذَا * وَلِيَحْكُمَ كُلُّهَا لِيَعْقُوبَ فَذَا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 133,
+      "first_hemistich": "وَالْأَنْعَامِ يُضِلُّ يَشَاءُ وَمَنْ",
+      "second_hemistich": "يُضْلِلْ وَأَنَّى يُصْرَفُونَ مِنْ سُنَنْ",
+      "full_verse": "وَالْأَنْعَامِ يُضِلُّ يَشَاءُ وَمَنْ * يُضْلِلْ وَأَنَّى يُصْرَفُونَ مِنْ سُنَنْ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 134,
+      "first_hemistich": "بِالضَّمِّ وَالنَّفْخُ لِحُزْ وَالزُّخْرُفِ",
+      "second_hemistich": "مِثْلُهُ فِي يَعْقُوبَ ذِي التَّثَقُّفِ",
+      "full_verse": "بِالضَّمِّ وَالنَّفْخُ لِحُزْ وَالزُّخْرُفِ * مِثْلُهُ فِي يَعْقُوبَ ذِي التَّثَقُّفِ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 135,
+      "first_hemistich": "وَالْأَعْرَافِ يُوَرِّثُهَا وَافْتَحْ",
+      "second_hemistich": "لَفْظَ يَمُدُّهُمْ لِحُزْ يُنْصَحْ",
+      "full_verse": "وَالْأَعْرَافِ يُوَرِّثُهَا وَافْتَحْ * لَفْظَ يَمُدُّهُمْ لِحُزْ يُنْصَحْ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 136,
+      "first_hemistich": "وَالأَنْفَالِ وَالتَّوْبَةِ ضَمُّ",
+      "second_hemistich": "الْهَا مِنْ إِلَيْهِ ثُمَّ وَالنَّجْمُ",
+      "full_verse": "وَالأَنْفَالِ وَالتَّوْبَةِ ضَمُّ * الْهَا مِنْ إِلَيْهِ ثُمَّ وَالنَّجْمُ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 137,
+      "first_hemistich": "يُرِيدُ يُوَفِّ يُعَذِّبُ يُؤَدِّ",
+      "second_hemistich": "إِلَيْكَ رَفْعُهُمْ كَذَاكَ الْمُهْتَدِي",
+      "full_verse": "يُرِيدُ يُوَفِّ يُعَذِّبُ يُؤَدِّ * إِلَيْكَ رَفْعُهُمْ كَذَاكَ الْمُهْتَدِي",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 138,
+      "first_hemistich": "وَيُونُسَ اتَّبَعُوا يُونُسَ مَعَا",
+      "second_hemistich": "يُسَبِّحُونَ وَيَسْجُدُونَ وَقَعَا",
+      "full_verse": "وَيُونُسَ اتَّبَعُوا يُونُسَ مَعَا * يُسَبِّحُونَ وَيَسْجُدُونَ وَقَعَا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 139,
+      "first_hemistich": "وَفِي هُودٍ يُصْلِحُونَ فَافْتَحُوا",
+      "second_hemistich": "كَذَاكَ يَعْقُوبَ بِذَا فَصَرَّحُوا",
+      "full_verse": "وَفِي هُودٍ يُصْلِحُونَ فَافْتَحُوا * كَذَاكَ يَعْقُوبَ بِذَا فَصَرَّحُوا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 140,
+      "first_hemistich": "وَمَرْيَمَ هَيْتَ قَدْ ضَمُّوا هُنَا",
+      "second_hemistich": "وَكَسْرُ تَائِهِ قَدِ اسْتَبَانَا",
+      "full_verse": "وَمَرْيَمَ هَيْتَ قَدْ ضَمُّوا هُنَا * وَكَسْرُ تَائِهِ قَدِ اسْتَبَانَا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 141,
+      "first_hemistich": "وَالْأَنْبِيَاءِ يُخْرِجُكُمْ ضَمُّوا الْيَا",
+      "second_hemistich": "وَفِي الطَّلَاقِ مِثْلُهُ رَوَوْا بَيَا",
+      "full_verse": "وَالْأَنْبِيَاءِ يُخْرِجُكُمْ ضَمُّوا الْيَا * وَفِي الطَّلَاقِ مِثْلُهُ رَوَوْا بَيَا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 142,
+      "first_hemistich": "وَالْحَجُّ يَسْجُدُ لَهُ حُزْ ضَمَّا",
+      "second_hemistich": "يَاءَهُ وَفِي يُعَذِّبُ اسْتَتَمَّا",
+      "full_verse": "وَالْحَجُّ يَسْجُدُ لَهُ حُزْ ضَمَّا * يَاءَهُ وَفِي يُعَذِّبُ اسْتَتَمَّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 143,
+      "first_hemistich": "وَالنُّورِ لِيَسْتَعْفِفِ الَّذِينَ لَا",
+      "second_hemistich": "يَجِدُونَ نِكَاحًا ثُمَّ تَلَا",
+      "full_verse": "وَالنُّورِ لِيَسْتَعْفِفِ الَّذِينَ لَا * يَجِدُونَ نِكَاحًا ثُمَّ تَلَا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 144,
+      "first_hemistich": "وَالشُّعَرَا يُسْحَرُونَ وَالْفُرْقَانْ",
+      "second_hemistich": "لَنُبَدِّلَنَّهُمْ كَذَاكَ الْإِنْسَانْ",
+      "full_verse": "وَالشُّعَرَا يُسْحَرُونَ وَالْفُرْقَانْ * لَنُبَدِّلَنَّهُمْ كَذَاكَ الْإِنْسَانْ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 145,
+      "first_hemistich": "وَالنَّمْلِ يُخْرِجُ يَعْمَلُونَ وَفِي",
+      "second_hemistich": "الْعَنْكَبُوتِ مِثْلُهُ بِاقْتِطَافِ",
+      "full_verse": "وَالنَّمْلِ يُخْرِجُ يَعْمَلُونَ وَفِي * الْعَنْكَبُوتِ مِثْلُهُ بِاقْتِطَافِ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 146,
+      "first_hemistich": "وَالرُّومِ ثُمَّ سَبَأٍ يُدْخِلُهُ",
+      "second_hemistich": "مِمَّا رَوَاهُ النَّاظِمُونَ قُلْهُ",
+      "full_verse": "وَالرُّومِ ثُمَّ سَبَأٍ يُدْخِلُهُ * مِمَّا رَوَاهُ النَّاظِمُونَ قُلْهُ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 147,
+      "first_hemistich": "وَلُقْمَانَ يُوصِي يُصَلُّونَ ثُمَّا",
+      "second_hemistich": "وَالسَّجْدَةِ يُدَبِّرُ ضَمًّا",
+      "full_verse": "وَلُقْمَانَ يُوصِي يُصَلُّونَ ثُمَّا * وَالسَّجْدَةِ يُدَبِّرُ ضَمًّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 148,
+      "first_hemistich": "وَالْأَحْزَابِ يُمَتَّعُونَ بِالرَّفْعِ",
+      "second_hemistich": "لِيَعْقُوبَ إِمَامُنَا ذِي الْوَصْفِ",
+      "full_verse": "وَالْأَحْزَابِ يُمَتَّعُونَ بِالرَّفْعِ * لِيَعْقُوبَ إِمَامُنَا ذِي الْوَصْفِ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 149,
+      "first_hemistich": "وَفَاطِرٍ يُرِيدُ يُدْخِلُهُمْ",
+      "second_hemistich": "يُثْبِتُهُمْ فِي سُوَرٍ كَعَدَمْ",
+      "full_verse": "وَفَاطِرٍ يُرِيدُ يُدْخِلُهُمْ * يُثْبِتُهُمْ فِي سُوَرٍ كَعَدَمْ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 150,
+      "first_hemistich": "يُمِلُّ يُضَارِرُ يُكَفِّرَنَّا",
+      "second_hemistich": "يُرِيدُ فِيهِ ثُمَّ يُدْخِلَنَّا",
+      "full_verse": "يُمِلُّ يُضَارِرُ يُكَفِّرَنَّا * يُرِيدُ فِيهِ ثُمَّ يُدْخِلَنَّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 151,
+      "first_hemistich": "وَيس يُنْذِرُ مَنْ اتَّبَعَا",
+      "second_hemistich": "مُبِينٌ إِمَامًا بِالضَّمِّ وَقَعَا",
+      "full_verse": "وَيس يُنْذِرُ مَنْ اتَّبَعَا * مُبِينٌ إِمَامًا بِالضَّمِّ وَقَعَا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 152,
+      "first_hemistich": "وَالصَّافَّاتِ يَعْمَلُونَ ضَمَّا",
+      "second_hemistich": "وَمَنْ نَعَمَّرْهُ لِحُزْ تَمَّا",
+      "full_verse": "وَالصَّافَّاتِ يَعْمَلُونَ ضَمَّا * وَمَنْ نَعَمَّرْهُ لِحُزْ تَمَّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 153,
+      "first_hemistich": "وَصَادٍ ذِي الإِيَادِ كَسْرُ الْهَمْزَهْ",
+      "second_hemistich": "وَنَبِّئْ عِبَادِي رَفْعُ الذَّالِ نَزَّهْ",
+      "full_verse": "وَصَادٍ ذِي الإِيَادِ كَسْرُ الْهَمْزَهْ * وَنَبِّئْ عِبَادِي رَفْعُ الذَّالِ نَزَّهْ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 154,
+      "first_hemistich": "وَغَافِرٍ يُضِلُّ يَشَاءُ كَذَا",
+      "second_hemistich": "يُلْقِي الرُّوحَ إِلَّا مَا لَذَّا",
+      "full_verse": "وَغَافِرٍ يُضِلُّ يَشَاءُ كَذَا * يُلْقِي الرُّوحَ إِلَّا مَا لَذَّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 155,
+      "first_hemistich": "فُصِّلَتْ لَا يُشْعِرُكُمْ ثُمَّ كَذَا",
+      "second_hemistich": "نُزِّلَ عَلَيْهِمْ ذِكْرُهُمْ هَذَا",
+      "full_verse": "فُصِّلَتْ لَا يُشْعِرُكُمْ ثُمَّ كَذَا * نُزِّلَ عَلَيْهِمْ ذِكْرُهُمْ هَذَا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 156,
+      "first_hemistich": "وَالشُّورَى يُجِيبُونَ وَيُسْتَجَابُ",
+      "second_hemistich": "كِلَاهُمَا عِنْدَ ذَوِي الْإِصَابَهْ",
+      "full_verse": "وَالشُّورَى يُجِيبُونَ وَيُسْتَجَابُ * كِلَاهُمَا عِنْدَ ذَوِي الْإِصَابَهْ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 157,
+      "first_hemistich": "وَالزُّخْرُفِ يُسْحَرُونَ ضَمُّ يَائِهِ",
+      "second_hemistich": "لِيَعْقُوبَ كَذَا وَيُصَدُّ عَنْهُ",
+      "full_verse": "وَالزُّخْرُفِ يُسْحَرُونَ ضَمُّ يَائِهِ * لِيَعْقُوبَ كَذَا وَيُصَدُّ عَنْهُ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 158,
+      "first_hemistich": "وَالدُّخَانِ بِالْغِنَى وَيُشْرِكُونَ",
+      "second_hemistich": "وَلِيَعْقُوبَ يُلْحِدُونَ",
+      "full_verse": "وَالدُّخَانِ بِالْغِنَى وَيُشْرِكُونَ * وَلِيَعْقُوبَ يُلْحِدُونَ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 159,
+      "first_hemistich": "وَالْجَاثِيَةِ يَخْتَلِفُونَ ثُمَّا",
+      "second_hemistich": "تُكَلِّمُنَا بِالتَّاءِ لِحُزْ تَمَّا",
+      "full_verse": "وَالْجَاثِيَةِ يَخْتَلِفُونَ ثُمَّا * تُكَلِّمُنَا بِالتَّاءِ لِحُزْ تَمَّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 160,
+      "first_hemistich": "وَقَافٍ يُبَصَّرُونَهُمْ ضَمُّهُ",
+      "second_hemistich": "كَذَا يُحْشَرُونَ فِيهِ ضَمُّهُ",
+      "full_verse": "وَقَافٍ يُبَصَّرُونَهُمْ ضَمُّهُ * كَذَا يُحْشَرُونَ فِيهِ ضَمُّهُ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 161,
+      "first_hemistich": "وَذَارِيَاتٍ يُؤْفَكُونَ ضَمَّا",
+      "second_hemistich": "يُوعَدُونَ فِيهِ ضَمُّهُ تَمَّا",
+      "full_verse": "وَذَارِيَاتٍ يُؤْفَكُونَ ضَمَّا * يُوعَدُونَ فِيهِ ضَمُّهُ تَمَّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 162,
+      "first_hemistich": "وَالطُّورِ كَيْدَ يَسْجُدُونَ يَرْجُونَ",
+      "second_hemistich": "يُبَشِّرُ مَعْ يُصَلُّونَ",
+      "full_verse": "وَالطُّورِ كَيْدَ يَسْجُدُونَ يَرْجُونَ * يُبَشِّرُ مَعْ يُصَلُّونَ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 163,
+      "first_hemistich": "وَالنَّجْمِ يُسْتَتَرُ يُفْضَى إِلَيْكَ",
+      "second_hemistich": "يُبَشِّرُكَ يَاءُ تُلَيْكَ",
+      "full_verse": "وَالنَّجْمِ يُسْتَتَرُ يُفْضَى إِلَيْكَ * يُبَشِّرُكَ يَاءُ تُلَيْكَ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 164,
+      "first_hemistich": "وَاقْتَرَبَتْ لِيَعْقُوبَ كَذَا",
+      "second_hemistich": "نُزُلَ يَحْشُرُ مَعًا هَكَذَا",
+      "full_verse": "وَاقْتَرَبَتْ لِيَعْقُوبَ كَذَا * نُزُلَ يَحْشُرُ مَعًا هَكَذَا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 165,
+      "first_hemistich": "وَالرَّحْمَنِ يُسَبِّحُونَ ضَمَّا",
+      "second_hemistich": "يُذِيقُهُمَا يَذُوقُونَ تَمَّا",
+      "full_verse": "وَالرَّحْمَنِ يُسَبِّحُونَ ضَمَّا * يُذِيقُهُمَا يَذُوقُونَ تَمَّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 166,
+      "first_hemistich": "وَالْوَاقِعَهْ يُنْبِتُونَ ثُمَّ كَذَا",
+      "second_hemistich": "وَالْحَدِيدِ يُضْعَفُ هَكَذَا",
+      "full_verse": "وَالْوَاقِعَهْ يُنْبِتُونَ ثُمَّ كَذَا * وَالْحَدِيدِ يُضْعَفُ هَكَذَا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 167,
+      "first_hemistich": "وَالْمُجَادَلَةِ كَذَا يُحَادُّونَ",
+      "second_hemistich": "ضَمُّوهُمَا مَعْ يَرِثُونَ",
+      "full_verse": "وَالْمُجَادَلَةِ كَذَا يُحَادُّونَ * ضَمُّوهُمَا مَعْ يَرِثُونَ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 168,
+      "first_hemistich": "وَالْحَشْرِ يُخْرِجُ لَهُمْ ضَمُّ يَا",
+      "second_hemistich": "وَمُمْتَحَنَةٍ عَسَى يَرْتَدَّ فِيَّا",
+      "full_verse": "وَالْحَشْرِ يُخْرِجُ لَهُمْ ضَمُّ يَا * وَمُمْتَحَنَةٍ عَسَى يَرْتَدَّ فِيَّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 169,
+      "first_hemistich": "وَصَفِّ لَا يُنْجِيَنَّ ضَمَّا",
+      "second_hemistich": "وَلَا فَوْزَ لَهُمْ رَفْعًا تَمَّا",
+      "full_verse": "وَصَفِّ لَا يُنْجِيَنَّ ضَمَّا * وَلَا فَوْزَ لَهُمْ رَفْعًا تَمَّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 170,
+      "first_hemistich": "وَالْمُنَافِقِينَ يُصَدُّونَ ضَمَّا",
+      "second_hemistich": "كَذَا يُقِيمُونَ لَهُمْ تَمَّا",
+      "full_verse": "وَالْمُنَافِقِينَ يُصَدُّونَ ضَمَّا * كَذَا يُقِيمُونَ لَهُمْ تَمَّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 171,
+      "first_hemistich": "وَتَغَابُنٍ يُدْخِلُهُ وَالطَّلَاقِ",
+      "second_hemistich": "يُخْرِجُكُمْ بِهِ ذَوِي الْإِحْرَاقِ",
+      "full_verse": "وَتَغَابُنٍ يُدْخِلُهُ وَالطَّلَاقِ * يُخْرِجُكُمْ بِهِ ذَوِي الْإِحْرَاقِ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 172,
+      "first_hemistich": "وَتَحْرِيمٍ كَذَا يُكَفِّرَنَّا",
+      "second_hemistich": "وَالْمُلْكِ يُثْبِتُ لَنَا ضَمَّنَّا",
+      "full_verse": "وَتَحْرِيمٍ كَذَا يُكَفِّرَنَّا * وَالْمُلْكِ يُثْبِتُ لَنَا ضَمَّنَّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 173,
+      "first_hemistich": "وَنُونٍ يَكْتُبُونَ ثُمَّ يُفْتَنُونَ",
+      "second_hemistich": "ضَمَّاهُمَا كَذَاكَ يُدْعَوْنَ",
+      "full_verse": "وَنُونٍ يَكْتُبُونَ ثُمَّ يُفْتَنُونَ * ضَمَّاهُمَا كَذَاكَ يُدْعَوْنَ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 174,
+      "first_hemistich": "وَالْحَاقَّةِ يُوعُونَ ضَمُّ يَائِهِ",
+      "second_hemistich": "كَذَا سَأَلَ يُعْرَفُ عَنْهُ",
+      "full_verse": "وَالْحَاقَّةِ يُوعُونَ ضَمُّ يَائِهِ * كَذَا سَأَلَ يُعْرَفُ عَنْهُ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 175,
+      "first_hemistich": "وَنُوحٍ يُدْخِلُهُمْ ضَمَّا كَذَا",
+      "second_hemistich": "وَالْجِنِّ يُشْرِكُ وَيُظْهِرُ هَكَذَا",
+      "full_verse": "وَنُوحٍ يُدْخِلُهُمْ ضَمَّا كَذَا * وَالْجِنِّ يُشْرِكُ وَيُظْهِرُ هَكَذَا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 176,
+      "first_hemistich": "وَالْمُزَّمِّلِ يُزَمِّلُ ضَمَّا",
+      "second_hemistich": "وَالْمُدَّثِّرِ يُدَثِّرُ تَمَّا",
+      "full_verse": "وَالْمُزَّمِّلِ يُزَمِّلُ ضَمَّا * وَالْمُدَّثِّرِ يُدَثِّرُ تَمَّا",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 177,
+      "first_hemistich": "وَالْقِيَامَةِ يُجْمَعَ ضَمُّ يَائِهِ",
+      "second_hemistich": "وَالدَّهْرِ يُدْخِلُ فَضَمَّا عَنْهُ",
+      "full_verse": "وَالْقِيَامَةِ يُجْمَعَ ضَمُّ يَائِهِ * وَالدَّهْرِ يُدْخِلُ فَضَمَّا عَنْهُ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 178,
+      "first_hemistich": "وَعَبَسَ فَلْيَنْظُرْ ضَمَّا يَاءَهُ",
+      "second_hemistich": "يُصَلَّى عَمَّ يُكَذِّبُ مَعَاهُ",
+      "full_verse": "وَعَبَسَ فَلْيَنْظُرْ ضَمَّا يَاءَهُ * يُصَلَّى عَمَّ يُكَذِّبُ مَعَاهُ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 179,
+      "first_hemistich": "وَتَكْوِيرٍ يَشَاءُ ضَمُّ يَائِهِ",
+      "second_hemistich": "وَانْفَطَرَتْ يُغَيِّرُ كَذَا عَنْهُ",
+      "full_verse": "وَتَكْوِيرٍ يَشَاءُ ضَمُّ يَائِهِ * وَانْفَطَرَتْ يُغَيِّرُ كَذَا عَنْهُ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 180,
+      "first_hemistich": "وَتَطْفِيفٍ يُوزَنُ ضَمُّ يَائِهِ",
+      "second_hemistich": "وَانْشَقَّتِ يُحَاسَبُ كَمَا عَنْهُ",
+      "full_verse": "وَتَطْفِيفٍ يُوزَنُ ضَمُّ يَائِهِ * وَانْشَقَّتِ يُحَاسَبُ كَمَا عَنْهُ",
+      "section": "فرش السور التالية",
+      "section_en": "Following Surahs Variants"
+    },
+    {
+      "number": 181,
+      "first_hemistich": "وَبُرُوجٍ يُحَبُّ ضَمَّا يَاءَهُ",
+      "second_hemistich": "وَطَارِقٍ يُخْرَجُ كَذَا مَعَاهُ",
+      "full_verse": "وَبُرُوجٍ يُحَبُّ ضَمَّا يَاءَهُ * وَطَارِقٍ يُخْرَجُ كَذَا مَعَاهُ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 182,
+      "first_hemistich": "وَأَعْلَى يُرْضِيَكَ ضَمَّا وَعَمَّا",
+      "second_hemistich": "يُتَسَاءَلُونَ ضَمُّهُ تَمَّا",
+      "full_verse": "وَأَعْلَى يُرْضِيَكَ ضَمَّا وَعَمَّا * يُتَسَاءَلُونَ ضَمُّهُ تَمَّا",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 183,
+      "first_hemistich": "وَفَجْرٍ يُرَى ضَمَّا يَاءَهُ",
+      "second_hemistich": "وَبَلَدٍ يُقْتَحَمُ كَمَا عَنْهُ",
+      "full_verse": "وَفَجْرٍ يُرَى ضَمَّا يَاءَهُ * وَبَلَدٍ يُقْتَحَمُ كَمَا عَنْهُ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 184,
+      "first_hemistich": "وَشَمْسٍ يُغَشِّيهَا كَذَا ضَمَّا",
+      "second_hemistich": "وَاللَّيْلِ يُصَلَّى فِيهِ تَمَّا",
+      "full_verse": "وَشَمْسٍ يُغَشِّيهَا كَذَا ضَمَّا * وَاللَّيْلِ يُصَلَّى فِيهِ تَمَّا",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 185,
+      "first_hemistich": "وَضُحَاهَا يَرْضَى ضَمَّا وَشَرْحٍ",
+      "second_hemistich": "يُسْرَى وَالتِّينِ يُكَذِّبُ صَرْحِ",
+      "full_verse": "وَضُحَاهَا يَرْضَى ضَمَّا وَشَرْحٍ * يُسْرَى وَالتِّينِ يُكَذِّبُ صَرْحِ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 186,
+      "first_hemistich": "وَالْعَلَقِ يُنَادَى ضَمَّا وَالْقَدْرِ",
+      "second_hemistich": "يُنَزَّلُ وَالْبَيِّنَةِ يُقِرِّ",
+      "full_verse": "وَالْعَلَقِ يُنَادَى ضَمَّا وَالْقَدْرِ * يُنَزَّلُ وَالْبَيِّنَةِ يُقِرِّ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 187,
+      "first_hemistich": "وَزَلْزَلَةٍ يَوْمَئِذٍ يُحَدِّثُ",
+      "second_hemistich": "ضَمَّا يَعَادِيَاتٍ يُوقَدُ كَثُّ",
+      "full_verse": "وَزَلْزَلَةٍ يَوْمَئِذٍ يُحَدِّثُ * ضَمَّا يَعَادِيَاتٍ يُوقَدُ كَثُّ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 188,
+      "first_hemistich": "قَارِعَةٍ تُوزَنُ هَاوِيَةٍ",
+      "second_hemistich": "يُصَلَّى وَالتَّكَاثُرِ يُرِيَ",
+      "full_verse": "قَارِعَةٍ تُوزَنُ هَاوِيَةٍ * يُصَلَّى وَالتَّكَاثُرِ يُرِيَ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 189,
+      "first_hemistich": "وَعَصْرٍ يُخْسَرُ وَهُمَزَةٍ يُحَطَّمُ",
+      "second_hemistich": "فِيلٍ يُرْمَى وَقُرَيْشٍ يُلَمُّ",
+      "full_verse": "وَعَصْرٍ يُخْسَرُ وَهُمَزَةٍ يُحَطَّمُ * فِيلٍ يُرْمَى وَقُرَيْشٍ يُلَمُّ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 190,
+      "first_hemistich": "وَمَاعُونٍ يُرَاءُ ضَمَّا يَاءَهُ",
+      "second_hemistich": "وَكَوْثَرٍ يُحَبُّ كَذَا مَعَاهُ",
+      "full_verse": "وَمَاعُونٍ يُرَاءُ ضَمَّا يَاءَهُ * وَكَوْثَرٍ يُحَبُّ كَذَا مَعَاهُ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 191,
+      "first_hemistich": "وَكَافِرِينَ يُعْبَدُ ضَمَّا وَنَصْرٍ",
+      "second_hemistich": "يُدْخَلُ وَمَسَدٍ يُصَلَّى كَقَصْرِ",
+      "full_verse": "وَكَافِرِينَ يُعْبَدُ ضَمَّا وَنَصْرٍ * يُدْخَلُ وَمَسَدٍ يُصَلَّى كَقَصْرِ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 192,
+      "first_hemistich": "وَالْإِخْلَاصِ يُولَدُ ضَمَّا وَفَلَقْ",
+      "second_hemistich": "يُعَوِّذُ وَالنَّاسِ يُوَسْوِسُ حَلَقْ",
+      "full_verse": "وَالْإِخْلَاصِ يُولَدُ ضَمَّا وَفَلَقْ * يُعَوِّذُ وَالنَّاسِ يُوَسْوِسُ حَلَقْ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 193,
+      "first_hemistich": "وَرُمْتُ تَقْرِيبَ الْبَعِيدِ مُجْتَهِدْ",
+      "second_hemistich": "وَجَمْعَ فَاتِ النَّاسِ طَيَّ النَّجْدِ",
+      "full_verse": "وَرُمْتُ تَقْرِيبَ الْبَعِيدِ مُجْتَهِدْ * وَجَمْعَ فَاتِ النَّاسِ طَيَّ النَّجْدِ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 194,
+      "first_hemistich": "وَكُلُّ مَا أَطْلَقْتُهُ فَالشُّهْرَةَ",
+      "second_hemistich": "اعْتَمِدْ وَإِنْ قُيِّدَ فَاتَّبِعْ",
+      "full_verse": "وَكُلُّ مَا أَطْلَقْتُهُ فَالشُّهْرَةَ * اعْتَمِدْ وَإِنْ قُيِّدَ فَاتَّبِعْ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 195,
+      "first_hemistich": "وَمَا سِوَى ذَاكَ فَقَدْ بُيِّنَ فِي",
+      "second_hemistich": "أَصْلِ تَحْبِيرِي فَكُنْ مُقْتَفِي",
+      "full_verse": "وَمَا سِوَى ذَاكَ فَقَدْ بُيِّنَ فِي * أَصْلِ تَحْبِيرِي فَكُنْ مُقْتَفِي",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 196,
+      "first_hemistich": "وَإِنْ كِلِمَةً أَطْلَقْتُ فَالشُّهْرَةَ اعْتَمِدْ",
+      "second_hemistich": "كَذَلِكَ تَعْرِيفًا وَتَنْكِيرًا اسْجِلَا",
+      "full_verse": "وَإِنْ كِلِمَةً أَطْلَقْتُ فَالشُّهْرَةَ اعْتَمِدْ * كَذَلِكَ تَعْرِيفًا وَتَنْكِيرًا اسْجِلَا",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 197,
+      "first_hemistich": "وَمَا شَذَّ فَبَيَّنْتُ لِذَا وَمَا",
+      "second_hemistich": "أَهْمَلْتُهُ فَاعْمَلْ بِمَا تَقَدَّمَا",
+      "full_verse": "وَمَا شَذَّ فَبَيَّنْتُ لِذَا وَمَا * أَهْمَلْتُهُ فَاعْمَلْ بِمَا تَقَدَّمَا",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 198,
+      "first_hemistich": "كَذَلِكَ الْمَرْسُومُ وَالْمَوْقُوفُ",
+      "second_hemistich": "عَلَيْهِ وَالْمَمْدُودُ وَالْمَحْذُوفُ",
+      "full_verse": "كَذَلِكَ الْمَرْسُومُ وَالْمَوْقُوفُ * عَلَيْهِ وَالْمَمْدُودُ وَالْمَحْذُوفُ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 199,
+      "first_hemistich": "فَهَذِهِ دُرَّةٌ صِرْتُ لَهَا",
+      "second_hemistich": "تَتِمَّةُ الْعِقْدِ لِمَنْ تَأَمَّلَهَا",
+      "full_verse": "فَهَذِهِ دُرَّةٌ صِرْتُ لَهَا * تَتِمَّةُ الْعِقْدِ لِمَنْ تَأَمَّلَهَا",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 200,
+      "first_hemistich": "وَمَنْ يُرِدْ إِتْمَامَهَا بِالْكِبَرَا",
+      "second_hemistich": "فَطَيِّبَةُ النَّشْرِ لَهُ قَدْ يَسَّرَا",
+      "full_verse": "وَمَنْ يُرِدْ إِتْمَامَهَا بِالْكِبَرَا * فَطَيِّبَةُ النَّشْرِ لَهُ قَدْ يَسَّرَا",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 201,
+      "first_hemistich": "أَرْجُو بِهَا الرِّضَا مِنَ الرَّحْمَنِ",
+      "second_hemistich": "وَالنَّفْعَ لِي وَسَائِرِ الْإِخْوَانِ",
+      "full_verse": "أَرْجُو بِهَا الرِّضَا مِنَ الرَّحْمَنِ * وَالنَّفْعَ لِي وَسَائِرِ الْإِخْوَانِ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 202,
+      "first_hemistich": "وَالْحَمْدُ لِلَّهِ عَلَى تَمَامِهَا",
+      "second_hemistich": "وَنَسْأَلُ اللهَ حُسْنَ خِتَامِهَا",
+      "full_verse": "وَالْحَمْدُ لِلَّهِ عَلَى تَمَامِهَا * وَنَسْأَلُ اللهَ حُسْنَ خِتَامِهَا",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 203,
+      "first_hemistich": "ثُمَّ صَلَاةُ اللهِ تَتْرَى أَبَدَا",
+      "second_hemistich": "عَلَى النَّبِيِّ الْهَادِي وَمَنِ اهْتَدَى",
+      "full_verse": "ثُمَّ صَلَاةُ اللهِ تَتْرَى أَبَدَا * عَلَى النَّبِيِّ الْهَادِي وَمَنِ اهْتَدَى",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 204,
+      "first_hemistich": "مُحَمَّدٍ وَآلِهِ وَصَحْبِهِ",
+      "second_hemistich": "مَا قَارِئٌ يَتْلُو كِتَابَ رَبِّهِ",
+      "full_verse": "مُحَمَّدٍ وَآلِهِ وَصَحْبِهِ * مَا قَارِئٌ يَتْلُو كِتَابَ رَبِّهِ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 205,
+      "first_hemistich": "وَالتَّابِعِينَ لَهُمُ بِإِحْسَانِ",
+      "second_hemistich": "إِلَى انْقِضَاءِ هَذِهِ الْأَزْمَانِ",
+      "full_verse": "وَالتَّابِعِينَ لَهُمُ بِإِحْسَانِ * إِلَى انْقِضَاءِ هَذِهِ الْأَزْمَانِ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 206,
+      "first_hemistich": "قَدْ تَمَّتِ الدُّرَّةُ وَالْحَمْدُ لِلَّهْ",
+      "second_hemistich": "عَلَى التَّمَامِ مَعَ جَزِيلِ حِلَّاهْ",
+      "full_verse": "قَدْ تَمَّتِ الدُّرَّةُ وَالْحَمْدُ لِلَّهْ * عَلَى التَّمَامِ مَعَ جَزِيلِ حِلَّاهْ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 207,
+      "first_hemistich": "أَسْأَلُ رَبِّي بِجَمِيعِ أَسْمَائِهْ",
+      "second_hemistich": "أَنْ يَجْعَلَهَا خَالِصَةً لِرِضَائِهْ",
+      "full_verse": "أَسْأَلُ رَبِّي بِجَمِيعِ أَسْمَائِهْ * أَنْ يَجْعَلَهَا خَالِصَةً لِرِضَائِهْ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 208,
+      "first_hemistich": "وَأَنْ يُدِيمَ نَفْعَهَا لِلْعَالَمِينْ",
+      "second_hemistich": "وَأَنْ يَرْزُقَنِي الْإِخْلَاصَ فِي الدِّينْ",
+      "full_verse": "وَأَنْ يُدِيمَ نَفْعَهَا لِلْعَالَمِينْ * وَأَنْ يَرْزُقَنِي الْإِخْلَاصَ فِي الدِّينْ",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 209,
+      "first_hemistich": "وَأَنْ يَخْتِمَ عُمْرِي بِخَيْرٍ وَهُدَى",
+      "second_hemistich": "وَأَنْ يُوَفِّقَنِي لِمَا فِيهِ الرِّضَا",
+      "full_verse": "وَأَنْ يَخْتِمَ عُمْرِي بِخَيْرٍ وَهُدَى * وَأَنْ يُوَفِّقَنِي لِمَا فِيهِ الرِّضَا",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 210,
+      "first_hemistich": "وَاللهُ يَجْزِي خَيْرًا كُلَّ مَنْ دَعَا",
+      "second_hemistich": "لِنَاظِمِ الدُّرَّةِ بِالَّتِي سَعَى",
+      "full_verse": "وَاللهُ يَجْزِي خَيْرًا كُلَّ مَنْ دَعَا * لِنَاظِمِ الدُّرَّةِ بِالَّتِي سَعَى",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    },
+    {
+      "number": 211,
+      "first_hemistich": "صَلَّى إِلَهُ الْخَلْقِ ثُمَّ سَلَّمَا",
+      "second_hemistich": "عَلَى النَّبِيِّ الْمُصْطَفَى مَا قَدَّمَا",
+      "full_verse": "صَلَّى إِلَهُ الْخَلْقِ ثُمَّ سَلَّمَا * عَلَى النَّبِيِّ الْمُصْطَفَى مَا قَدَّمَا",
+      "section": "تتمة الفرش والخاتمة",
+      "section_en": "Completion and Conclusion"
+    }
+  ]
+}

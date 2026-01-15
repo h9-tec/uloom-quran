@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}سورة {{ surah.name_arabic }} - علوم القرآن{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 2rem;">
+    <!-- Surah Header -->
+    <div class="card mb-3">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <h1 style="margin-bottom: 0.5rem;">سورة {{ surah.name_arabic }}</h1>
+                <p style="color: var(--text-light);">
+                    {{ surah.name_english }} | {{ surah.ayah_count }} آية | {{ surah.revelation_type or 'غير محدد' }}
+                </p>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+                {% if surah.id > 1 %}
+                <a href="/surah/{{ surah.id - 1 }}" class="btn btn-outline">السورة السابقة</a>
+                {% endif %}
+                {% if surah.id < 114 %}
+                <a href="/surah/{{ surah.id + 1 }}" class="btn btn-outline">السورة التالية</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bismillah -->
+    {% if surah.id != 1 and surah.id != 9 %}
+    <div class="text-center mb-3">
+        <span class="quran-text" style="font-size: 2rem;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+    </div>
+    {% endif %}
+
+    <!-- Verses -->
+    <div class="card">
+        <div class="verse-container">
+            {% for verse in verses %}
+            <div class="verse-item" data-verse-key="{{ verse.verse_key }}" onclick="showVerseDetails('{{ verse.verse_key }}')">
+                <span class="verse-number">{{ verse.ayah_number }}</span>
+                <span class="verse-text">{{ verse.text_uthmani }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Quick Navigation -->
+    <div class="card mt-3">
+        <h3>الانتقال إلى آية</h3>
+        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+            <select id="verse-select" onchange="jumpToVerse(this.value)">
+                <option value="">اختر آية...</option>
+                {% for verse in verses %}
+                <option value="{{ verse.verse_key }}">الآية {{ verse.ayah_number }}</option>
+                {% endfor %}
+            </select>
+            <span style="color: var(--text-light);">أو اضغط على أي آية لعرض التفسير والقراءات</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function jumpToVerse(verseKey) {
+    if (verseKey) {
+        showVerseDetails(verseKey);
+    }
+}
+</script>
+{% endblock %}

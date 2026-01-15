@@ -1,0 +1,793 @@
+{% extends "base.html" %}
+
+{% block title %}إحصائيات القراءات - علوم القرآن{% endblock %}
+
+{% block extra_css %}
+<style>
+    .stats-dashboard {
+        padding-top: 2rem;
+    }
+
+    .dashboard-header {
+        margin-bottom: 2rem;
+    }
+
+    .dashboard-header h1 {
+        margin-bottom: 0.5rem;
+    }
+
+    .dashboard-header p {
+        color: var(--text-light);
+    }
+
+    /* Overview Cards */
+    .overview-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .overview-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: var(--shadow);
+        border-top: 4px solid var(--primary-color);
+    }
+
+    .overview-card .value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        display: block;
+    }
+
+    .overview-card .label {
+        color: var(--text-light);
+        font-size: 1rem;
+        margin-top: 0.5rem;
+    }
+
+    .overview-card.highlight {
+        border-top-color: var(--secondary-color);
+    }
+
+    .overview-card.highlight .value {
+        color: var(--secondary-color);
+    }
+
+    /* Chart Containers */
+    .charts-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .chart-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+    }
+
+    .chart-card h3 {
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--border-color);
+        font-size: 1.2rem;
+    }
+
+    .chart-container {
+        position: relative;
+        height: 300px;
+    }
+
+    .chart-container.tall {
+        height: 400px;
+    }
+
+    /* Data Tables */
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 0.8rem;
+        text-align: right;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .data-table th {
+        background: rgba(26, 95, 74, 0.1);
+        font-weight: 700;
+        color: var(--primary-dark);
+    }
+
+    .data-table tr:hover {
+        background: rgba(26, 95, 74, 0.05);
+    }
+
+    .data-table .count {
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+
+    /* Pattern Cards */
+    .patterns-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .pattern-card {
+        background: #fff9e6;
+        border-radius: 10px;
+        padding: 1rem;
+        text-align: center;
+        border-right: 4px solid var(--secondary-color);
+    }
+
+    .pattern-card .word {
+        font-family: 'Amiri Quran', serif;
+        font-size: 1.5rem;
+        color: var(--primary-dark);
+        margin-bottom: 0.5rem;
+    }
+
+    .pattern-card .frequency {
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+
+    .pattern-card .verses {
+        font-size: 0.85rem;
+        color: var(--text-light);
+        margin-top: 0.3rem;
+    }
+
+    /* Reader Cards */
+    .readers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+
+    .reader-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        padding: 1rem;
+        border-right: 4px solid var(--primary-color);
+    }
+
+    .reader-card .name {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--primary-dark);
+    }
+
+    .reader-card .meta {
+        font-size: 0.9rem;
+        color: var(--text-light);
+        margin: 0.3rem 0;
+    }
+
+    .reader-card .count-badge {
+        display: inline-block;
+        background: var(--primary-color);
+        color: white;
+        padding: 0.2rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Tabs for sections */
+    .section-tabs {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+    }
+
+    .section-tab {
+        padding: 0.8rem 1.5rem;
+        border: 2px solid var(--border-color);
+        background: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1rem;
+        white-space: nowrap;
+        transition: all 0.3s ease;
+    }
+
+    .section-tab:hover {
+        border-color: var(--primary-color);
+    }
+
+    .section-tab.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+
+    .section-content {
+        display: none;
+    }
+
+    .section-content.active {
+        display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .charts-row {
+            grid-template-columns: 1fr;
+        }
+
+        .overview-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .overview-card .value {
+            font-size: 1.8rem;
+        }
+    }
+
+    /* Loading State */
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid var(--border-color);
+        border-top-color: var(--primary-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Back link */
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary-color);
+        text-decoration: none;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+
+    .back-link:hover {
+        color: var(--primary-dark);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container stats-dashboard">
+    <a href="/qiraat" class="back-link">
+        ← العودة إلى القراءات العشر
+    </a>
+
+    <div class="dashboard-header">
+        <h1>إحصائيات القراءات</h1>
+        <p>لوحة معلومات شاملة للفروق بين القراءات العشر المتواترة</p>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Overview Stats -->
+    <div class="overview-grid" id="overview-stats">
+        <!-- Will be populated by JavaScript -->
+    </div>
+
+    <!-- Section Tabs -->
+    <div class="section-tabs">
+        <button class="section-tab active" data-section="charts">الرسوم البيانية</button>
+        <button class="section-tab" data-section="surahs">حسب السورة</button>
+        <button class="section-tab" data-section="readers">حسب القارئ</button>
+        <button class="section-tab" data-section="patterns">أنماط الفروق</button>
+    </div>
+
+    <!-- Charts Section -->
+    <div id="charts-section" class="section-content active">
+        <div class="charts-row">
+            <!-- Top Surahs Chart -->
+            <div class="chart-card">
+                <h3>أكثر السور اختلافًا في القراءات</h3>
+                <div class="chart-container">
+                    <canvas id="topSurahsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Difference Types Chart -->
+            <div class="chart-card">
+                <h3>توزيع أنواع الفروق</h3>
+                <div class="chart-container">
+                    <canvas id="typesChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-row">
+            <!-- Readers Comparison Chart -->
+            <div class="chart-card">
+                <h3>مقارنة القراء العشرة</h3>
+                <div class="chart-container tall">
+                    <canvas id="readersChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Revelation Type Chart -->
+            <div class="chart-card">
+                <h3>الفروق حسب نوع السور (مكية/مدنية)</h3>
+                <div class="chart-container">
+                    <canvas id="revelationChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-row">
+            <!-- All Surahs Distribution -->
+            <div class="chart-card" style="grid-column: 1 / -1;">
+                <h3>توزيع الفروق على جميع السور</h3>
+                <div class="chart-container tall">
+                    <canvas id="allSurahsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Surahs Section -->
+    <div id="surahs-section" class="section-content">
+        <div class="card">
+            <h3>جدول الفروق حسب السورة</h3>
+            <div style="overflow-x: auto;">
+                <table class="data-table" id="surahs-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>السورة</th>
+                            <th>عدد الآيات</th>
+                            <th>عدد الفروق</th>
+                            <th>آيات بها فروق</th>
+                            <th>النسبة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Readers Section -->
+    <div id="readers-section" class="section-content">
+        <div class="card mb-3">
+            <h3>القراء العشرة</h3>
+            <div class="readers-grid" id="readers-grid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>التشابه بين القراء</h3>
+            <p style="color: var(--text-light); margin-bottom: 1rem;">القراء الذين يتشاركون في أكثر الفروق</p>
+            <table class="data-table" id="similarities-table">
+                <thead>
+                    <tr>
+                        <th>القارئ الأول</th>
+                        <th>القارئ الثاني</th>
+                        <th>الفروق المشتركة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Patterns Section -->
+    <div id="patterns-section" class="section-content">
+        <div class="card">
+            <h3>الكلمات الأكثر تكرارًا في الفروق</h3>
+            <p style="color: var(--text-light); margin-bottom: 1.5rem;">الكلمات التي يتكرر فيها الاختلاف بين القراء</p>
+            <div class="patterns-grid" id="patterns-grid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+// Chart.js RTL Configuration
+Chart.defaults.font.family = "'Amiri', 'Traditional Arabic', serif";
+Chart.defaults.color = '#2c3e50';
+
+// Color palette
+const colors = {
+    primary: '#1a5f4a',
+    primaryLight: '#2d8f6f',
+    primaryDark: '#0d3d2e',
+    secondary: '#c9a227',
+    accent: '#3498db',
+    muted: '#6c757d',
+    palette: [
+        '#1a5f4a', '#c9a227', '#3498db', '#e74c3c', '#9b59b6',
+        '#2ecc71', '#f39c12', '#1abc9c', '#e67e22', '#34495e'
+    ]
+};
+
+// Global stats data
+let statsData = null;
+
+// Initialize
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadDashboardData();
+    setupTabNavigation();
+});
+
+// Tab Navigation
+function setupTabNavigation() {
+    document.querySelectorAll('.section-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Update tabs
+            document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // Update sections
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            document.getElementById(`${tab.dataset.section}-section`).classList.add('active');
+        });
+    });
+}
+
+// Load Data from API
+async function loadDashboardData() {
+    try {
+        const response = await fetch('/api/qiraat/stats/dashboard');
+        if (!response.ok) throw new Error('Failed to fetch stats');
+        statsData = await response.json();
+
+        renderOverviewStats();
+        renderCharts();
+        renderSurahsTable();
+        renderReadersGrid();
+        renderPatternsGrid();
+
+        // Hide loading
+        document.getElementById('loading-overlay').style.display = 'none';
+    } catch (error) {
+        console.error('Error loading dashboard:', error);
+        document.getElementById('loading-overlay').innerHTML = `
+            <div style="text-align: center; color: var(--text-light);">
+                <p>حدث خطأ في تحميل البيانات</p>
+                <button onclick="location.reload()" class="btn btn-primary" style="margin-top: 1rem;">إعادة المحاولة</button>
+            </div>
+        `;
+    }
+}
+
+// Render Overview Stats
+function renderOverviewStats() {
+    const container = document.getElementById('overview-stats');
+    container.innerHTML = `
+        <div class="overview-card">
+            <span class="value">${statsData.total_variants.toLocaleString('ar-EG')}</span>
+            <span class="label">إجمالي الفروق</span>
+        </div>
+        <div class="overview-card">
+            <span class="value">${statsData.total_verses_with_differences.toLocaleString('ar-EG')}</span>
+            <span class="label">آية بها فروق</span>
+        </div>
+        <div class="overview-card highlight">
+            <span class="value">${statsData.percentage_with_differences}%</span>
+            <span class="label">نسبة الآيات المختلفة</span>
+        </div>
+        <div class="overview-card">
+            <span class="value">${statsData.total_readings.toLocaleString('ar-EG')}</span>
+            <span class="label">إجمالي القراءات</span>
+        </div>
+        <div class="overview-card">
+            <span class="value">${statsData.total_qurra}</span>
+            <span class="label">القراء العشرة</span>
+        </div>
+    `;
+}
+
+// Render All Charts
+function renderCharts() {
+    renderTopSurahsChart();
+    renderTypesChart();
+    renderReadersChart();
+    renderRevelationChart();
+    renderAllSurahsChart();
+}
+
+// Top Surahs Chart
+function renderTopSurahsChart() {
+    const ctx = document.getElementById('topSurahsChart').getContext('2d');
+    const topSurahs = statsData.top_surahs;
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: topSurahs.map(s => s.name_arabic),
+            datasets: [{
+                label: 'عدد الفروق',
+                data: topSurahs.map(s => s.variant_count),
+                backgroundColor: colors.palette.slice(0, topSurahs.length),
+                borderColor: colors.palette.slice(0, topSurahs.length),
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'عدد الفروق' }
+                }
+            }
+        }
+    });
+}
+
+// Difference Types Chart
+function renderTypesChart() {
+    const ctx = document.getElementById('typesChart').getContext('2d');
+    const types = statsData.by_type;
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: types.map(t => t.type),
+            datasets: [{
+                data: types.map(t => t.count),
+                backgroundColor: [colors.primary, colors.secondary, colors.accent, colors.muted],
+                borderWidth: 2,
+                borderColor: '#ffffff'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    rtl: true
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((context.raw / total) * 100).toFixed(1);
+                            return `${context.label}: ${context.raw} (${percentage}%)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Readers Chart
+function renderReadersChart() {
+    const ctx = document.getElementById('readersChart').getContext('2d');
+    const readers = statsData.by_qari;
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: readers.map(r => r.name_arabic),
+            datasets: [{
+                label: 'عدد القراءات',
+                data: readers.map(r => r.reading_count),
+                backgroundColor: colors.palette,
+                borderColor: colors.palette,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'عدد القراءات المختلفة' }
+                }
+            }
+        }
+    });
+}
+
+// Revelation Type Chart
+function renderRevelationChart() {
+    const ctx = document.getElementById('revelationChart').getContext('2d');
+    const revData = statsData.by_revelation_type;
+
+    const labels = [];
+    const data = [];
+
+    if (revData['Meccan']) { labels.push('مكية'); data.push(revData['Meccan']); }
+    if (revData['Medinan']) { labels.push('مدنية'); data.push(revData['Medinan']); }
+    if (revData['unknown']) { labels.push('غير محدد'); data.push(revData['unknown']); }
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: [colors.primary, colors.secondary, colors.muted],
+                borderWidth: 2,
+                borderColor: '#ffffff'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    rtl: true
+                }
+            }
+        }
+    });
+}
+
+// All Surahs Distribution Chart
+function renderAllSurahsChart() {
+    const ctx = document.getElementById('allSurahsChart').getContext('2d');
+    const surahs = statsData.by_surah.filter(s => s.variant_count > 0);
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: surahs.map(s => s.id),
+            datasets: [{
+                label: 'عدد الفروق',
+                data: surahs.map(s => s.variant_count),
+                backgroundColor: colors.primary,
+                borderColor: colors.primaryDark,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        title: function(context) {
+                            const idx = context[0].dataIndex;
+                            return surahs[idx].name_arabic;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: { display: true, text: 'رقم السورة' }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'عدد الفروق' }
+                }
+            }
+        }
+    });
+}
+
+// Render Surahs Table
+function renderSurahsTable() {
+    const tbody = document.querySelector('#surahs-table tbody');
+    const surahs = statsData.by_surah.filter(s => s.variant_count > 0)
+        .sort((a, b) => b.variant_count - a.variant_count);
+
+    tbody.innerHTML = surahs.map((s, i) => `
+        <tr>
+            <td>${s.id}</td>
+            <td><a href="/qiraat?surah=${s.id}" style="color: var(--primary-color); text-decoration: none;">${s.name_arabic}</a></td>
+            <td>${s.ayah_count}</td>
+            <td class="count">${s.variant_count}</td>
+            <td>${s.verses_with_diff}</td>
+            <td>${s.diff_percentage}%</td>
+        </tr>
+    `).join('');
+}
+
+// Render Readers Grid
+function renderReadersGrid() {
+    const grid = document.getElementById('readers-grid');
+    const readers = statsData.by_qari;
+
+    grid.innerHTML = readers.map(r => `
+        <div class="reader-card">
+            <div class="name">${r.name_arabic}</div>
+            <div class="meta">${r.city || ''} ${r.death_year ? '- توفي ' + r.death_year + 'هـ' : ''}</div>
+            ${r.ruwat && r.ruwat.length > 0 ? `
+                <div class="meta" style="font-size: 0.85rem;">الرواة: ${r.ruwat.map(rw => rw.name).join('، ')}</div>
+            ` : ''}
+            <span class="count-badge">${r.reading_count} قراءة</span>
+        </div>
+    `).join('');
+
+    // Render similarities table
+    const simTable = document.querySelector('#similarities-table tbody');
+    const similarities = statsData.reader_similarities || [];
+
+    if (similarities.length > 0) {
+        simTable.innerHTML = similarities.slice(0, 10).map(s => `
+            <tr>
+                <td>${s.reader1}</td>
+                <td>${s.reader2}</td>
+                <td class="count">${s.shared}</td>
+            </tr>
+        `).join('');
+    } else {
+        simTable.innerHTML = '<tr><td colspan="3" style="text-align: center; color: var(--text-light);">لا توجد بيانات</td></tr>';
+    }
+}
+
+// Render Patterns Grid
+function renderPatternsGrid() {
+    const grid = document.getElementById('patterns-grid');
+    const patterns = statsData.common_patterns || [];
+
+    if (patterns.length === 0) {
+        grid.innerHTML = '<p style="color: var(--text-light); grid-column: 1/-1;">لا توجد أنماط مكررة</p>';
+        return;
+    }
+
+    grid.innerHTML = patterns.map(p => `
+        <div class="pattern-card">
+            <div class="word">${p.word}</div>
+            <div class="frequency">${p.frequency} مرة</div>
+            ${p.verses && p.verses.length > 0 ? `
+                <div class="verses">${p.verses.slice(0, 3).join('، ')}</div>
+            ` : ''}
+        </div>
+    `).join('');
+}
+</script>
+{% endblock %}

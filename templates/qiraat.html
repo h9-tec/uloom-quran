@@ -1,0 +1,2233 @@
+{% extends "base.html" %}
+
+{% block title %}القراءات - علوم القرآن{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>القراءات</h1>
+    <p>قارن بين الروايات المختلفة واكتشف الفروق في القراءات القرآنية</p>
+    <a href="/qiraat/stats" class="stats-link">
+        <span class="stats-icon">&#x1F4CA;</span>
+        إحصائيات القراءات
+    </a>
+</div>
+
+<div class="qiraat-page-container">
+    <!-- Riwayat Info Section -->
+    <div class="riwayat-section">
+        <h2>الروايات الثمانية</h2>
+        <div class="riwayat-grid" id="riwayat-grid">
+            <div class="riwayat-card" data-riwaya="hafs">
+                <div class="riwayat-icon">١</div>
+                <div class="riwayat-info">
+                    <h4>حفص</h4>
+                    <span>عن عاصم</span>
+                </div>
+                <button class="riwaya-quick-play-btn" onclick="quickPlayRiwaya('hafs')" title="استماع سريع">
+                    <span class="play-icon">&#9654;</span>
+                </button>
+            </div>
+            <div class="riwayat-card" data-riwaya="warsh">
+                <div class="riwayat-icon">٢</div>
+                <div class="riwayat-info">
+                    <h4>ورش</h4>
+                    <span>عن نافع</span>
+                </div>
+                <button class="riwaya-quick-play-btn" onclick="quickPlayRiwaya('warsh')" title="استماع سريع">
+                    <span class="play-icon">&#9654;</span>
+                </button>
+            </div>
+            <div class="riwayat-card" data-riwaya="qaloon">
+                <div class="riwayat-icon">٣</div>
+                <div class="riwayat-info">
+                    <h4>قالون</h4>
+                    <span>عن نافع</span>
+                </div>
+                <button class="riwaya-quick-play-btn" onclick="quickPlayRiwaya('qaloon')" title="استماع سريع">
+                    <span class="play-icon">&#9654;</span>
+                </button>
+            </div>
+            <div class="riwayat-card" data-riwaya="shuba">
+                <div class="riwayat-icon">٤</div>
+                <div class="riwayat-info">
+                    <h4>شعبة</h4>
+                    <span>عن عاصم</span>
+                </div>
+                <button class="riwaya-quick-play-btn" onclick="quickPlayRiwaya('shuba')" title="استماع سريع">
+                    <span class="play-icon">&#9654;</span>
+                </button>
+            </div>
+            <div class="riwayat-card" data-riwaya="doori">
+                <div class="riwayat-icon">٥</div>
+                <div class="riwayat-info">
+                    <h4>الدوري</h4>
+                    <span>عن أبي عمرو</span>
+                </div>
+                <button class="riwaya-quick-play-btn" onclick="quickPlayRiwaya('doori')" title="استماع سريع">
+                    <span class="play-icon">&#9654;</span>
+                </button>
+            </div>
+            <div class="riwayat-card" data-riwaya="soosi">
+                <div class="riwayat-icon">٦</div>
+                <div class="riwayat-info">
+                    <h4>السوسي</h4>
+                    <span>عن أبي عمرو</span>
+                </div>
+                <button class="riwaya-quick-play-btn" onclick="quickPlayRiwaya('soosi')" title="استماع سريع">
+                    <span class="play-icon">&#9654;</span>
+                </button>
+            </div>
+            <div class="riwayat-card" data-riwaya="bazzi">
+                <div class="riwayat-icon">٧</div>
+                <div class="riwayat-info">
+                    <h4>البزي</h4>
+                    <span>عن ابن كثير</span>
+                </div>
+                <button class="riwaya-quick-play-btn" onclick="quickPlayRiwaya('bazzi')" title="استماع سريع">
+                    <span class="play-icon">&#9654;</span>
+                </button>
+            </div>
+            <div class="riwayat-card" data-riwaya="qunbul">
+                <div class="riwayat-icon">٨</div>
+                <div class="riwayat-info">
+                    <h4>قنبل</h4>
+                    <span>عن ابن كثير</span>
+                </div>
+                <button class="riwaya-quick-play-btn" onclick="quickPlayRiwaya('qunbul')" title="استماع سريع">
+                    <span class="play-icon">&#9654;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Selection Controls -->
+    <div class="selection-panel">
+        <div class="selectors-row">
+            <div class="selector-group">
+                <label for="surah-select">السورة</label>
+                <select id="surah-select" class="styled-select">
+                    <option value="">اختر سورة...</option>
+                    {% for surah in surahs %}
+                    <option value="{{ surah.id }}">{{ surah.id }}. {{ surah.name_arabic }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="selector-group">
+                <label for="verse-select">الآية</label>
+                <select id="verse-select" class="styled-select" disabled>
+                    <option value="">اختر السورة أولا...</option>
+                </select>
+            </div>
+            <div class="selector-group action-group">
+                <button id="compare-btn" class="btn-compare" disabled>
+                    <span class="btn-icon">&#xf065;</span>
+                    مقارنة القراءات
+                </button>
+                <a id="view-surah-btn" href="#" class="btn-surah-view" style="display: none;">
+                    عرض السورة كاملة
+                </a>
+            </div>
+        </div>
+
+        <!-- Filter Options -->
+        <div class="filter-options">
+            <label class="filter-checkbox">
+                <input type="checkbox" id="differences-only">
+                <span class="checkmark"></span>
+                عرض الآيات التي بها فروق فقط
+            </label>
+            <label class="filter-checkbox">
+                <input type="checkbox" id="highlight-diff" checked>
+                <span class="checkmark"></span>
+                تمييز الفروقات
+            </label>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading" class="loading-container hidden">
+        <div class="loader">
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+        </div>
+        <span>جاري تحميل القراءات...</span>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-container" class="results-container hidden">
+        <!-- Verse Display -->
+        <div id="verse-display" class="verse-display-card">
+            <div class="verse-reference">
+                <span id="surah-name-display"></span>
+                <span class="verse-badge" id="verse-number-display"></span>
+            </div>
+            <div id="verse-text-display" class="verse-text-main"></div>
+        </div>
+
+        <!-- Comparison Grid -->
+        <div id="comparison-grid" class="comparison-grid-8"></div>
+
+        <!-- Differences Summary -->
+        <div id="differences-summary" class="differences-summary hidden">
+            <h3>ملخص الفروقات</h3>
+            <div id="differences-list" class="differences-list"></div>
+        </div>
+
+        <!-- Audio Section -->
+        <div id="audio-section" class="audio-section">
+            <div class="audio-section-header">
+                <h3>
+                    <span class="audio-icon">&#x1F50A;</span>
+                    الاستماع للقراءات
+                </h3>
+                <p class="audio-subtitle">اختر الرواية والقارئ للاستماع</p>
+            </div>
+
+            <div class="audio-riwayat-grid" id="audio-riwayat-grid">
+                <!-- Audio cards for each riwaya will be generated dynamically -->
+            </div>
+
+            <!-- Main Audio Player -->
+            <div id="main-audio-player" class="main-audio-player hidden">
+                <div class="player-info">
+                    <span id="player-riwaya-name" class="player-riwaya"></span>
+                    <span id="player-reciter-name" class="player-reciter"></span>
+                </div>
+                <div class="audio-controls">
+                    <button id="audio-prev-btn" class="audio-nav-btn" title="السابق">
+                        <span>&#x23EE;</span>
+                    </button>
+                    <button id="audio-play-btn" class="audio-play-btn" title="تشغيل">
+                        <span class="play-icon">&#x25B6;</span>
+                        <span class="pause-icon hidden">&#x23F8;</span>
+                    </button>
+                    <button id="audio-next-btn" class="audio-nav-btn" title="التالي">
+                        <span>&#x23ED;</span>
+                    </button>
+                </div>
+                <div class="audio-progress-container">
+                    <span id="audio-current-time" class="audio-time">0:00</span>
+                    <input type="range" id="audio-progress" class="audio-progress" value="0" min="0" max="100">
+                    <span id="audio-duration" class="audio-time">0:00</span>
+                </div>
+                <audio id="quran-audio" preload="metadata"></audio>
+            </div>
+        </div>
+    </div>
+
+    <!-- Surah-level Differences View -->
+    <div id="surah-differences" class="surah-differences-container hidden">
+        <div class="surah-diff-header">
+            <h2 id="surah-diff-title">فروق القراءات في السورة</h2>
+            <div class="surah-diff-stats">
+                <span id="diff-count" class="stat-badge">0 فرق</span>
+                <span id="verse-count" class="stat-badge">0 آية</span>
+            </div>
+        </div>
+        <div id="surah-diff-list" class="surah-diff-list"></div>
+    </div>
+
+    <!-- No Differences Message -->
+    <div id="no-differences" class="no-differences hidden">
+        <div class="no-diff-icon">&#xf00c;</div>
+        <h3>لا توجد فروقات</h3>
+        <p>القراءات متطابقة في هذه الآية</p>
+    </div>
+</div>
+
+<style>
+/* Page Container */
+.qiraat-page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Page Header */
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color), #2d7a5e);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    opacity: 0.9;
+    font-size: 1.2rem;
+}
+
+.stats-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.stats-link:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.stats-icon {
+    font-size: 1.2rem;
+}
+
+/* Riwayat Section */
+.riwayat-section {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.riwayat-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.riwayat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 1024px) {
+    .riwayat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .riwayat-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.riwayat-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.riwayat-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 95, 74, 0.15);
+}
+
+.riwayat-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary-color), #2d8f6f);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.riwayat-info h4 {
+    margin: 0 0 4px 0;
+    color: var(--primary-dark);
+    font-size: 1.1rem;
+}
+
+.riwayat-info span {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Riwaya Quick Play Button */
+.riwaya-quick-play-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, var(--secondary-color), #d4b632);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: auto;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(201, 162, 39, 0.3);
+}
+
+.riwaya-quick-play-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(201, 162, 39, 0.4);
+}
+
+.riwaya-quick-play-btn.playing {
+    background: linear-gradient(135deg, var(--primary-color), #2d7a5e);
+    animation: pulse-riwaya 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-riwaya {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.riwaya-quick-play-btn .play-icon {
+    font-size: 1rem;
+}
+
+/* Selection Panel */
+.selection-panel {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.selectors-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.selector-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.selector-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.styled-select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231a5f4a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 16px center;
+    padding-left: 40px;
+}
+
+.styled-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 95, 74, 0.1);
+}
+
+.styled-select:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.action-group {
+    flex: 0 0 auto;
+    min-width: auto;
+}
+
+.btn-compare {
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--primary-color), #2d8f6f);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.btn-compare:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 95, 74, 0.3);
+}
+
+.btn-compare:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-icon {
+    font-size: 1.1rem;
+}
+
+.btn-surah-view {
+    padding: 14px 24px;
+    background: linear-gradient(135deg, var(--secondary-color), #d4b632);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+.btn-surah-view:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(201, 162, 39, 0.4);
+    color: white;
+}
+
+/* Filter Options */
+.filter-options {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 15px;
+    color: var(--text-color);
+}
+
+.filter-checkbox input {
+    display: none;
+}
+
+.checkmark {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.filter-checkbox input:checked + .checkmark {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.filter-checkbox input:checked + .checkmark::after {
+    content: '\2713';
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.filter-checkbox:hover .checkmark {
+    border-color: var(--primary-color);
+}
+
+/* Loading */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: var(--primary-color);
+    gap: 20px;
+}
+
+.loader {
+    display: flex;
+    gap: 8px;
+}
+
+.loader-ring {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+.loader-ring:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loader-ring:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(0.5); opacity: 0.5; }
+}
+
+/* Results Container */
+.results-container {
+    margin-bottom: 30px;
+}
+
+/* Verse Display Card */
+.verse-display-card {
+    background: linear-gradient(135deg, #1a5f4a, #2d7a5e);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 24px;
+    text-align: center;
+    color: white;
+}
+
+.verse-reference {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+#surah-name-display {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+.verse-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 1rem;
+}
+
+.verse-text-main {
+    font-family: 'Amiri Quran', 'Amiri', serif;
+    font-size: 2rem;
+    line-height: 2.2;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.verse-detail-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.verse-detail-link:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateX(-5px);
+}
+
+/* Comparison Grid - 8 columns */
+.comparison-grid-8 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 1200px) {
+    .comparison-grid-8 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .comparison-grid-8 {
+        grid-template-columns: 1fr;
+    }
+}
+
+.reading-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.reading-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.reading-card.has-difference {
+    border-color: var(--secondary-color);
+}
+
+.reading-card-header {
+    background: linear-gradient(135deg, #f8f9fa, #fff);
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.reading-number {
+    width: 36px;
+    height: 36px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.reading-name {
+    font-weight: bold;
+    color: var(--primary-dark);
+    font-size: 1.1rem;
+}
+
+.reading-narrator {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 2px;
+}
+
+.reading-card-body {
+    padding: 20px;
+}
+
+.reading-text {
+    font-family: 'Amiri Quran', 'Amiri', serif;
+    font-size: 1.4rem;
+    line-height: 2;
+    color: var(--quran-text);
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reading-text .diff-word {
+    background: linear-gradient(to bottom, transparent 60%, rgba(201, 162, 39, 0.3) 60%);
+    padding: 0 4px;
+    border-radius: 4px;
+    color: #8b6914;
+    font-weight: bold;
+}
+
+.reading-note {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-color);
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-align: center;
+}
+
+/* Differences Summary */
+.differences-summary {
+    background: #fff9e6;
+    border-radius: 12px;
+    padding: 24px;
+    border: 2px solid var(--secondary-color);
+}
+
+.differences-summary h3 {
+    color: #8b6914;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.differences-summary h3::before {
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: var(--secondary-color);
+    border-radius: 2px;
+}
+
+.differences-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.diff-item {
+    background: white;
+    padding: 16px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.diff-word-main {
+    font-family: 'Amiri Quran', 'Amiri', serif;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+    padding: 8px 16px;
+    background: rgba(26, 95, 74, 0.1);
+    border-radius: 8px;
+    min-width: 100px;
+    text-align: center;
+}
+
+.diff-readings {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.diff-reading-tag {
+    padding: 6px 12px;
+    background: #f0f0f0;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.diff-reading-tag .reader {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.diff-reading-tag .text {
+    font-family: 'Amiri', serif;
+    color: var(--text-color);
+}
+
+/* Surah Differences View */
+.surah-differences-container {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.surah-diff-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.surah-diff-header h2 {
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.surah-diff-stats {
+    display: flex;
+    gap: 12px;
+}
+
+.stat-badge {
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.surah-diff-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.verse-diff-card {
+    background: #fafbfc;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.verse-diff-header {
+    background: linear-gradient(135deg, #f8f9fa, #fff);
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.verse-diff-number {
+    background: var(--primary-color);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.verse-diff-text {
+    font-family: 'Amiri Quran', 'Amiri', serif;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--quran-text);
+    flex: 1;
+}
+
+.verse-diff-detail-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.verse-diff-detail-link:hover {
+    background: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+.verse-diff-body {
+    padding: 20px;
+}
+
+.variant-item {
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-right: 4px solid var(--secondary-color);
+}
+
+.variant-item:last-child {
+    margin-bottom: 0;
+}
+
+.variant-word {
+    font-family: 'Amiri Quran', 'Amiri', serif;
+    font-size: 1.4rem;
+    color: #8b6914;
+    margin-bottom: 12px;
+    display: inline-block;
+    background: #fff9e6;
+    padding: 6px 14px;
+    border-radius: 8px;
+}
+
+.variant-readings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.variant-reading {
+    padding: 10px 14px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+}
+
+.variant-reading .qari {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.variant-reading .reading {
+    font-family: 'Amiri', serif;
+    font-size: 1.1rem;
+}
+
+/* No Differences */
+.no-differences {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.no-diff-icon {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.no-differences h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.no-differences p {
+    color: var(--text-light);
+}
+
+/* Utility */
+.hidden {
+    display: none !important;
+}
+
+/* Audio Section Styles */
+.audio-section {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.audio-section-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.audio-section-header h3 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.audio-icon {
+    font-size: 1.5rem;
+}
+
+.audio-subtitle {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.audio-riwayat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 1200px) {
+    .audio-riwayat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .audio-riwayat-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.audio-riwaya-card {
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    border-radius: 12px;
+    padding: 16px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.audio-riwaya-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(26, 95, 74, 0.15);
+}
+
+.audio-riwaya-card.active {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(26, 95, 74, 0.05), rgba(26, 95, 74, 0.1));
+}
+
+.audio-riwaya-card.playing {
+    border-color: var(--secondary-color);
+    box-shadow: 0 4px 16px rgba(201, 162, 39, 0.3);
+}
+
+.audio-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.audio-riwaya-number {
+    width: 32px;
+    height: 32px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.audio-riwaya-name {
+    font-weight: bold;
+    color: var(--primary-dark);
+    font-size: 1rem;
+}
+
+.audio-riwaya-narrator {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.audio-reciter-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+}
+
+.audio-reciter-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.audio-reciter-select:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.audio-card-play-btn {
+    width: 100%;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--primary-color), #2d8f6f);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.audio-card-play-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 95, 74, 0.3);
+}
+
+.audio-card-play-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.audio-card-play-btn.playing {
+    background: linear-gradient(135deg, var(--secondary-color), #d4b632);
+}
+
+.no-reciters-msg {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 16px 0;
+}
+
+/* Main Audio Player */
+.main-audio-player {
+    background: linear-gradient(135deg, #1a5f4a, #2d7a5e);
+    border-radius: 16px;
+    padding: 24px;
+    color: white;
+    margin-top: 20px;
+}
+
+.player-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.player-riwaya {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.player-reciter {
+    display: block;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.audio-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.audio-nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.audio-nav-btn:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.5);
+}
+
+.audio-play-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.audio-play-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.audio-play-btn .pause-icon {
+    display: none;
+}
+
+.audio-play-btn.playing .play-icon {
+    display: none;
+}
+
+.audio-play-btn.playing .pause-icon {
+    display: inline;
+}
+
+.audio-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.audio-time {
+    font-size: 0.9rem;
+    min-width: 45px;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.audio-progress {
+    flex: 1;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.audio-progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.audio-progress::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.audio-loading {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-light);
+}
+
+.audio-error {
+    text-align: center;
+    padding: 16px;
+    background: #fff5f5;
+    border-radius: 8px;
+    color: #c53030;
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .selectors-row {
+        flex-direction: column;
+    }
+
+    .selector-group {
+        width: 100%;
+    }
+
+    .btn-compare {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .verse-text-main {
+        font-size: 1.5rem;
+    }
+
+    .filter-options {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .main-audio-player {
+        padding: 16px;
+    }
+
+    .audio-play-btn {
+        width: 56px;
+        height: 56px;
+        font-size: 1.4rem;
+    }
+
+    .audio-nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const surahSelect = document.getElementById('surah-select');
+    const verseSelect = document.getElementById('verse-select');
+    const compareBtn = document.getElementById('compare-btn');
+    const viewSurahBtn = document.getElementById('view-surah-btn');
+    const loading = document.getElementById('loading');
+    const resultsContainer = document.getElementById('results-container');
+    const surahDifferences = document.getElementById('surah-differences');
+    const noDifferences = document.getElementById('no-differences');
+    const differencesOnlyCheckbox = document.getElementById('differences-only');
+    const highlightDiffCheckbox = document.getElementById('highlight-diff');
+
+    // Surah ayah counts
+    const surahAyahCounts = {
+        1: 7, 2: 286, 3: 200, 4: 176, 5: 120, 6: 165, 7: 206, 8: 75, 9: 129, 10: 109,
+        11: 123, 12: 111, 13: 43, 14: 52, 15: 99, 16: 128, 17: 111, 18: 110, 19: 98, 20: 135,
+        21: 112, 22: 78, 23: 118, 24: 64, 25: 77, 26: 227, 27: 93, 28: 88, 29: 69, 30: 60,
+        31: 34, 32: 30, 33: 73, 34: 54, 35: 45, 36: 83, 37: 182, 38: 88, 39: 75, 40: 85,
+        41: 54, 42: 53, 43: 89, 44: 59, 45: 37, 46: 35, 47: 38, 48: 29, 49: 18, 50: 45,
+        51: 60, 52: 49, 53: 62, 54: 55, 55: 78, 56: 96, 57: 29, 58: 22, 59: 24, 60: 13,
+        61: 14, 62: 11, 63: 11, 64: 18, 65: 12, 66: 12, 67: 30, 68: 52, 69: 52, 70: 44,
+        71: 28, 72: 28, 73: 20, 74: 56, 75: 40, 76: 31, 77: 50, 78: 40, 79: 46, 80: 42,
+        81: 29, 82: 19, 83: 36, 84: 25, 85: 22, 86: 17, 87: 19, 88: 26, 89: 30, 90: 20,
+        91: 15, 92: 21, 93: 11, 94: 8, 95: 8, 96: 19, 97: 5, 98: 8, 99: 8, 100: 11,
+        101: 11, 102: 8, 103: 3, 104: 9, 105: 5, 106: 4, 107: 7, 108: 3, 109: 6, 110: 3,
+        111: 5, 112: 4, 113: 5, 114: 6
+    };
+
+    // Riwayat configuration
+    const riwayat = [
+        { id: 'hafs', name: 'حفص', narrator: 'عن عاصم', number: '١' },
+        { id: 'warsh', name: 'ورش', narrator: 'عن نافع', number: '٢' },
+        { id: 'qaloon', name: 'قالون', narrator: 'عن نافع', number: '٣' },
+        { id: 'shuba', name: 'شعبة', narrator: 'عن عاصم', number: '٤' },
+        { id: 'doori', name: 'الدوري', narrator: 'عن أبي عمرو', number: '٥' },
+        { id: 'soosi', name: 'السوسي', narrator: 'عن أبي عمرو', number: '٦' },
+        { id: 'bazzi', name: 'البزي', narrator: 'عن ابن كثير', number: '٧' },
+        { id: 'qunbul', name: 'قنبل', narrator: 'عن ابن كثير', number: '٨' }
+    ];
+
+    // Handle surah selection
+    surahSelect.addEventListener('change', function() {
+        const surahId = this.value;
+        hideAllResults();
+
+        if (surahId) {
+            populateVerseOptions(surahId);
+            verseSelect.disabled = false;
+
+            // Show "View Surah" button and update its link
+            viewSurahBtn.href = `/qiraat/surah/${surahId}`;
+            viewSurahBtn.style.display = 'inline-block';
+
+            // If "differences only" is checked, load surah differences
+            if (differencesOnlyCheckbox.checked) {
+                loadSurahDifferences(surahId);
+            }
+        } else {
+            verseSelect.innerHTML = '<option value="">اختر السورة أولا...</option>';
+            verseSelect.disabled = true;
+            compareBtn.disabled = true;
+            viewSurahBtn.style.display = 'none';
+        }
+    });
+
+    // Handle verse selection
+    verseSelect.addEventListener('change', function() {
+        const verseKey = this.value;
+        compareBtn.disabled = !verseKey;
+        hideAllResults();
+    });
+
+    // Handle compare button
+    compareBtn.addEventListener('click', function() {
+        const verseKey = verseSelect.value;
+        if (verseKey) {
+            loadVerseComparison(verseKey);
+        }
+    });
+
+    // Handle differences only checkbox
+    differencesOnlyCheckbox.addEventListener('change', function() {
+        const surahId = surahSelect.value;
+        if (this.checked && surahId) {
+            loadSurahDifferences(surahId);
+        } else {
+            surahDifferences.classList.add('hidden');
+        }
+    });
+
+    // Populate verse options
+    function populateVerseOptions(surahId) {
+        const ayahCount = surahAyahCounts[surahId] || 0;
+        let options = '<option value="">اختر آية...</option>';
+        for (let i = 1; i <= ayahCount; i++) {
+            options += `<option value="${surahId}:${i}">الآية ${i}</option>`;
+        }
+        verseSelect.innerHTML = options;
+    }
+
+    // Hide all result sections
+    function hideAllResults() {
+        resultsContainer.classList.add('hidden');
+        surahDifferences.classList.add('hidden');
+        noDifferences.classList.add('hidden');
+    }
+
+    // Show loading
+    function showLoading() {
+        loading.classList.remove('hidden');
+        hideAllResults();
+    }
+
+    // Hide loading
+    function hideLoading() {
+        loading.classList.add('hidden');
+    }
+
+    // Load verse comparison
+    async function loadVerseComparison(verseKey) {
+        showLoading();
+
+        try {
+            const response = await fetch(`/api/qiraat/verse/${verseKey}`);
+            const data = await response.json();
+            hideLoading();
+
+            if (data.verse) {
+                displayVerseComparison(data);
+            } else {
+                noDifferences.classList.remove('hidden');
+            }
+        } catch (error) {
+            hideLoading();
+            console.error('Error loading qiraat:', error);
+            alert('حدث خطأ أثناء تحميل القراءات');
+        }
+    }
+
+    // Display verse comparison
+    function displayVerseComparison(data) {
+        const verse = data.verse;
+        const variants = data.variants || [];
+        const highlightEnabled = highlightDiffCheckbox.checked;
+
+        // Update verse display
+        document.getElementById('surah-name-display').textContent = verse.surah_name;
+        document.getElementById('verse-number-display').textContent = `الآية ${verse.verse_key.split(':')[1]}`;
+        document.getElementById('verse-text-display').textContent = verse.text_uthmani;
+
+        // Add/update link to detailed view
+        let detailLink = document.getElementById('verse-detail-link');
+        if (!detailLink) {
+            detailLink = document.createElement('a');
+            detailLink.id = 'verse-detail-link';
+            detailLink.className = 'verse-detail-link';
+            detailLink.innerHTML = 'عرض مقارنة تفصيلية &#8592;';
+            document.querySelector('.verse-display-card').appendChild(detailLink);
+        }
+        detailLink.href = `/qiraat/verse/${verse.verse_key}`;
+
+        // Build comparison grid
+        const comparisonGrid = document.getElementById('comparison-grid');
+        let gridHtml = '';
+
+        riwayat.forEach((riwaya, index) => {
+            // Find if this riwaya has any differences
+            let hasDifference = false;
+            let readingText = verse.text_uthmani;
+            let notes = [];
+
+            variants.forEach(variant => {
+                if (variant.readings) {
+                    variant.readings.forEach(reading => {
+                        const readerName = reading.qari_name || reading.rawi_name || '';
+                        if (readerName.includes(riwaya.name) || matchRiwaya(readerName, riwaya.id)) {
+                            hasDifference = true;
+                            if (highlightEnabled && reading.reading_text) {
+                                notes.push({
+                                    word: variant.word_text,
+                                    reading: reading.reading_text
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+
+            // If has difference, modify the text to highlight
+            if (highlightEnabled && notes.length > 0) {
+                notes.forEach(note => {
+                    if (note.word && note.reading) {
+                        readingText = readingText.replace(
+                            note.word,
+                            `<span class="diff-word">${note.reading}</span>`
+                        );
+                    }
+                });
+            }
+
+            gridHtml += `
+                <div class="reading-card ${hasDifference ? 'has-difference' : ''}">
+                    <div class="reading-card-header">
+                        <div class="reading-number">${riwaya.number}</div>
+                        <div>
+                            <div class="reading-name">${riwaya.name}</div>
+                            <div class="reading-narrator">${riwaya.narrator}</div>
+                        </div>
+                    </div>
+                    <div class="reading-card-body">
+                        <div class="reading-text">${readingText}</div>
+                        ${notes.length > 0 ? `
+                            <div class="reading-note">
+                                ${notes.map(n => `${n.word} ← ${n.reading}`).join(' | ')}
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        });
+
+        comparisonGrid.innerHTML = gridHtml;
+
+        // Show differences summary if there are variants
+        const diffSummary = document.getElementById('differences-summary');
+        const diffList = document.getElementById('differences-list');
+
+        if (variants.length > 0) {
+            let summaryHtml = '';
+            variants.forEach(variant => {
+                summaryHtml += `
+                    <div class="diff-item">
+                        <div class="diff-word-main">${variant.word_text}</div>
+                        <div class="diff-readings">
+                            ${(variant.readings || []).map(r => `
+                                <div class="diff-reading-tag">
+                                    <span class="reader">${r.qari_name || r.rawi_name || 'قارئ'}</span>
+                                    <span class="text">${r.reading_text}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            diffList.innerHTML = summaryHtml;
+            diffSummary.classList.remove('hidden');
+        } else {
+            diffSummary.classList.add('hidden');
+        }
+
+        resultsContainer.classList.remove('hidden');
+
+        if (variants.length === 0) {
+            noDifferences.classList.remove('hidden');
+        }
+    }
+
+    // Helper to match riwaya name
+    function matchRiwaya(readerName, riwayaId) {
+        const mappings = {
+            'hafs': ['حفص', 'عاصم'],
+            'warsh': ['ورش', 'نافع'],
+            'qaloon': ['قالون', 'نافع'],
+            'shuba': ['شعبة', 'عاصم'],
+            'doori': ['الدوري', 'أبي عمرو', 'أبو عمرو'],
+            'soosi': ['السوسي', 'أبي عمرو', 'أبو عمرو'],
+            'bazzi': ['البزي', 'ابن كثير'],
+            'qunbul': ['قنبل', 'ابن كثير']
+        };
+
+        const names = mappings[riwayaId] || [];
+        return names.some(name => readerName.includes(name));
+    }
+
+    // Load surah differences
+    async function loadSurahDifferences(surahId) {
+        showLoading();
+
+        try {
+            const response = await fetch(`/api/qiraat/surah/${surahId}`);
+            const data = await response.json();
+            hideLoading();
+
+            displaySurahDifferences(data);
+        } catch (error) {
+            hideLoading();
+            console.error('Error loading surah qiraat:', error);
+            alert('حدث خطأ أثناء تحميل القراءات');
+        }
+    }
+
+    // Display surah differences
+    function displaySurahDifferences(data) {
+        const surah = data.surah;
+        const versesWithDiff = data.verses_with_differences || [];
+
+        document.getElementById('surah-diff-title').textContent = `فروق القراءات في سورة ${surah.name_arabic}`;
+        document.getElementById('diff-count').textContent = `${data.total_differences} فرق`;
+        document.getElementById('verse-count').textContent = `${versesWithDiff.length} آية`;
+
+        const diffList = document.getElementById('surah-diff-list');
+
+        if (versesWithDiff.length === 0) {
+            diffList.innerHTML = `
+                <div class="no-differences" style="box-shadow: none;">
+                    <div class="no-diff-icon">&#xf00c;</div>
+                    <h3>لا توجد فروقات مسجلة</h3>
+                    <p>لا توجد فروقات في القراءات مسجلة لهذه السورة</p>
+                </div>
+            `;
+        } else {
+            let html = '';
+            versesWithDiff.forEach(verse => {
+                html += `
+                    <div class="verse-diff-card">
+                        <div class="verse-diff-header">
+                            <div class="verse-diff-number">${verse.ayah_number}</div>
+                            <div class="verse-diff-text">${verse.text_uthmani}</div>
+                            <a href="/qiraat/verse/${verse.verse_key}" class="verse-diff-detail-link" title="عرض مقارنة تفصيلية">&#8592;</a>
+                        </div>
+                        <div class="verse-diff-body">
+                            ${verse.variants.map(variant => `
+                                <div class="variant-item">
+                                    <div class="variant-word">${variant.word}</div>
+                                    <div class="variant-readings">
+                                        ${variant.readings.map(r => `
+                                            <div class="variant-reading">
+                                                <span class="qari">${r.qari_name}:</span>
+                                                <span class="reading">${r.reading_text}</span>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            diffList.innerHTML = html;
+        }
+
+        surahDifferences.classList.remove('hidden');
+    }
+
+    // ============================================================================
+    // AUDIO FUNCTIONALITY
+    // ============================================================================
+
+    // Audio state
+    let audioData = null;
+    let currentSurahId = null;
+    let currentVerseKey = null;
+    let currentRiwayaCode = null;
+    let currentReciterId = null;
+    let isPlaying = false;
+
+    // Audio elements
+    const audioSection = document.getElementById('audio-section');
+    const audioRiwayatGrid = document.getElementById('audio-riwayat-grid');
+    const mainAudioPlayer = document.getElementById('main-audio-player');
+    const quranAudio = document.getElementById('quran-audio');
+    const audioPlayBtn = document.getElementById('audio-play-btn');
+    const audioPrevBtn = document.getElementById('audio-prev-btn');
+    const audioNextBtn = document.getElementById('audio-next-btn');
+    const audioProgress = document.getElementById('audio-progress');
+    const audioCurrentTime = document.getElementById('audio-current-time');
+    const audioDuration = document.getElementById('audio-duration');
+    const playerRiwayaName = document.getElementById('player-riwaya-name');
+    const playerReciterName = document.getElementById('player-reciter-name');
+
+    // Riwayat mapping with audio support info
+    const riwayatAudioInfo = {
+        hafs: { name: 'حفص', narrator: 'عن عاصم', number: '١', code: 'hafs' },
+        warsh: { name: 'ورش', narrator: 'عن نافع', number: '٢', code: 'warsh' },
+        qaloon: { name: 'قالون', narrator: 'عن نافع', number: '٣', code: 'qaloon' },
+        shuba: { name: 'شعبة', narrator: 'عن عاصم', number: '٤', code: 'shuba' },
+        doori: { name: 'الدوري', narrator: 'عن أبي عمرو', number: '٥', code: 'doori' },
+        soosi: { name: 'السوسي', narrator: 'عن أبي عمرو', number: '٦', code: 'soosi' },
+        bazzi: { name: 'البزي', narrator: 'عن ابن كثير', number: '٧', code: 'bazzi' },
+        qunbul: { name: 'قنبل', narrator: 'عن ابن كثير', number: '٨', code: 'qunbul' }
+    };
+
+    // Load audio data when surah is selected
+    async function loadAudioForSurah(surahId) {
+        if (!surahId) {
+            audioSection.classList.add('hidden');
+            return;
+        }
+
+        currentSurahId = surahId;
+        audioRiwayatGrid.innerHTML = '<div class="audio-loading">جاري تحميل الصوتيات...</div>';
+        audioSection.classList.remove('hidden');
+        mainAudioPlayer.classList.add('hidden');
+
+        try {
+            // Try API first
+            const response = await fetch(`/api/qiraat/audio/surah/${surahId}`);
+            if (response.ok) {
+                audioData = await response.json();
+                renderAudioCards(audioData);
+            } else {
+                // Fallback to JSON file
+                await loadAudioFromJsonFile(surahId);
+            }
+        } catch (error) {
+            console.error('Error loading audio:', error);
+            // Try fallback to JSON file
+            await loadAudioFromJsonFile(surahId);
+        }
+    }
+
+    // Fallback: Load audio from JSON file
+    async function loadAudioFromJsonFile(surahId) {
+        try {
+            const response = await fetch(`/data/raw/Quran-Data/data/json/audio/audio_surah_${surahId}.json`);
+            if (response.ok) {
+                const jsonData = await response.json();
+                // Transform JSON data to our format
+                audioData = transformJsonAudioData(jsonData, surahId);
+                renderAudioCards(audioData);
+            } else {
+                renderNoAudioMessage();
+            }
+        } catch (error) {
+            console.error('Error loading audio from JSON:', error);
+            renderNoAudioMessage();
+        }
+    }
+
+    // Transform JSON audio data to our format
+    function transformJsonAudioData(jsonData, surahId) {
+        const audioSources = [];
+        const riwayaMap = {};
+
+        jsonData.forEach(item => {
+            // Determine riwaya from rewaya field
+            const rewayaAr = item.rewaya?.ar || '';
+            let riwayaCode = 'hafs'; // default
+
+            if (rewayaAr.includes('ورش')) riwayaCode = 'warsh';
+            else if (rewayaAr.includes('قالون')) riwayaCode = 'qaloon';
+            else if (rewayaAr.includes('شعبة')) riwayaCode = 'shuba';
+            else if (rewayaAr.includes('الدوري')) riwayaCode = 'doori';
+            else if (rewayaAr.includes('السوسي')) riwayaCode = 'soosi';
+            else if (rewayaAr.includes('البزي')) riwayaCode = 'bazzi';
+            else if (rewayaAr.includes('قنبل')) riwayaCode = 'qunbul';
+
+            audioSources.push({
+                reciter: {
+                    id: item.id,
+                    name_arabic: item.reciter?.ar || 'قارئ',
+                    name_english: item.reciter?.en || 'Reciter',
+                    has_verse_audio: false
+                },
+                riwaya: {
+                    code: riwayaCode,
+                    name_arabic: rewayaAr || 'حفص عن عاصم',
+                    name_english: item.rewaya?.en || 'Hafs'
+                },
+                audio_url: item.link,
+                server: item.server
+            });
+        });
+
+        return {
+            surah: { id: surahId },
+            audio_sources: audioSources,
+            total_sources: audioSources.length
+        };
+    }
+
+    // Render audio cards for each riwaya
+    function renderAudioCards(data) {
+        if (!data || !data.audio_sources || data.audio_sources.length === 0) {
+            renderNoAudioMessage();
+            return;
+        }
+
+        // Group audio sources by riwaya
+        const byRiwaya = {};
+        data.audio_sources.forEach(source => {
+            const code = source.riwaya.code;
+            if (!byRiwaya[code]) {
+                byRiwaya[code] = {
+                    riwaya: source.riwaya,
+                    reciters: []
+                };
+            }
+            byRiwaya[code].reciters.push(source);
+        });
+
+        let html = '';
+
+        // Generate cards for each of the 8 main riwayat
+        Object.keys(riwayatAudioInfo).forEach(riwayaId => {
+            const info = riwayatAudioInfo[riwayaId];
+            const riwayaData = byRiwaya[info.code] || byRiwaya[riwayaId];
+            const hasReciters = riwayaData && riwayaData.reciters.length > 0;
+
+            html += `
+                <div class="audio-riwaya-card" data-riwaya="${riwayaId}" id="audio-card-${riwayaId}">
+                    <div class="audio-card-header">
+                        <div class="audio-riwaya-number">${info.number}</div>
+                        <div>
+                            <div class="audio-riwaya-name">${info.name}</div>
+                            <div class="audio-riwaya-narrator">${info.narrator}</div>
+                        </div>
+                    </div>
+                    ${hasReciters ? `
+                        <select class="audio-reciter-select" id="reciter-select-${riwayaId}" data-riwaya="${riwayaId}">
+                            ${riwayaData.reciters.map((r, idx) => `
+                                <option value="${idx}" data-url="${r.audio_url}" data-reciter-name="${r.reciter.name_arabic}">
+                                    ${r.reciter.name_arabic}
+                                </option>
+                            `).join('')}
+                        </select>
+                        <button class="audio-card-play-btn" data-riwaya="${riwayaId}" onclick="playRiwayaAudio('${riwayaId}')">
+                            <span>&#x25B6;</span>
+                            تشغيل
+                        </button>
+                    ` : `
+                        <div class="no-reciters-msg">لا تتوفر تسجيلات حاليا</div>
+                    `}
+                </div>
+            `;
+        });
+
+        audioRiwayatGrid.innerHTML = html;
+    }
+
+    // Render no audio message
+    function renderNoAudioMessage() {
+        audioRiwayatGrid.innerHTML = `
+            <div class="no-reciters-msg" style="grid-column: 1 / -1; padding: 40px;">
+                <p>لا تتوفر تسجيلات صوتية لهذه السورة حاليا</p>
+                <p style="font-size: 0.85rem; margin-top: 8px;">جاري العمل على إضافة المزيد من التسجيلات</p>
+            </div>
+        `;
+    }
+
+    // Play audio for a specific riwaya
+    window.playRiwayaAudio = function(riwayaId) {
+        const select = document.getElementById(`reciter-select-${riwayaId}`);
+        if (!select) return;
+
+        const selectedOption = select.options[select.selectedIndex];
+        const audioUrl = selectedOption.dataset.url;
+        const reciterName = selectedOption.dataset.reciterName;
+        const riwayaInfo = riwayatAudioInfo[riwayaId];
+
+        if (!audioUrl) {
+            alert('لم يتم العثور على ملف الصوت');
+            return;
+        }
+
+        // Update current state
+        currentRiwayaCode = riwayaId;
+        currentReciterId = select.value;
+
+        // Update UI - remove active/playing from all cards
+        document.querySelectorAll('.audio-riwaya-card').forEach(card => {
+            card.classList.remove('active', 'playing');
+        });
+        document.querySelectorAll('.audio-card-play-btn').forEach(btn => {
+            btn.classList.remove('playing');
+            btn.innerHTML = '<span>&#x25B6;</span> تشغيل';
+        });
+
+        // Mark current card as active
+        const currentCard = document.getElementById(`audio-card-${riwayaId}`);
+        const currentBtn = currentCard.querySelector('.audio-card-play-btn');
+        currentCard.classList.add('active', 'playing');
+        currentBtn.classList.add('playing');
+        currentBtn.innerHTML = '<span>&#x23F8;</span> إيقاف';
+
+        // Update player info
+        playerRiwayaName.textContent = `${riwayaInfo.name} ${riwayaInfo.narrator}`;
+        playerReciterName.textContent = reciterName;
+
+        // Load and play audio
+        quranAudio.src = audioUrl;
+        quranAudio.load();
+        quranAudio.play().then(() => {
+            isPlaying = true;
+            audioPlayBtn.classList.add('playing');
+            mainAudioPlayer.classList.remove('hidden');
+        }).catch(error => {
+            console.error('Error playing audio:', error);
+            alert('حدث خطأ أثناء تشغيل الصوت. قد يكون الملف غير متاح.');
+        });
+    };
+
+    // Audio player controls
+    if (audioPlayBtn) {
+        audioPlayBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                quranAudio.pause();
+                isPlaying = false;
+                audioPlayBtn.classList.remove('playing');
+                updateCardPlayingState(false);
+            } else {
+                quranAudio.play();
+                isPlaying = true;
+                audioPlayBtn.classList.add('playing');
+                updateCardPlayingState(true);
+            }
+        });
+    }
+
+    // Update card playing state
+    function updateCardPlayingState(playing) {
+        if (!currentRiwayaCode) return;
+
+        const card = document.getElementById(`audio-card-${currentRiwayaCode}`);
+        const btn = card?.querySelector('.audio-card-play-btn');
+
+        if (card && btn) {
+            if (playing) {
+                card.classList.add('playing');
+                btn.classList.add('playing');
+                btn.innerHTML = '<span>&#x23F8;</span> إيقاف';
+            } else {
+                card.classList.remove('playing');
+                btn.classList.remove('playing');
+                btn.innerHTML = '<span>&#x25B6;</span> تشغيل';
+            }
+        }
+    }
+
+    // Audio time update
+    if (quranAudio) {
+        quranAudio.addEventListener('timeupdate', function() {
+            const current = quranAudio.currentTime;
+            const duration = quranAudio.duration;
+
+            if (duration) {
+                audioProgress.value = (current / duration) * 100;
+                audioCurrentTime.textContent = formatTime(current);
+            }
+        });
+
+        quranAudio.addEventListener('loadedmetadata', function() {
+            audioDuration.textContent = formatTime(quranAudio.duration);
+        });
+
+        quranAudio.addEventListener('ended', function() {
+            isPlaying = false;
+            audioPlayBtn.classList.remove('playing');
+            updateCardPlayingState(false);
+            audioProgress.value = 0;
+        });
+
+        quranAudio.addEventListener('error', function() {
+            console.error('Audio error:', quranAudio.error);
+            isPlaying = false;
+            audioPlayBtn.classList.remove('playing');
+            updateCardPlayingState(false);
+        });
+    }
+
+    // Progress bar seek
+    if (audioProgress) {
+        audioProgress.addEventListener('input', function() {
+            const duration = quranAudio.duration;
+            if (duration) {
+                quranAudio.currentTime = (this.value / 100) * duration;
+            }
+        });
+    }
+
+    // Format time helper
+    function formatTime(seconds) {
+        if (isNaN(seconds)) return '0:00';
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    // Previous/Next buttons (navigate surahs)
+    if (audioPrevBtn) {
+        audioPrevBtn.addEventListener('click', function() {
+            if (currentSurahId > 1) {
+                const newSurahId = parseInt(currentSurahId) - 1;
+                surahSelect.value = newSurahId;
+                surahSelect.dispatchEvent(new Event('change'));
+                // Replay with same reciter after load
+                setTimeout(() => {
+                    if (currentRiwayaCode) {
+                        playRiwayaAudio(currentRiwayaCode);
+                    }
+                }, 500);
+            }
+        });
+    }
+
+    if (audioNextBtn) {
+        audioNextBtn.addEventListener('click', function() {
+            if (currentSurahId < 114) {
+                const newSurahId = parseInt(currentSurahId) + 1;
+                surahSelect.value = newSurahId;
+                surahSelect.dispatchEvent(new Event('change'));
+                // Replay with same reciter after load
+                setTimeout(() => {
+                    if (currentRiwayaCode) {
+                        playRiwayaAudio(currentRiwayaCode);
+                    }
+                }, 500);
+            }
+        });
+    }
+
+    // Update original surah selection handler to load audio
+    const originalSurahHandler = surahSelect.onchange;
+    surahSelect.addEventListener('change', function() {
+        const surahId = this.value;
+        if (surahId) {
+            loadAudioForSurah(surahId);
+        } else {
+            audioSection.classList.add('hidden');
+            mainAudioPlayer.classList.add('hidden');
+            // Stop any playing audio
+            if (quranAudio) {
+                quranAudio.pause();
+                quranAudio.src = '';
+            }
+        }
+    });
+
+    // Initially hide audio section
+    audioSection.classList.add('hidden');
+
+    // ============================================================================
+    // QUICK PLAY RIWAYA (from top riwayat grid)
+    // ============================================================================
+
+    // Quick play audio for a riwaya - plays surah Al-Fatiha or selected surah
+    window.quickPlayRiwaya = function(riwayaId) {
+        // Get the selected surah or default to Al-Fatiha
+        let surahId = surahSelect.value || '1';
+
+        // If no surah selected, select Al-Fatiha
+        if (!surahSelect.value) {
+            surahSelect.value = '1';
+            surahSelect.dispatchEvent(new Event('change'));
+        }
+
+        // Wait for audio data to load then play
+        setTimeout(() => {
+            // Check if audio card exists for this riwaya
+            const audioCard = document.getElementById(`audio-card-${riwayaId}`);
+            if (audioCard) {
+                playRiwayaAudio(riwayaId);
+
+                // Update quick play button state
+                updateQuickPlayButtons(riwayaId, true);
+            } else {
+                // Fallback: play using everyayah.com
+                playQuickAudioFallback(riwayaId, surahId);
+            }
+        }, 500);
+    };
+
+    // Update quick play button states
+    function updateQuickPlayButtons(activeRiwayaId, isPlaying) {
+        document.querySelectorAll('.riwaya-quick-play-btn').forEach(btn => {
+            const card = btn.closest('.riwayat-card');
+            const riwayaId = card?.dataset.riwaya;
+
+            if (riwayaId === activeRiwayaId && isPlaying) {
+                btn.classList.add('playing');
+                btn.innerHTML = '<span class="play-icon">&#10074;&#10074;</span>';
+            } else {
+                btn.classList.remove('playing');
+                btn.innerHTML = '<span class="play-icon">&#9654;</span>';
+            }
+        });
+    }
+
+    // Fallback audio player using everyayah.com
+    function playQuickAudioFallback(riwayaId, surahId) {
+        const reciterFolders = {
+            'hafs': 'Abdul_Basit_Murattal_64kbps',
+            'warsh': 'warsh/warsh_ibrahim_aldosary_128kbps',
+            'qaloon': 'warsh/warsh_ibrahim_aldosary_128kbps',
+            'shuba': 'Abdul_Basit_Murattal_64kbps',
+            'doori': 'Abdul_Basit_Murattal_64kbps',
+            'soosi': 'Abdul_Basit_Murattal_64kbps',
+            'bazzi': 'Abdul_Basit_Murattal_64kbps',
+            'qunbul': 'Abdul_Basit_Murattal_64kbps'
+        };
+
+        const folder = reciterFolders[riwayaId] || 'Abdul_Basit_Murattal_64kbps';
+        const paddedSurah = String(surahId).padStart(3, '0');
+
+        // Play first verse
+        const audioUrl = `https://everyayah.com/data/${folder}/${paddedSurah}001.mp3`;
+
+        // Update player info
+        const riwayaInfo = riwayatAudioInfo[riwayaId];
+        if (riwayaInfo) {
+            playerRiwayaName.textContent = `${riwayaInfo.name} ${riwayaInfo.narrator}`;
+            playerReciterName.textContent = 'قارئ افتراضي';
+        }
+
+        // Load and play
+        quranAudio.src = audioUrl;
+        quranAudio.load();
+        quranAudio.play().then(() => {
+            isPlaying = true;
+            audioPlayBtn.classList.add('playing');
+            mainAudioPlayer.classList.remove('hidden');
+            updateQuickPlayButtons(riwayaId, true);
+            currentRiwayaCode = riwayaId;
+        }).catch(err => {
+            console.error('Error playing audio:', err);
+            alert('حدث خطأ أثناء تشغيل الصوت');
+        });
+
+        // Handle audio end
+        quranAudio.onended = function() {
+            isPlaying = false;
+            audioPlayBtn.classList.remove('playing');
+            updateQuickPlayButtons(riwayaId, false);
+        };
+    }
+
+    // Listen for audio end to reset quick play buttons
+    quranAudio.addEventListener('ended', function() {
+        updateQuickPlayButtons(null, false);
+    });
+});
+</script>
+{% endblock %}

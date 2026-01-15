@@ -1,0 +1,347 @@
+{% extends "base.html" %}
+
+{% block title %}أسباب النزول - علوم القرآن{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>أسباب النزول</h1>
+    <p>تعرف على أسباب نزول الآيات وسياقها التاريخي</p>
+</div>
+
+<div class="asbab-container">
+    <!-- Surah Selector -->
+    <div class="selector-card">
+        <label for="surah-select">اختر السورة:</label>
+        <select id="surah-select" class="surah-select">
+            <option value="">-- اختر سورة --</option>
+            {% for surah in surahs %}
+            <option value="{{ surah.id }}" data-count="{{ surah.asbab_count }}">
+                {{ surah.id }}. {{ surah.name_arabic }}
+                {% if surah.asbab_count > 0 %}({{ surah.asbab_count }}){% endif %}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <span>جاري التحميل...</span>
+    </div>
+
+    <!-- Results -->
+    <div id="asbab-results" class="asbab-results"></div>
+</div>
+
+<style>
+.asbab-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.selector-card {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 24px;
+}
+
+.selector-card label {
+    display: block;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.surah-select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.surah-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.asbab-results {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.surah-header {
+    background: linear-gradient(135deg, var(--primary-color), #2d7a5e);
+    color: white;
+    padding: 24px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.surah-header h2 {
+    margin: 0 0 8px 0;
+    font-size: 28px;
+}
+
+.surah-header .count {
+    opacity: 0.9;
+    font-size: 16px;
+}
+
+.verse-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.verse-header {
+    background: #f8f9fa;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.verse-badge {
+    background: var(--primary-color);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.verse-text {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 22px;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.sabab-content {
+    padding: 20px;
+}
+
+.sabab-item {
+    padding: 20px;
+    background: #fafbfc;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    border-right: 4px solid var(--primary-color);
+}
+
+.sabab-item:last-child {
+    margin-bottom: 0;
+}
+
+.sabab-text {
+    font-size: 17px;
+    line-height: 2;
+    color: #333;
+    white-space: pre-wrap;
+    text-align: justify;
+}
+
+.sabab-meta {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 14px;
+    color: #666;
+}
+
+.sabab-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sabab-meta span::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    opacity: 0.5;
+}
+
+.source-badge {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.no-results-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px;
+    color: var(--primary-color);
+}
+
+.spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Paragraph styling for long texts */
+.sabab-text p {
+    margin-bottom: 16px;
+}
+
+.sabab-text p:last-child {
+    margin-bottom: 0;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const surahSelect = document.getElementById('surah-select');
+    const loading = document.getElementById('loading');
+    const results = document.getElementById('asbab-results');
+
+    surahSelect.addEventListener('change', function() {
+        const surahId = this.value;
+        if (surahId) {
+            loadSurahAsbab(surahId);
+        } else {
+            results.innerHTML = '';
+        }
+    });
+
+    async function loadSurahAsbab(surahId) {
+        loading.classList.remove('hidden');
+        results.innerHTML = '';
+
+        try {
+            const response = await fetch(`/api/asbab/surah/${surahId}`);
+            const data = await response.json();
+
+            loading.classList.add('hidden');
+
+            if (!data.verses_with_asbab || data.verses_with_asbab.length === 0) {
+                results.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">📖</div>
+                        <h3>${data.surah?.name_arabic || 'السورة'}</h3>
+                        <p>لا توجد أسباب نزول مسجلة لهذه السورة</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = `
+                <div class="surah-header">
+                    <h2>سورة ${data.surah.name_arabic}</h2>
+                    <div class="count">عدد أسباب النزول: ${data.total_asbab}</div>
+                </div>
+            `;
+
+            data.verses_with_asbab.forEach(verse => {
+                html += `
+                    <div class="verse-card">
+                        <div class="verse-header">
+                            <span class="verse-badge">${verse.ayah_number}</span>
+                            <div class="verse-text">${verse.text_uthmani}</div>
+                        </div>
+                        <div class="sabab-content">
+                `;
+
+                verse.asbab.forEach(sabab => {
+                    // Format the text with proper paragraphs
+                    const formattedText = formatAsbabText(sabab.text);
+
+                    html += `
+                        <div class="sabab-item">
+                            <div class="sabab-text">${formattedText}</div>
+                            <div class="sabab-meta">
+                                ${sabab.source ? `<span>المصدر: ${sabab.source}</span>` : ''}
+                                ${sabab.grading ? `<span>الدرجة: ${sabab.grading}</span>` : ''}
+                                ${sabab.period ? `<span>الفترة: ${sabab.period}</span>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            results.innerHTML = html;
+
+        } catch (error) {
+            loading.classList.add('hidden');
+            results.innerHTML = `
+                <div class="no-results">
+                    <div class="no-results-icon">⚠️</div>
+                    <p>حدث خطأ أثناء تحميل البيانات</p>
+                </div>
+            `;
+            console.error(error);
+        }
+    }
+
+    function formatAsbabText(text) {
+        if (!text) return '';
+
+        // Convert newlines to paragraphs
+        const paragraphs = text.split(/\n\n+/).filter(p => p.trim());
+
+        if (paragraphs.length > 1) {
+            return paragraphs.map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+        }
+
+        // If single block, add line breaks
+        return text.replace(/\n/g, '<br>');
+    }
+});
+</script>
+{% endblock %}

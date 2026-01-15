@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}القرآن الكريم - علوم القرآن{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 2rem;">
+    <h1>القرآن الكريم</h1>
+    <p style="color: var(--text-light); margin-bottom: 2rem;">تصفح سور القرآن الكريم بالرسم العثماني</p>
+
+    <!-- Search -->
+    <div class="search-box">
+        <input type="text" id="surah-search" placeholder="ابحث عن سورة...">
+    </div>
+
+    <!-- Surah Grid -->
+    <div class="surah-grid" id="surah-list">
+        {% for surah in surahs %}
+        <a href="/surah/{{ surah.id }}" class="surah-item" data-name="{{ surah.name_arabic }} {{ surah.name_english }}">
+            <div class="surah-number">{{ surah.id }}</div>
+            <div class="surah-info">
+                <div class="surah-name">{{ surah.name_arabic }}</div>
+                <div class="surah-meta">{{ surah.ayah_count }} آية - {{ surah.revelation_type or 'غير محدد' }}</div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Filter surahs
+document.getElementById('surah-search').addEventListener('input', function(e) {
+    const query = e.target.value.toLowerCase();
+    document.querySelectorAll('.surah-item').forEach(item => {
+        const name = item.dataset.name.toLowerCase();
+        item.style.display = name.includes(query) ? 'flex' : 'none';
+    });
+});
+</script>
+{% endblock %}

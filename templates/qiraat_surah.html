@@ -1,0 +1,960 @@
+{% extends "base.html" %}
+
+{% block title %}القراءات في سورة {{ surah.name_arabic }} - علوم القرآن{% endblock %}
+
+{% block content %}
+<div class="qiraat-surah-page">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="header-content">
+            <div class="surah-info">
+                <h1>القراءات في سورة {{ surah.name_arabic }}</h1>
+                <p class="surah-details">
+                    <span class="detail-item">{{ surah.name_english }}</span>
+                    <span class="detail-divider">|</span>
+                    <span class="detail-item">{{ surah.ayah_count }} آية</span>
+                    <span class="detail-divider">|</span>
+                    <span class="detail-item">{{ surah.revelation_type or 'غير محدد' }}</span>
+                </p>
+            </div>
+            <div class="nav-buttons">
+                {% if surah.id > 1 %}
+                <a href="/qiraat/surah/{{ surah.id - 1 }}" class="btn-nav">
+                    <span class="arrow">&#8594;</span>
+                    السورة السابقة
+                </a>
+                {% endif %}
+                {% if surah.id < 114 %}
+                <a href="/qiraat/surah/{{ surah.id + 1 }}" class="btn-nav">
+                    السورة التالية
+                    <span class="arrow">&#8592;</span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-value" id="total-differences">0</span>
+                <span class="stat-label">فروق القراءات</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="verses-with-diff">0</span>
+                <span class="stat-label">آيات بها فروق</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">{{ surah.ayah_count }}</span>
+                <span class="stat-label">إجمالي الآيات</span>
+            </div>
+        </div>
+
+        <!-- Controls Panel -->
+        <div class="controls-panel">
+            <div class="filter-section">
+                <label class="filter-toggle">
+                    <input type="checkbox" id="show-differences-only">
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-label">عرض الآيات التي بها فروق فقط</span>
+                </label>
+                <label class="filter-toggle">
+                    <input type="checkbox" id="highlight-differences" checked>
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-label">تمييز الكلمات المختلفة</span>
+                </label>
+            </div>
+            <div class="verse-jump">
+                <label for="verse-jump-select">الانتقال إلى آية:</label>
+                <select id="verse-jump-select">
+                    <option value="">اختر آية...</option>
+                    {% for i in range(1, surah.ayah_count + 1) %}
+                    <option value="{{ i }}">الآية {{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <!-- Riwayat Reference -->
+        <div class="riwayat-reference">
+            <h3>الروايات الثمانية</h3>
+            <div class="riwayat-chips">
+                <span class="riwaya-chip" data-riwaya="hafs"><span class="chip-num">1</span> حفص</span>
+                <span class="riwaya-chip" data-riwaya="warsh"><span class="chip-num">2</span> ورش</span>
+                <span class="riwaya-chip" data-riwaya="qaloon"><span class="chip-num">3</span> قالون</span>
+                <span class="riwaya-chip" data-riwaya="shouba"><span class="chip-num">4</span> شعبة</span>
+                <span class="riwaya-chip" data-riwaya="doori"><span class="chip-num">5</span> الدوري</span>
+                <span class="riwaya-chip" data-riwaya="soosi"><span class="chip-num">6</span> السوسي</span>
+                <span class="riwaya-chip" data-riwaya="bazzi"><span class="chip-num">7</span> البزي</span>
+                <span class="riwaya-chip" data-riwaya="qumbul"><span class="chip-num">8</span> قنبل</span>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-indicator" class="loading-container">
+            <div class="loader">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+            </div>
+            <span>جاري تحميل القراءات...</span>
+        </div>
+
+        <!-- Verses Container -->
+        <div id="verses-container" class="verses-container hidden">
+            <!-- Verses will be rendered here -->
+        </div>
+
+        <!-- No Differences Message -->
+        <div id="no-differences-message" class="no-differences hidden">
+            <div class="no-diff-icon">&#10003;</div>
+            <h3>لا توجد فروقات مسجلة</h3>
+            <p>لم يتم تسجيل فروقات في القراءات لهذه السورة</p>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Qiraat Surah Page Styles */
+.qiraat-surah-page {
+    background: var(--bg-color);
+    min-height: 100vh;
+}
+
+/* Page Header */
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color), #2d7a5e);
+    color: white;
+    padding: 40px 20px;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.surah-info h1 {
+    color: white;
+    margin-bottom: 10px;
+    font-size: 2.2rem;
+}
+
+.surah-details {
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.detail-divider {
+    margin: 0 10px;
+    opacity: 0.5;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.btn-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.btn-nav .arrow {
+    font-size: 1.2rem;
+}
+
+/* Container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Stats Bar */
+.stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-top: 4px;
+}
+
+/* Controls Panel */
+.controls-panel {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.filter-section {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.filter-toggle input {
+    display: none;
+}
+
+.toggle-slider {
+    width: 50px;
+    height: 26px;
+    background: #ddd;
+    border-radius: 13px;
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.filter-toggle input:checked + .toggle-slider {
+    background: var(--primary-color);
+}
+
+.filter-toggle input:checked + .toggle-slider::before {
+    transform: translateX(24px);
+}
+
+.toggle-label {
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.verse-jump {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.verse-jump label {
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.verse-jump select {
+    padding: 10px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    background: white;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+.verse-jump select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Riwayat Reference */
+.riwayat-reference {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    margin-bottom: 24px;
+}
+
+.riwayat-reference h3 {
+    color: var(--primary-color);
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.riwayat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.riwaya-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: linear-gradient(135deg, #f8f9fa, #fff);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.chip-num {
+    width: 22px;
+    height: 22px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* Loading */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: var(--primary-color);
+    gap: 20px;
+}
+
+.loader {
+    display: flex;
+    gap: 8px;
+}
+
+.loader-ring {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+.loader-ring:nth-child(2) { animation-delay: 0.2s; }
+.loader-ring:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(0.5); opacity: 0.5; }
+}
+
+/* Verses Container */
+.verses-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Single Verse Card */
+.verse-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.verse-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.verse-card.has-difference {
+    border-right: 4px solid var(--secondary-color);
+}
+
+.verse-header {
+    background: linear-gradient(135deg, var(--primary-color), #2d7a5e);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.verse-number-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.verse-num {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.verse-key {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.verse-diff-badge {
+    background: var(--secondary-color);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.verse-body {
+    padding: 24px;
+}
+
+.verse-text-main {
+    font-family: 'Amiri Quran', 'Amiri', serif;
+    font-size: 1.8rem;
+    line-height: 2.2;
+    color: var(--quran-text);
+    text-align: center;
+    padding: 20px;
+    background: rgba(26, 95, 74, 0.03);
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+/* Readings Comparison Grid */
+.readings-comparison {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1200px) {
+    .readings-comparison {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .readings-comparison {
+        grid-template-columns: 1fr;
+    }
+}
+
+.reading-cell {
+    background: #fafbfc;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.reading-cell:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.reading-cell.has-variant {
+    background: #fff9e6;
+    border-color: var(--secondary-color);
+}
+
+.reading-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.reading-num {
+    width: 28px;
+    height: 28px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.reading-name {
+    font-weight: bold;
+    color: var(--primary-dark);
+    font-size: 1rem;
+}
+
+.reading-text {
+    font-family: 'Amiri Quran', 'Amiri', serif;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--quran-text);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reading-cell.has-variant .reading-text {
+    color: #8b6914;
+}
+
+.diff-highlight {
+    background: linear-gradient(to bottom, transparent 60%, rgba(201, 162, 39, 0.3) 60%);
+    padding: 0 4px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Differences Detail */
+.differences-detail {
+    background: #fff9e6;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid var(--secondary-color);
+}
+
+.differences-title {
+    color: #8b6914;
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.differences-title::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: var(--secondary-color);
+    border-radius: 2px;
+}
+
+.diff-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.diff-item {
+    background: white;
+    padding: 16px;
+    border-radius: 10px;
+}
+
+.diff-word {
+    font-family: 'Amiri Quran', 'Amiri', serif;
+    font-size: 1.4rem;
+    color: #8b6914;
+    margin-bottom: 12px;
+    display: inline-block;
+    background: rgba(201, 162, 39, 0.1);
+    padding: 6px 14px;
+    border-radius: 8px;
+}
+
+.diff-readings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.diff-reading-tag {
+    padding: 8px 14px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.diff-reading-tag .reader {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.diff-reading-tag .text {
+    font-family: 'Amiri', serif;
+    font-size: 1.1rem;
+}
+
+/* No Differences */
+.no-differences {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.no-diff-icon {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.no-differences h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.no-differences p {
+    color: var(--text-light);
+}
+
+/* Utility */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 30px 15px;
+    }
+
+    .surah-info h1 {
+        font-size: 1.8rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-buttons {
+        justify-content: center;
+    }
+
+    .stats-bar {
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .stat-value {
+        font-size: 1.6rem;
+    }
+
+    .controls-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-section {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .verse-jump {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .verse-jump select {
+        width: 100%;
+    }
+
+    .verse-text-main {
+        font-size: 1.5rem;
+        padding: 16px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const surahId = {{ surah.id }};
+    const surahName = "{{ surah.name_arabic }}";
+    const totalAyahs = {{ surah.ayah_count }};
+
+    const loadingIndicator = document.getElementById('loading-indicator');
+    const versesContainer = document.getElementById('verses-container');
+    const noDiffMessage = document.getElementById('no-differences-message');
+    const showDiffOnlyCheckbox = document.getElementById('show-differences-only');
+    const highlightDiffCheckbox = document.getElementById('highlight-differences');
+    const verseJumpSelect = document.getElementById('verse-jump-select');
+
+    // Riwayat configuration
+    const riwayat = [
+        { id: 1, code: 'hafs', name: 'حفص', narrator: 'عن عاصم' },
+        { id: 2, code: 'warsh', name: 'ورش', narrator: 'عن نافع' },
+        { id: 3, code: 'qaloon', name: 'قالون', narrator: 'عن نافع' },
+        { id: 4, code: 'shouba', name: 'شعبة', narrator: 'عن عاصم' },
+        { id: 5, code: 'doori', name: 'الدوري', narrator: 'عن أبي عمرو' },
+        { id: 6, code: 'soosi', name: 'السوسي', narrator: 'عن أبي عمرو' },
+        { id: 7, code: 'bazzi', name: 'البزي', narrator: 'عن ابن كثير' },
+        { id: 8, code: 'qumbul', name: 'قنبل', narrator: 'عن ابن كثير' }
+    ];
+
+    let allVersesData = [];
+    let differencesData = {};
+
+    // Load all data
+    loadSurahData();
+
+    // Event listeners
+    showDiffOnlyCheckbox.addEventListener('change', renderVerses);
+    highlightDiffCheckbox.addEventListener('change', renderVerses);
+    verseJumpSelect.addEventListener('change', function() {
+        const ayahNum = this.value;
+        if (ayahNum) {
+            const element = document.getElementById(`verse-${ayahNum}`);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    });
+
+    // Load surah data
+    async function loadSurahData() {
+        try {
+            // Load verses and differences in parallel
+            const [versesResponse, differencesResponse] = await Promise.all([
+                fetch(`/api/quran/surahs/${surahId}`),
+                fetch(`/api/qiraat/surah/${surahId}/differences`)
+            ]);
+
+            const versesData = await versesResponse.json();
+            const diffData = await differencesResponse.json();
+
+            allVersesData = versesData.verses || [];
+
+            // Organize differences by ayah number
+            if (diffData.differences_by_ayah) {
+                diffData.differences_by_ayah.forEach(ayahDiff => {
+                    differencesData[ayahDiff.ayah_number] = ayahDiff.differences;
+                });
+            }
+
+            // Update stats
+            document.getElementById('total-differences').textContent = diffData.total_differences || 0;
+            document.getElementById('verses-with-diff').textContent = diffData.ayat_with_differences || 0;
+
+            // Hide loading, show content
+            loadingIndicator.classList.add('hidden');
+
+            if (allVersesData.length > 0) {
+                versesContainer.classList.remove('hidden');
+                renderVerses();
+            } else {
+                noDiffMessage.classList.remove('hidden');
+            }
+
+        } catch (error) {
+            console.error('Error loading surah data:', error);
+            loadingIndicator.innerHTML = '<p style="color: red;">حدث خطأ في تحميل البيانات</p>';
+        }
+    }
+
+    // Render verses
+    function renderVerses() {
+        const showDiffOnly = showDiffOnlyCheckbox.checked;
+        const highlightDiff = highlightDiffCheckbox.checked;
+
+        let versesToShow = allVersesData;
+        if (showDiffOnly) {
+            versesToShow = allVersesData.filter(v => differencesData[v.ayah_number]);
+        }
+
+        if (versesToShow.length === 0 && showDiffOnly) {
+            versesContainer.innerHTML = `
+                <div class="no-differences">
+                    <div class="no-diff-icon">&#10003;</div>
+                    <h3>لا توجد فروقات</h3>
+                    <p>قم بإلغاء تحديد "عرض الآيات التي بها فروق فقط" لعرض جميع الآيات</p>
+                </div>
+            `;
+            return;
+        }
+
+        let html = '';
+        versesToShow.forEach(verse => {
+            const ayahNum = verse.ayah_number;
+            const verseKey = verse.verse_key;
+            const differences = differencesData[ayahNum] || [];
+            const hasDiff = differences.length > 0;
+
+            html += `
+                <div class="verse-card ${hasDiff ? 'has-difference' : ''}" id="verse-${ayahNum}">
+                    <div class="verse-header">
+                        <div class="verse-number-badge">
+                            <div class="verse-num">${ayahNum}</div>
+                            <span class="verse-key">${verseKey}</span>
+                        </div>
+                        ${hasDiff ? `<span class="verse-diff-badge">${differences.length} فرق</span>` : ''}
+                    </div>
+                    <div class="verse-body">
+                        <div class="verse-text-main">${verse.text_uthmani}</div>
+
+                        <div class="readings-comparison">
+                            ${renderReadingsGrid(verse, differences, highlightDiff)}
+                        </div>
+
+                        ${hasDiff ? renderDifferencesDetail(differences) : ''}
+                    </div>
+                </div>
+            `;
+        });
+
+        versesContainer.innerHTML = html;
+    }
+
+    // Render readings grid
+    function renderReadingsGrid(verse, differences, highlightDiff) {
+        let html = '';
+
+        riwayat.forEach((riwaya, index) => {
+            // Check if this riwaya has any differences
+            let hasVariant = false;
+            let variantNotes = [];
+
+            differences.forEach(diff => {
+                if (diff.readings) {
+                    diff.readings.forEach(reading => {
+                        if (matchesRiwaya(reading.name_arabic || reading.code, riwaya)) {
+                            hasVariant = true;
+                            variantNotes.push({
+                                word: diff.word_text,
+                                reading: reading.reading_text
+                            });
+                        }
+                    });
+                }
+            });
+
+            // Get the text - apply highlighting if enabled
+            let displayText = verse.text_uthmani;
+            if (highlightDiff && variantNotes.length > 0) {
+                variantNotes.forEach(note => {
+                    if (note.reading) {
+                        displayText = displayText.replace(
+                            note.word,
+                            `<span class="diff-highlight">${note.reading}</span>`
+                        );
+                    }
+                });
+            }
+
+            html += `
+                <div class="reading-cell ${hasVariant ? 'has-variant' : ''}">
+                    <div class="reading-header">
+                        <span class="reading-num">${index + 1}</span>
+                        <span class="reading-name">${riwaya.name}</span>
+                    </div>
+                    <div class="reading-text">${displayText}</div>
+                </div>
+            `;
+        });
+
+        return html;
+    }
+
+    // Render differences detail section
+    function renderDifferencesDetail(differences) {
+        if (!differences || differences.length === 0) return '';
+
+        let html = `
+            <div class="differences-detail">
+                <h4 class="differences-title">تفاصيل الفروقات</h4>
+                <div class="diff-items">
+        `;
+
+        differences.forEach(diff => {
+            html += `
+                <div class="diff-item">
+                    <div class="diff-word">${diff.word_text}</div>
+                    <div class="diff-readings">
+                        ${(diff.readings || []).map(r => `
+                            <div class="diff-reading-tag">
+                                <span class="reader">${r.name_arabic || r.code || 'قارئ'}:</span>
+                                <span class="text">${r.reading_text}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        });
+
+        html += '</div></div>';
+        return html;
+    }
+
+    // Helper to match riwaya name
+    function matchesRiwaya(readerName, riwaya) {
+        if (!readerName) return false;
+
+        const mappings = {
+            'hafs': ['حفص', 'عاصم', 'hafs'],
+            'warsh': ['ورش', 'نافع', 'warsh'],
+            'qaloon': ['قالون', 'نافع', 'qaloon'],
+            'shouba': ['شعبة', 'عاصم', 'shouba'],
+            'doori': ['الدوري', 'أبي عمرو', 'أبو عمرو', 'doori'],
+            'soosi': ['السوسي', 'أبي عمرو', 'أبو عمرو', 'soosi'],
+            'bazzi': ['البزي', 'ابن كثير', 'bazzi'],
+            'qumbul': ['قنبل', 'ابن كثير', 'qumbul']
+        };
+
+        const names = mappings[riwaya.code] || [];
+        return names.some(name => readerName.includes(name));
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,1198 @@
+{% extends "base.html" %}
+
+{% block title %}المتشابهات - علوم القرآن{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>المتشابهات</h1>
+    <p>اكتشف الآيات المتشابهة في القرآن الكريم مع تحليل الفروق والسياقات</p>
+</div>
+
+<div class="mutashabihat-container">
+    <!-- Selectors -->
+    <div class="selector-card">
+        <div class="selectors-row">
+            <div class="selector-group">
+                <label for="surah-select">السورة:</label>
+                <select id="surah-select" class="selector">
+                    <option value="">-- اختر سورة --</option>
+                    {% for surah in surahs %}
+                    <option value="{{ surah.id }}" data-ayah-count="{{ surah.ayah_count }}">
+                        {{ surah.id }}. {{ surah.name_arabic }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="selector-group">
+                <label for="ayah-select">الآية:</label>
+                <select id="ayah-select" class="selector" disabled>
+                    <option value="">-- اختر آية --</option>
+                </select>
+            </div>
+            <div class="selector-group" style="min-width: 150px;">
+                <label for="source-select">المصدر:</label>
+                <select id="source-select" class="selector">
+                    <option value="local" selected>محلي (أدق)</option>
+                    <option value="quranpedia">Quranpedia</option>
+                    <option value="combined">مجمع</option>
+                </select>
+            </div>
+            <button id="search-btn" class="search-btn" disabled>
+                <span class="btn-icon">🔍</span>
+                بحث المتشابهات
+            </button>
+        </div>
+    </div>
+
+    <!-- Mode Tabs -->
+    <div class="mode-tabs">
+        <button class="mode-tab active" data-mode="similar">المتشابهات</button>
+        <button class="mode-tab" data-mode="full">البيانات الكاملة</button>
+        <button class="mode-tab" data-mode="ai">تحليل AI</button>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <span>جاري البحث...</span>
+    </div>
+
+    <!-- Results -->
+    <div id="results" class="results"></div>
+</div>
+
+<style>
+.mutashabihat-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.selector-card {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+.selectors-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.selector-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.selector-group label {
+    display: block;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.selector {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 15px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.selector:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.selector:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.search-btn {
+    padding: 12px 24px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+}
+
+.search-btn:hover:not(:disabled) {
+    background: #2d7a5e;
+    transform: translateY(-1px);
+}
+
+.search-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.mode-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    background: white;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.mode-tab {
+    flex: 1;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #666;
+}
+
+.mode-tab:hover {
+    background: #f5f5f5;
+}
+
+.mode-tab.active {
+    background: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Source Verse Card */
+.source-verse-card {
+    background: linear-gradient(135deg, var(--primary-color), #2d7a5e);
+    color: white;
+    padding: 28px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.source-verse-card .verse-key {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 12px;
+}
+
+.source-verse-card .verse-text {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 26px;
+    line-height: 2;
+    margin-bottom: 12px;
+}
+
+.source-verse-card .surah-name {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* Similar Verses */
+.similar-header {
+    background: white;
+    padding: 20px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.similar-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.similar-count {
+    background: var(--primary-color);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.similar-verse-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.similar-verse-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.similar-verse-header {
+    background: #f8f9fa;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.verse-reference {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.verse-badge {
+    background: var(--primary-color);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.similarity-score {
+    color: #666;
+    font-size: 13px;
+}
+
+.similar-verse-content {
+    padding: 24px;
+}
+
+.similar-verse-text {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 22px;
+    line-height: 2;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.similar-verse-meta {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.similar-verse-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Full Data Section */
+.data-section {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.data-section-header {
+    background: #f8f9fa;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: bold;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.data-section-content {
+    padding: 20px;
+}
+
+.data-item {
+    padding: 16px;
+    background: #fafbfc;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border-right: 4px solid var(--primary-color);
+}
+
+.data-item:last-child {
+    margin-bottom: 0;
+}
+
+.data-item-title {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.data-item-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* AI Analysis */
+.ai-analysis-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.ai-header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ai-header h3 {
+    margin: 0;
+}
+
+.ai-content {
+    padding: 24px;
+}
+
+.ai-prompt-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.ai-prompt-btn:hover {
+    transform: translateY(-2px);
+}
+
+.ai-response {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.ai-response.markdown-content h2,
+.ai-response.markdown-content h3,
+.ai-response.markdown-content h4 {
+    color: var(--primary-color);
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+
+.ai-response.markdown-content h2 { font-size: 1.4em; }
+.ai-response.markdown-content h3 { font-size: 1.2em; }
+.ai-response.markdown-content h4 { font-size: 1.1em; }
+
+.ai-response.markdown-content p {
+    margin-bottom: 12px;
+}
+
+.ai-response.markdown-content ul,
+.ai-response.markdown-content ol {
+    margin: 12px 0;
+    padding-right: 24px;
+}
+
+.ai-response.markdown-content li {
+    margin-bottom: 8px;
+}
+
+.ai-response.markdown-content strong {
+    color: var(--primary-color);
+}
+
+.ai-response.markdown-content em {
+    font-style: italic;
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.no-results-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.no-results h3 {
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.no-results p {
+    color: #999;
+}
+
+/* Loading */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 60px;
+    color: var(--primary-color);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .selectors-row {
+        flex-direction: column;
+    }
+
+    .selector-group {
+        min-width: 100%;
+    }
+
+    .search-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .mode-tabs {
+        flex-direction: column;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const surahSelect = document.getElementById('surah-select');
+    const ayahSelect = document.getElementById('ayah-select');
+    const sourceSelect = document.getElementById('source-select');
+    const searchBtn = document.getElementById('search-btn');
+    const loading = document.getElementById('loading');
+    const results = document.getElementById('results');
+    const modeTabs = document.querySelectorAll('.mode-tab');
+
+    let currentMode = 'similar';
+    let currentData = null;
+    let currentSource = 'local';
+
+    // Surah change - populate ayah dropdown
+    surahSelect.addEventListener('change', function() {
+        const ayahCount = this.options[this.selectedIndex].dataset.ayahCount;
+        ayahSelect.innerHTML = '<option value="">-- اختر آية --</option>';
+
+        if (ayahCount) {
+            for (let i = 1; i <= parseInt(ayahCount); i++) {
+                ayahSelect.innerHTML += `<option value="${i}">${i}</option>`;
+            }
+            ayahSelect.disabled = false;
+        } else {
+            ayahSelect.disabled = true;
+        }
+        searchBtn.disabled = true;
+        results.innerHTML = '';
+    });
+
+    // Ayah change - enable search
+    ayahSelect.addEventListener('change', function() {
+        searchBtn.disabled = !this.value;
+    });
+
+    // Source change
+    sourceSelect.addEventListener('change', function() {
+        currentSource = this.value;
+        if (currentData) {
+            // Re-fetch with new source
+            const surahId = surahSelect.value;
+            const ayahNumber = ayahSelect.value;
+            if (surahId && ayahNumber) {
+                loadMutashabihat(surahId, ayahNumber);
+            }
+        }
+    });
+
+    // Mode tabs
+    modeTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            modeTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            currentMode = this.dataset.mode;
+            if (currentData) {
+                renderResults(currentData);
+            }
+        });
+    });
+
+    // Search button
+    searchBtn.addEventListener('click', async function() {
+        const surahId = surahSelect.value;
+        const ayahNumber = ayahSelect.value;
+
+        if (!surahId || !ayahNumber) return;
+
+        await loadMutashabihat(surahId, ayahNumber);
+    });
+
+    async function loadMutashabihat(surahId, ayahNumber) {
+        loading.classList.remove('hidden');
+        results.innerHTML = '';
+
+        try {
+            const verseKey = `${surahId}:${ayahNumber}`;
+            let endpoint = `/api/mutashabihat/verse/${verseKey}?source=${currentSource}`;
+
+            if (currentMode === 'full') {
+                endpoint = `/api/mutashabihat/full/${verseKey}`;
+            }
+
+            const response = await fetch(endpoint);
+            const data = await response.json();
+
+            loading.classList.add('hidden');
+            currentData = data;
+            renderResults(data);
+
+        } catch (error) {
+            loading.classList.add('hidden');
+            results.innerHTML = `
+                <div class="no-results">
+                    <div class="no-results-icon">⚠️</div>
+                    <h3>حدث خطأ</h3>
+                    <p>تعذر الاتصال بالخادم</p>
+                </div>
+            `;
+            console.error(error);
+        }
+    }
+
+    function renderResults(data) {
+        if (!data || !data.success) {
+            results.innerHTML = `
+                <div class="no-results">
+                    <div class="no-results-icon">📖</div>
+                    <h3>لا توجد بيانات</h3>
+                    <p>لم يتم العثور على بيانات لهذه الآية</p>
+                </div>
+            `;
+            return;
+        }
+
+        let html = '';
+
+        // Source verse card
+        const sourceVerse = data.source_verse;
+        html += `
+            <div class="source-verse-card">
+                <div class="verse-key">${sourceVerse.verse_key}</div>
+                <div class="verse-text">${sourceVerse.text_uthmani || ''}</div>
+                <div class="surah-name">سورة ${sourceVerse.surah_name_ar || ''}</div>
+            </div>
+        `;
+
+        if (currentMode === 'similar') {
+            html += renderSimilarVerses(data);
+        } else if (currentMode === 'full') {
+            html += renderFullData(data);
+        } else if (currentMode === 'ai') {
+            html += renderAIAnalysis(data);
+        }
+
+        results.innerHTML = html;
+
+        // Bind AI button if present
+        const aiBtn = document.getElementById('ai-analyze-btn');
+        if (aiBtn) {
+            aiBtn.addEventListener('click', () => analyzeWithAI(data));
+        }
+    }
+
+    function renderSimilarVerses(data) {
+        // Handle combined source (has both local_similar and quranpedia_similar)
+        if (data.source === 'combined') {
+            return renderCombinedSimilarVerses(data);
+        }
+
+        const similar = data.similar_verses;
+        const sourceVerseKey = data.verse_key;
+        const dataSource = data.source || 'local';
+
+        if (!similar || (Array.isArray(similar) && similar.length === 0)) {
+            return `
+                <div class="no-results">
+                    <div class="no-results-icon">🔍</div>
+                    <h3>لا توجد آيات متشابهة</h3>
+                    <p>لم يتم العثور على آيات متشابهة لهذه الآية من مصدر: ${dataSource === 'local' ? 'البيانات المحلية' : 'Quranpedia'}</p>
+                </div>
+            `;
+        }
+
+        let verses = [];
+
+        if (Array.isArray(similar)) {
+            similar.forEach(item => {
+                // Local data format (simple, clean)
+                if (item.verse_key && item.text_uthmani) {
+                    if (item.verse_key === sourceVerseKey) return;
+                    verses.push({
+                        verse_key: item.verse_key,
+                        text: item.text_uthmani,
+                        surah_name_ar: item.surah_name_ar || '',
+                        surah_id: item.surah_id,
+                        ayah_number: item.ayah_number,
+                        page_number: item.page_number,
+                        juz_number: item.juz_number
+                    });
+                }
+                // Quranpedia format: nested ayahs array
+                else if (item.ayahs && Array.isArray(item.ayahs)) {
+                    const ayahKeys = item.ayahs.map(a => {
+                        const info = a.info || a;
+                        return `${info.surah_id || info.surah}:${info.number || info.ayah || info.ayah_number}`;
+                    });
+
+                    const hasSourceVerse = ayahKeys.some(key => key === sourceVerseKey);
+                    if (!hasSourceVerse) return;
+
+                    const notes = item.notes || '';
+                    const isThematicGroup = item.ayahs.length > 2 || notes.includes('انفرادات');
+                    if (isThematicGroup) return;
+
+                    item.ayahs.forEach(ayahItem => {
+                        const info = ayahItem.info || ayahItem;
+                        const surahId = info.surah_id || info.surah;
+                        const ayahNum = info.number || info.ayah || info.ayah_number;
+                        const verseKey = `${surahId}:${ayahNum}`;
+
+                        if (verseKey === sourceVerseKey) return;
+
+                        verses.push({
+                            verse_key: verseKey,
+                            text: info.text || info.text_uthmani || info.clean_text || '',
+                            notes: item.notes || '',
+                            surah_id: surahId,
+                            ayah_number: ayahNum
+                        });
+                    });
+                }
+                // Direct verse format
+                else if (item.text || item.text_uthmani) {
+                    const vKey = item.verse_key || `${item.surah_id || item.surah}:${item.number || item.ayah}`;
+                    if (vKey === sourceVerseKey) return;
+
+                    verses.push({
+                        verse_key: vKey,
+                        text: item.text || item.text_uthmani || item.clean_text || '',
+                        surah_id: item.surah_id || item.surah,
+                        ayah_number: item.number || item.ayah || item.ayah_number
+                    });
+                }
+            });
+        }
+
+        // Remove duplicates
+        const uniqueVerses = [];
+        const seenKeys = new Set();
+        verses.forEach(v => {
+            if (!seenKeys.has(v.verse_key)) {
+                seenKeys.add(v.verse_key);
+                uniqueVerses.push(v);
+            }
+        });
+        verses = uniqueVerses;
+
+        if (verses.length === 0) {
+            return `
+                <div class="no-results">
+                    <div class="no-results-icon">🔍</div>
+                    <h3>لا توجد آيات متشابهة</h3>
+                    <p>لم يتم العثور على آيات متشابهة لهذه الآية</p>
+                </div>
+            `;
+        }
+
+        const sourceLabel = dataSource === 'local' ? 'بيانات محلية مدققة (Waqar144)' : 'Quranpedia API';
+
+        let html = `
+            <div class="similar-header">
+                <h3>الآيات المتشابهة</h3>
+                <span class="similar-count">${verses.length} آية</span>
+            </div>
+            <div style="background: #e8f5e9; padding: 10px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 13px; color: #2e7d32;">
+                📚 المصدر: ${sourceLabel}
+            </div>
+        `;
+
+        verses.forEach((verse, index) => {
+            const verseText = verse.text || '';
+
+            html += `
+                <div class="similar-verse-card">
+                    <div class="similar-verse-header">
+                        <div class="verse-reference">
+                            <span class="verse-badge">${verse.verse_key}</span>
+                            ${verse.surah_name_ar ? `<span style="color: #666; font-size: 14px;">${verse.surah_name_ar}</span>` : ''}
+                        </div>
+                        ${verse.page_number ? `<span style="color: #999; font-size: 13px;">صفحة ${verse.page_number}</span>` : ''}
+                    </div>
+                    <div class="similar-verse-content">
+                        <div class="similar-verse-text">${verseText || 'النص غير متاح'}</div>
+                        ${verse.notes ? `<div class="similar-verse-notes" style="margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; font-size: 14px; color: #666;">${verse.notes}</div>` : ''}
+                    </div>
+                </div>
+            `;
+        });
+
+        return html;
+    }
+
+    function renderCombinedSimilarVerses(data) {
+        const localSimilar = data.local_similar || [];
+        const quranpediaSimilar = data.quranpedia_similar;
+
+        let html = '';
+
+        // Local results section
+        if (localSimilar.length > 0) {
+            html += `
+                <div class="similar-header" style="background: #e8f5e9;">
+                    <h3 style="color: #2e7d32;">المتشابهات - بيانات محلية مدققة</h3>
+                    <span class="similar-count" style="background: #2e7d32;">${localSimilar.length} آية</span>
+                </div>
+            `;
+
+            localSimilar.forEach(verse => {
+                html += `
+                    <div class="similar-verse-card">
+                        <div class="similar-verse-header">
+                            <div class="verse-reference">
+                                <span class="verse-badge">${verse.verse_key}</span>
+                                ${verse.surah_name_ar ? `<span style="color: #666; font-size: 14px;">${verse.surah_name_ar}</span>` : ''}
+                            </div>
+                        </div>
+                        <div class="similar-verse-content">
+                            <div class="similar-verse-text">${verse.text_uthmani || 'النص غير متاح'}</div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Quranpedia results (processed)
+        if (quranpediaSimilar && Array.isArray(quranpediaSimilar)) {
+            const processedQp = [];
+            const sourceVerseKey = data.verse_key;
+
+            quranpediaSimilar.forEach(item => {
+                if (item.ayahs && Array.isArray(item.ayahs)) {
+                    const hasSourceVerse = item.ayahs.some(a => {
+                        const info = a.info || a;
+                        return `${info.surah_id}:${info.number}` === sourceVerseKey;
+                    });
+                    if (!hasSourceVerse) return;
+                    if (item.ayahs.length > 2) return;
+
+                    item.ayahs.forEach(a => {
+                        const info = a.info || a;
+                        const vKey = `${info.surah_id}:${info.number}`;
+                        if (vKey !== sourceVerseKey) {
+                            processedQp.push({
+                                verse_key: vKey,
+                                text: info.text || '',
+                                notes: item.notes || ''
+                            });
+                        }
+                    });
+                }
+            });
+
+            if (processedQp.length > 0) {
+                html += `
+                    <div class="similar-header" style="background: #e3f2fd; margin-top: 20px;">
+                        <h3 style="color: #1565c0;">المتشابهات - Quranpedia</h3>
+                        <span class="similar-count" style="background: #1565c0;">${processedQp.length} آية</span>
+                    </div>
+                `;
+
+                processedQp.forEach(verse => {
+                    html += `
+                        <div class="similar-verse-card">
+                            <div class="similar-verse-header">
+                                <div class="verse-reference">
+                                    <span class="verse-badge" style="background: #1565c0;">${verse.verse_key}</span>
+                                </div>
+                            </div>
+                            <div class="similar-verse-content">
+                                <div class="similar-verse-text">${verse.text || 'النص غير متاح'}</div>
+                                ${verse.notes ? `<div class="similar-verse-notes" style="margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; font-size: 14px; color: #666;">${verse.notes}</div>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        if (!html) {
+            return `
+                <div class="no-results">
+                    <div class="no-results-icon">🔍</div>
+                    <h3>لا توجد آيات متشابهة</h3>
+                    <p>لم يتم العثور على آيات متشابهة لهذه الآية</p>
+                </div>
+            `;
+        }
+
+        return html;
+    }
+
+    function renderFullData(data) {
+        const qpData = data.quranpedia_data || {};
+        let html = '';
+
+        // Similar
+        if (qpData.similar) {
+            html += renderDataSection('المتشابهات', '🔗', qpData.similar);
+        }
+
+        // Tafsir
+        if (qpData.tafsir) {
+            html += renderDataSection('التفسير', '📖', qpData.tafsir);
+        }
+
+        // E3rab
+        if (qpData.e3rab) {
+            html += renderDataSection('الإعراب', '📝', qpData.e3rab);
+        }
+
+        // Asbab
+        if (qpData.asbab) {
+            html += renderDataSection('أسباب النزول', '📜', qpData.asbab);
+        }
+
+        // Topics
+        if (qpData.topics) {
+            html += renderDataSection('الموضوعات', '🏷️', qpData.topics);
+        }
+
+        // Meanings
+        if (qpData.meanings) {
+            html += renderDataSection('المعاني', '💡', qpData.meanings);
+        }
+
+        // Fatwa
+        if (qpData.fatwa) {
+            html += renderDataSection('الفتاوى', '⚖️', qpData.fatwa);
+        }
+
+        // Notes
+        if (qpData.notes) {
+            html += renderDataSection('الملاحظات العلمية', '📋', qpData.notes);
+        }
+
+        if (!html) {
+            html = `
+                <div class="no-results">
+                    <div class="no-results-icon">📭</div>
+                    <h3>لا توجد بيانات إضافية</h3>
+                    <p>لم يتم العثور على بيانات إضافية لهذه الآية</p>
+                </div>
+            `;
+        }
+
+        return html;
+    }
+
+    function renderDataSection(title, icon, data) {
+        let content = '';
+
+        if (!data || (Array.isArray(data) && data.length === 0)) {
+            return ''; // Skip empty sections
+        }
+
+        if (Array.isArray(data)) {
+            data.forEach(item => {
+                if (typeof item === 'object') {
+                    // Handle different data types from Quranpedia
+                    let itemTitle = '';
+                    let itemText = '';
+
+                    // Meanings format with book_info and words
+                    if (item.book_info && item.words) {
+                        itemTitle = item.book_info.name || 'معاني الكلمات';
+                        if (Array.isArray(item.words)) {
+                            itemText = item.words.map(w => `<strong>${w.text || ''}</strong>: ${w.meaning || ''}`).join('<br>');
+                        }
+                    }
+                    // Topics format with related_ayahs
+                    else if (item.name && item.related_ayahs) {
+                        itemTitle = item.name;
+                        itemText = `الآيات: ${item.related_ayahs}`;
+                        if (item.parent && item.parent.name) {
+                            itemText += ` (${item.parent.name})`;
+                        }
+                    }
+                    // Tafsir/E3rab/Asbab format (book metadata)
+                    else if (item.name && (item.author || item.category)) {
+                        itemTitle = item.name;
+                        let details = [];
+                        if (item.author) details.push(`المؤلف: ${item.author}`);
+                        if (item.year) details.push(`السنة: ${item.year} هـ`);
+                        if (item.parts) details.push(`${item.parts} جزء`);
+                        if (item.category && item.category.name) details.push(`التصنيف: ${item.category.name}`);
+                        itemText = details.join(' | ');
+                    }
+                    // Book name only
+                    else if (item.name) {
+                        itemTitle = item.name;
+                        itemText = item.description || item.text || '';
+                    }
+                    // Similar verses format
+                    else if (item.verse_key || (item.surah && item.ayah)) {
+                        const vKey = item.verse_key || `${item.surah}:${item.ayah}`;
+                        itemTitle = vKey + (item.surah_name ? ` - ${item.surah_name}` : '');
+                        itemText = item.text || item.text_uthmani || item.clean_text || '';
+                    }
+                    // Topics/Meanings format
+                    else if (item.name && !item.author) {
+                        itemTitle = item.name;
+                        itemText = item.description || item.text || '';
+                    }
+                    // E3rab format
+                    else if (item.word || item.e3rab) {
+                        itemTitle = item.word || '';
+                        itemText = item.e3rab || item.text || '';
+                    }
+                    // Asbab format
+                    else if (item.sabab || item.reason) {
+                        itemTitle = 'سبب النزول';
+                        itemText = item.sabab || item.reason || item.text || '';
+                    }
+                    // Fatwa format
+                    else if (item.question || item.fatwa) {
+                        itemTitle = item.question || 'فتوى';
+                        itemText = item.answer || item.fatwa || item.text || '';
+                    }
+                    // Generic text/content
+                    else if (item.text || item.content) {
+                        itemTitle = item.title || '';
+                        itemText = item.text || item.content || '';
+                    }
+                    // Fallback - show key fields only
+                    else {
+                        const keys = ['name', 'title', 'text', 'content', 'description'];
+                        for (const key of keys) {
+                            if (item[key]) {
+                                itemText = item[key];
+                                break;
+                            }
+                        }
+                        if (!itemText) {
+                            // Show only important fields, not raw JSON
+                            const important = {};
+                            ['name', 'author', 'year', 'text', 'surah', 'ayah'].forEach(k => {
+                                if (item[k]) important[k] = item[k];
+                            });
+                            itemText = Object.keys(important).length > 0
+                                ? Object.entries(important).map(([k,v]) => `${k}: ${v}`).join(' | ')
+                                : '';
+                        }
+                    }
+
+                    if (itemTitle || itemText) {
+                        content += `
+                            <div class="data-item">
+                                ${itemTitle ? `<div class="data-item-title">${itemTitle}</div>` : ''}
+                                ${itemText ? `<div class="data-item-text">${itemText}</div>` : ''}
+                            </div>
+                        `;
+                    }
+                } else {
+                    content += `<div class="data-item"><div class="data-item-text">${item}</div></div>`;
+                }
+            });
+        } else if (typeof data === 'object') {
+            // Single object - extract meaningful content
+            const text = data.text || data.content || data.description || data.name || '';
+            if (text) {
+                content = `<div class="data-item"><div class="data-item-text">${text}</div></div>`;
+            }
+        } else {
+            content = `<div class="data-item"><div class="data-item-text">${data}</div></div>`;
+        }
+
+        if (!content) return ''; // Skip if no content rendered
+
+        return `
+            <div class="data-section">
+                <div class="data-section-header">
+                    <span>${icon}</span>
+                    ${title}
+                </div>
+                <div class="data-section-content">
+                    ${content}
+                </div>
+            </div>
+        `;
+    }
+
+    function renderAIAnalysis(data) {
+        return `
+            <div class="ai-analysis-card">
+                <div class="ai-header">
+                    <span>🤖</span>
+                    <h3>تحليل الذكاء الاصطناعي</h3>
+                </div>
+                <div class="ai-content">
+                    <button id="ai-analyze-btn" class="ai-prompt-btn">
+                        🔍 تحليل المتشابهات بالذكاء الاصطناعي
+                    </button>
+                    <div id="ai-response" class="ai-response" style="margin-top: 20px;"></div>
+                </div>
+            </div>
+        `;
+    }
+
+    // Simple markdown to HTML converter
+    function renderMarkdown(text) {
+        if (!text) return '';
+
+        return text
+            // Headers
+            .replace(/^### (.*$)/gm, '<h4>$1</h4>')
+            .replace(/^## (.*$)/gm, '<h3>$1</h3>')
+            .replace(/^# (.*$)/gm, '<h2>$1</h2>')
+            // Bold
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            // Italic
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            // Bullet lists
+            .replace(/^\- (.*$)/gm, '<li>$1</li>')
+            .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+            // Numbered lists
+            .replace(/^\d+\. (.*$)/gm, '<li>$1</li>')
+            // Line breaks
+            .replace(/\n\n/g, '</p><p>')
+            .replace(/\n/g, '<br>')
+            // Wrap in paragraph
+            .replace(/^(.*)$/, '<p>$1</p>')
+            // Clean up empty paragraphs
+            .replace(/<p><\/p>/g, '')
+            .replace(/<p><br><\/p>/g, '')
+            // Fix list wrapping
+            .replace(/<p>(<ul>)/g, '$1')
+            .replace(/(<\/ul>)<\/p>/g, '$1');
+    }
+
+    async function analyzeWithAI(data) {
+        const aiBtn = document.getElementById('ai-analyze-btn');
+        const aiResponse = document.getElementById('ai-response');
+
+        aiBtn.disabled = true;
+        aiBtn.textContent = '⏳ جاري التحليل...';
+        aiResponse.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+        try {
+            // Extract actual similar verses from the data
+            let similarVersesText = '';
+            const similar = data.similar_verses;
+            if (Array.isArray(similar)) {
+                similar.forEach(item => {
+                    if (item.ayahs && Array.isArray(item.ayahs)) {
+                        item.ayahs.forEach(ayahItem => {
+                            const info = ayahItem.info || ayahItem;
+                            const vKey = `${info.surah_id}:${info.number}`;
+                            if (vKey !== data.verse_key) {
+                                similarVersesText += `- الآية ${vKey}: ${info.text || info.clean_text || ''}\n`;
+                            }
+                        });
+                        if (item.notes) {
+                            similarVersesText += `الملاحظة: ${item.notes}\n\n`;
+                        }
+                    }
+                });
+            }
+
+            const question = `حلل المتشابهات للآية ${data.source_verse.verse_key}:
+الآية الأصلية: "${data.source_verse.text_uthmani}"
+
+الآيات المتشابهة المكتشفة:
+${similarVersesText || 'لم يتم العثور على آيات متشابهة محددة'}
+
+المطلوب:
+1. اشرح التشابه اللفظي بين الآيات
+2. وضح الفروق الدقيقة في الألفاظ والمعاني
+3. اذكر سبب التشابه والحكمة منه
+4. قارن السياق الذي وردت فيه كل آية`;
+
+            const response = await fetch('/api/ai/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    question: question,
+                    include_verses: true,
+                    include_tafsir: true,
+                    language: 'ar'
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success && result.data) {
+                const rawAnswer = result.data.answer || result.data.response || JSON.stringify(result.data);
+                const renderedAnswer = renderMarkdown(rawAnswer);
+                aiResponse.innerHTML = `<div class="ai-response markdown-content">${renderedAnswer}</div>`;
+            } else {
+                aiResponse.innerHTML = '<p>تعذر الحصول على التحليل</p>';
+            }
+
+        } catch (error) {
+            aiResponse.innerHTML = '<p>حدث خطأ أثناء التحليل</p>';
+            console.error(error);
+        }
+
+        aiBtn.disabled = false;
+        aiBtn.textContent = '🔍 تحليل المتشابهات بالذكاء الاصطناعي';
+    }
+});
+</script>
+{% endblock %}

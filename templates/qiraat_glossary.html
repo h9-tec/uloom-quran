@@ -1,0 +1,752 @@
+{% extends "base.html" %}
+
+{% block title %}معجم مصطلحات القراءات - علوم القرآن{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>معجم مصطلحات القراءات</h1>
+    <p>شرح شامل لمصطلحات علم القراءات القرآنية</p>
+</div>
+
+<div class="glossary-container">
+    <!-- Search and Filter Section -->
+    <div class="glossary-controls">
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="ابحث عن مصطلح..." class="search-input">
+            <span class="search-icon">&#x1F50D;</span>
+        </div>
+        <div class="category-filter">
+            <label>التصنيف:</label>
+            <select id="category-select" class="styled-select">
+                <option value="all">جميع التصنيفات</option>
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name_arabic }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="language-toggle">
+            <label class="toggle-label">
+                <input type="checkbox" id="show-english" checked>
+                <span class="toggle-slider"></span>
+                عرض الترجمة الإنجليزية
+            </label>
+        </div>
+    </div>
+
+    <!-- Statistics Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-number">{{ total_terms }}</span>
+            <span class="stat-label">مصطلح</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">{{ categories|length }}</span>
+            <span class="stat-label">تصنيف</span>
+        </div>
+        <div class="stat-item" id="visible-count">
+            <span class="stat-number">{{ total_terms }}</span>
+            <span class="stat-label">نتيجة</span>
+        </div>
+    </div>
+
+    <!-- Category Navigation -->
+    <div class="category-nav">
+        <button class="category-btn active" data-category="all">الكل</button>
+        {% for category in categories %}
+        <button class="category-btn" data-category="{{ category.id }}">{{ category.name_arabic }}</button>
+        {% endfor %}
+    </div>
+
+    <!-- Terms Grid -->
+    <div class="terms-grid" id="terms-grid">
+        {% for term in terms %}
+        <div class="term-card" data-category="{{ term.category }}" data-term-arabic="{{ term.term_arabic }}" data-term-english="{{ term.term_english }}">
+            <div class="term-header">
+                <div class="term-number">{{ term.id }}</div>
+                <div class="term-titles">
+                    <h3 class="term-arabic">{{ term.term_arabic }}</h3>
+                    <span class="term-english">{{ term.term_english }}</span>
+                    {% if term.transliteration %}
+                    <span class="term-transliteration">({{ term.transliteration }})</span>
+                    {% endif %}
+                </div>
+                <button class="expand-btn" aria-label="توسيع">
+                    <span class="expand-icon">+</span>
+                </button>
+            </div>
+            <div class="term-body">
+                <div class="definition-section">
+                    <h4>التعريف</h4>
+                    <p class="definition-arabic">{{ term.definition_arabic }}</p>
+                    <p class="definition-english">{{ term.definition_english }}</p>
+                </div>
+                {% if term.examples %}
+                <div class="examples-section">
+                    <h4>أمثلة</h4>
+                    <ul class="examples-list">
+                        {% for example in term.examples %}
+                        <li>{{ example }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                {% if term.related_terms %}
+                <div class="related-section">
+                    <h4>مصطلحات ذات صلة</h4>
+                    <div class="related-tags">
+                        {% for related in term.related_terms %}
+                        <span class="related-tag" data-search="{{ related }}">{{ related }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- No Results Message -->
+    <div class="no-results hidden" id="no-results">
+        <div class="no-results-icon">&#x1F50D;</div>
+        <h3>لا توجد نتائج</h3>
+        <p>لم يتم العثور على مصطلحات تطابق بحثك</p>
+    </div>
+</div>
+
+<style>
+/* Container */
+.glossary-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+/* Page Header */
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color), #2d7a5e);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    opacity: 0.9;
+    font-size: 1.2rem;
+}
+
+/* Controls Section */
+.glossary-controls {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 14px 50px 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 95, 74, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    opacity: 0.5;
+}
+
+.category-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.category-filter label {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.styled-select {
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    background: white;
+    cursor: pointer;
+    min-width: 180px;
+}
+
+.styled-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.language-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.toggle-label input {
+    display: none;
+}
+
+.toggle-slider {
+    width: 44px;
+    height: 24px;
+    background: #ddd;
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.toggle-slider::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    top: 3px;
+    right: 3px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.toggle-label input:checked + .toggle-slider {
+    background: var(--primary-color);
+}
+
+.toggle-label input:checked + .toggle-slider::after {
+    right: 23px;
+}
+
+/* Stats Bar */
+.stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa, #fff);
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* Category Navigation */
+.category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.category-btn {
+    padding: 10px 18px;
+    border: 2px solid var(--border-color);
+    border-radius: 25px;
+    background: white;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-color);
+}
+
+.category-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.category-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* Terms Grid */
+.terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 20px;
+}
+
+@media (max-width: 500px) {
+    .terms-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Term Card */
+.term-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.term-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.term-card.expanded {
+    border-color: var(--primary-color);
+}
+
+.term-card.hidden {
+    display: none;
+}
+
+.term-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #fafbfc, #fff);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.term-number {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--primary-color), #2d8f6f);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.term-titles {
+    flex: 1;
+}
+
+.term-arabic {
+    margin: 0 0 4px 0;
+    font-size: 1.3rem;
+    color: var(--primary-dark);
+}
+
+.term-english {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    display: block;
+}
+
+.term-transliteration {
+    font-size: 0.85rem;
+    color: #999;
+    font-style: italic;
+}
+
+.expand-btn {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.expand-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.expand-icon {
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.term-card.expanded .expand-icon {
+    transform: rotate(45deg);
+}
+
+/* Term Body */
+.term-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.term-card.expanded .term-body {
+    max-height: 1000px;
+}
+
+.term-body > div {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.term-body > div:last-child {
+    border-bottom: none;
+}
+
+.term-body h4 {
+    color: var(--primary-color);
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.term-body h4::before {
+    content: '';
+    width: 4px;
+    height: 18px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+.definition-arabic {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--text-color);
+    margin-bottom: 16px;
+    text-align: justify;
+}
+
+.definition-english {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-light);
+    text-align: left;
+    direction: ltr;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-right: 4px solid var(--primary-color);
+}
+
+.examples-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.examples-list li {
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #fff9e6, #fffdf5);
+    border-radius: 10px;
+    font-family: 'Amiri', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    border-right: 4px solid var(--secondary-color);
+}
+
+.related-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.related-tag {
+    padding: 8px 16px;
+    background: #f0f0f0;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.related-tag:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.no-results.hidden {
+    display: none;
+}
+
+.no-results-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.no-results h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.no-results p {
+    color: var(--text-light);
+}
+
+/* Hide English when toggled off */
+body.hide-english .term-english,
+body.hide-english .term-transliteration,
+body.hide-english .definition-english {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .glossary-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .category-filter {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .styled-select {
+        width: 100%;
+    }
+
+    .stats-bar {
+        gap: 20px;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .category-nav {
+        justify-content: center;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .term-header {
+        padding: 16px;
+    }
+
+    .term-arabic {
+        font-size: 1.1rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .glossary-controls,
+    .category-nav,
+    .expand-btn,
+    .stats-bar {
+        display: none;
+    }
+
+    .term-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+    }
+
+    .term-body {
+        max-height: none !important;
+    }
+
+    .page-header {
+        background: var(--primary-color);
+        -webkit-print-color-adjust: exact;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const categorySelect = document.getElementById('category-select');
+    const showEnglishToggle = document.getElementById('show-english');
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const termCards = document.querySelectorAll('.term-card');
+    const termsGrid = document.getElementById('terms-grid');
+    const noResults = document.getElementById('no-results');
+    const visibleCountEl = document.getElementById('visible-count');
+
+    // Toggle card expansion
+    termCards.forEach(card => {
+        const header = card.querySelector('.term-header');
+        header.addEventListener('click', (e) => {
+            if (e.target.closest('.related-tag')) return;
+            card.classList.toggle('expanded');
+        });
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', filterTerms);
+
+    // Category select filter
+    categorySelect.addEventListener('change', function() {
+        const category = this.value;
+        categoryBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.category === category);
+        });
+        filterTerms();
+    });
+
+    // Category button filter
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            categorySelect.value = this.dataset.category;
+            filterTerms();
+        });
+    });
+
+    // English toggle
+    showEnglishToggle.addEventListener('change', function() {
+        document.body.classList.toggle('hide-english', !this.checked);
+    });
+
+    // Related tag click
+    document.querySelectorAll('.related-tag').forEach(tag => {
+        tag.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const searchTerm = this.dataset.search;
+            searchInput.value = searchTerm;
+            categorySelect.value = 'all';
+            categoryBtns.forEach(b => b.classList.toggle('active', b.dataset.category === 'all'));
+            filterTerms();
+            searchInput.focus();
+        });
+    });
+
+    function filterTerms() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        const selectedCategory = categorySelect.value;
+        let visibleCount = 0;
+
+        termCards.forEach(card => {
+            const termArabic = card.dataset.termArabic.toLowerCase();
+            const termEnglish = card.dataset.termEnglish.toLowerCase();
+            const category = card.dataset.category;
+            const definitionArabic = card.querySelector('.definition-arabic')?.textContent.toLowerCase() || '';
+            const definitionEnglish = card.querySelector('.definition-english')?.textContent.toLowerCase() || '';
+
+            const matchesSearch = !searchTerm ||
+                termArabic.includes(searchTerm) ||
+                termEnglish.includes(searchTerm) ||
+                definitionArabic.includes(searchTerm) ||
+                definitionEnglish.includes(searchTerm);
+
+            const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
+
+            if (matchesSearch && matchesCategory) {
+                card.classList.remove('hidden');
+                visibleCount++;
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+
+        // Update visible count
+        visibleCountEl.querySelector('.stat-number').textContent = visibleCount;
+
+        // Show/hide no results message
+        if (visibleCount === 0) {
+            noResults.classList.remove('hidden');
+            termsGrid.style.display = 'none';
+        } else {
+            noResults.classList.add('hidden');
+            termsGrid.style.display = 'grid';
+        }
+    }
+
+    // Expand all cards on print
+    window.addEventListener('beforeprint', function() {
+        termCards.forEach(card => card.classList.add('expanded'));
+    });
+
+    // Collapse cards after print
+    window.addEventListener('afterprint', function() {
+        termCards.forEach(card => card.classList.remove('expanded'));
+    });
+});
+</script>
+{% endblock %}
