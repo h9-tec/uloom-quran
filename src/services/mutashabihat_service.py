@@ -12,7 +12,7 @@ from pathlib import Path
 logger = logging.getLogger(__name__)
 
 # Data paths
-DATA_DIR = Path(__file__).parent.parent.parent / "data" / "raw"
+DATA_DIR = Path(__file__).parent.parent.parent / "data" / "mutashabihat"
 WAQAR_DATA_PATH = DATA_DIR / "mutashabihat_waqar.json"
 DB_PATH = Path(__file__).parent.parent.parent / "db" / "uloom_quran.db"
 
