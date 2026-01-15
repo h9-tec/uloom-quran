@@ -46,8 +46,8 @@ A comprehensive AI-powered platform for Quranic Sciences (علوم القرآن)
 ### الإعراب (Grammatical Analysis)
 ![I'rab Analysis](images/eraab.png)
 
-### AI Semantic Search
-![AI Search](images/AI.png)
+### AI Assistant
+![AI Assistant](images/AI.png)
 
 ---
 
