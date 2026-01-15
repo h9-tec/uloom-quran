@@ -8,8 +8,9 @@ __pycache__
 .env.*
 !.env.example
 
-# Exclude large data directories (not needed in Docker image)
-data/
+# Exclude large data directories (raw/processed not needed, but include mutashabihat/exports)
+data/raw/
+data/processed/
 scripts/
 *.log
 .venv
