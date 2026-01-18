@@ -5,6 +5,7 @@ WORKDIR /app
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     gcc \
+    sqlite3 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
@@ -17,8 +18,15 @@ COPY templates/ ./templates/
 COPY static/ ./static/
 COPY run.py .
 
-# Copy SQLite database (embedded for read-heavy workload)
-COPY db/uloom_quran.db ./db/uloom_quran.db
+# Copy database schema
+COPY db/ ./db/
+
+# Create database directory and initialize with schema
+# This creates an empty database structure that can be populated later
+RUN mkdir -p db && \
+    sqlite3 db/uloom_quran.db < db/schema.sql && \
+    sqlite3 db/uloom_quran.db < db/usul_qiraat_schema.sql && \
+    sqlite3 db/uloom_quran.db < db/basmala_schema.sql
 
 # Copy data files (mutashabihat, exports)
 COPY data/mutashabihat/ ./data/mutashabihat/

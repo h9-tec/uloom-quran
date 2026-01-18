@@ -127,7 +127,7 @@ Open http://localhost:8080 in your browser.
 ### Docker Deployment
 
 ```bash
-# Build the image
+# Build the image (includes database schema initialization)
 docker build -t uloom-quran .
 
 # Run with environment variables
@@ -137,6 +137,10 @@ docker run -p 8080:8080 \
   -e QDRANT_URL=your-qdrant-url \
   uloom-quran
 ```
+
+**Note:** The Docker build automatically creates an empty database with the schema. To populate it with data, you can either:
+1. Run the import scripts before building: `python scripts/init_database.py`
+2. Mount a pre-populated database: `docker run -v /path/to/uloom_quran.db:/app/db/uloom_quran.db ...`
 
 ### Cloud Deployment
 
